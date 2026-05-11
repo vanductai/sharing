@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Trong Công Việc — 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Be Vietnam Pro',sans-serif}
+
+/* ── Deck ── */
+.deck{width:1280px;height:720px;position:relative;transform-origin:center center}
+.slide{position:absolute;inset:0;overflow:hidden;display:none}
+.slide.active{display:flex}
+
+/* ── Shared helpers ── */
+.row{display:flex;align-items:stretch}
+.col{display:flex;flex-direction:column}
+.abs{position:absolute}
+
+/* ── Colors ── */
+:root{
+  --dark:#0A1628;--navy:#112240;--navyL:#1A3050;
+  --teal:#00C9A7;--tealD:#009E83;
+  --openai:#10A37F;--openaiD:#0B7558;
+  --google:#1A73E8;--googleD:#1057B3;
+  --anthropic:#CF4500;--anthropicD:#9E3300;
+  --white:#fff;--off:#F0F4F8;
+  --text:#1E293B;--muted:#64748B;--lightG:#CBD5E1
+}
+
+/* ─────────────────────────────────────
+   SLIDE 1 — TITLE
+───────────────────────────────────── */
+#s1{background:var(--dark);flex-direction:column;justify-content:center}
+#s1 .accent-bar{position:absolute;left:0;top:0;width:8px;height:100%;background:var(--teal)}
+#s1 .bg-circle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(0,201,167,.08),transparent 70%)}
+#s1 .c1{width:700px;height:700px;right:-200px;top:-150px}
+#s1 .c2{width:400px;height:400px;left:-100px;bottom:-100px}
+#s1 .content{padding:0 80px;z-index:1}
+#s1 .eyebrow{font-size:13px;font-weight:600;letter-spacing:4px;color:var(--teal);text-transform:uppercase;margin-bottom:18px}
+#s1 h1{font-size:90px;font-weight:900;line-height:1;margin-bottom:24px}
+#s1 h1 span.t{color:var(--teal)}
+#s1 h1 span.w{color:var(--white)}
+#s1 .sub{font-size:22px;font-weight:400;color:rgba(255,255,255,.62);margin-bottom:48px;max-width:580px;line-height:1.5}
+#s1 .badges{display:flex;gap:12px}
+#s1 .badge{padding:10px 28px;border-radius:4px;font-size:15px;font-weight:700;color:#fff}
+#s1 .badge.g1{background:var(--openai)}
+#s1 .badge.g2{background:var(--google)}
+#s1 .badge.g3{background:var(--anthropic)}
+#s1 .footer{position:absolute;bottom:0;left:0;right:0;padding:14px 80px;background:var(--navyL);font-size:12px;color:rgba(255,255,255,.35)}
+#s1 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--teal);padding:7px 18px;border-radius:20px;font-size:12px;color:var(--teal);margin-bottom:28px}
+#s1 .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* ─────────────────────────────────────
+   SLIDE 2 — AGENDA
+───────────────────────────────────── */
+#s2{background:var(--off);flex-direction:column}
+#s2 .header{background:var(--dark);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+#s2 .header h2{font-size:22px;font-weight:800;color:#fff}
+#s2 .header span{font-size:13px;color:var(--teal);font-weight:600}
+#s2 .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:24px 60px}
+.agenda-card{background:#fff;border-radius:8px;padding:0;display:flex;align-items:stretch;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;transition:transform .2s}
+.agenda-card:hover{transform:translateX(4px)}
+.agenda-card .bar{width:5px;flex-shrink:0}
+.agenda-card .time-box{display:flex;align-items:center;justify-content:center;width:90px;flex-shrink:0;font-size:26px;font-weight:900}
+.agenda-card .info{flex:1;padding:18px 20px}
+.agenda-card .info h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:5px}
+.agenda-card .info p{font-size:13px;color:var(--muted);line-height:1.5}
+.agenda-card .tag{align-self:center;margin-right:20px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px}
+
+/* ─────────────────────────────────────
+   SLIDE 3 — MINDSET
+───────────────────────────────────── */
+#s3{background:var(--dark);flex-direction:column}
+#s3 .header{background:var(--navyL);padding:18px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+#s3 .header h2{font-size:22px;font-weight:800;color:var(--teal)}
+#s3 .header span{font-size:13px;color:rgba(255,255,255,.4)}
+#s3 .body{flex:1;display:flex;gap:16px;padding:24px 60px;align-items:stretch}
+.mind-panel{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.mind-panel .ph{padding:16px 24px;display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700}
+.mind-panel .pc{flex:1;background:rgba(255,255,255,.04);padding:24px;display:flex;flex-direction:column;gap:14px}
+.mind-panel .pc .item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.78);line-height:1.5}
+.mind-panel .pc .item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.mind-panel.wrong{border:1.5px solid #E74C3C}
+.mind-panel.wrong .ph{background:#E74C3C;color:#fff}
+.mind-panel.wrong .dot{background:#E74C3C}
+.mind-panel.right{border:1.5px solid var(--teal)}
+.mind-panel.right .ph{background:var(--teal);color:var(--dark)}
+.mind-panel.right .dot{background:var(--teal)}
+#s3 .formula{background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.4);margin:0 60px 24px;padding:16px 30px;border-radius:8px;text-align:center;font-size:18px;font-weight:700;color:var(--teal)}
+
+/* ─────────────────────────────────────
+   SLIDE 4 — SECTION DIVIDER
+───────────────────────────────────── */
+.section-slide{flex-direction:column;align-items:center;justify-content:center;position:relative}
+.section-slide .bg-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.section-slide .super{font-size:14px;font-weight:700;letter-spacing:6px;text-transform:uppercase;margin-bottom:16px}
+.section-slide h1{font-size:88px;font-weight:900;line-height:1;text-align:center}
+.section-slide .desc{font-size:18px;margin-top:20px;text-align:center}
+.section-slide .divider{width:80px;height:4px;border-radius:2px;margin:24px auto 0}
+
+#s4{background:var(--dark)}
+#s4 .bg-orb.a{width:500px;height:500px;background:rgba(0,201,167,.07);left:-150px;top:-150px}
+#s4 .bg-orb.b{width:400px;height:400px;background:rgba(26,115,232,.06);right:-100px;bottom:-100px}
+#s4 .super{color:var(--teal)}
+#s4 h1 span.line1{display:block;color:var(--white)}
+#s4 h1 span.line2{display:block;color:var(--teal)}
+#s4 .desc{color:rgba(255,255,255,.45)}
+#s4 .divider{background:var(--teal)}
+#s4 .sub-badges{display:flex;gap:24px;margin-top:32px;justify-content:center}
+#s4 .sub-badge{padding:8px 24px;border-radius:4px;font-size:14px;font-weight:700;color:#fff}
+
+/* ─────────────────────────────────────
+   SLIDE 5 — BIG THREE OVERVIEW
+───────────────────────────────────── */
+#s5{background:var(--off);flex-direction:column}
+#s5 .header{background:var(--dark);padding:18px 50px;flex-shrink:0}
+#s5 .header h2{font-size:21px;font-weight:800;color:#fff}
+#s5 .cards{flex:1;display:flex;gap:14px;padding:20px 50px;align-items:stretch}
+.platform-card{flex:1;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column}
+.platform-card .pch{padding:20px 22px;display:flex;flex-direction:column;gap:4px}
+.platform-card .pch .pname{font-size:28px;font-weight:900;color:#fff}
+.platform-card .pch .pco{font-size:12px;color:rgba(255,255,255,.7);font-weight:500}
+.platform-card .pcb{flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
+.platform-card .pcb .plabel{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.platform-card .pcb .pitem{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);line-height:1.4;padding:6px 0;border-bottom:1px solid #f0f0f0}
+.platform-card .pcb .pitem:last-child{border-bottom:none}
+.platform-card .pcb .pitem .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.platform-card .pcf{padding:14px 22px;font-size:12px;font-weight:700;text-align:center;border-top:1.5px solid}
+
+/* ─────────────────────────────────────
+   SLIDES 6-8 — DEEP DIVE
+───────────────────────────────────── */
+.deepdive{flex-direction:row}
+.deepdive .left{width:320px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 24px 24px}
+.deepdive .left .brand{font-size:52px;font-weight:900;color:#fff;text-align:center;line-height:1.1;margin-bottom:8px}
+.deepdive .left .co{font-size:15px;font-weight:600;margin-bottom:4px;text-align:center}
+.deepdive .left .ver{font-size:12px;text-align:center;margin-bottom:30px}
+.deepdive .left .stat-box{width:100%;border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:13px;text-align:center;font-weight:600;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;line-height:1.4}
+.deepdive .right{flex:1;background:var(--off);padding:30px 40px;display:flex;flex-direction:column}
+.deepdive .right .rtitle-sm{font-size:13px;color:var(--muted);margin-bottom:4px}
+.deepdive .right h2{font-size:26px;font-weight:800;color:var(--text);margin-bottom:20px}
+.deepdive .right .sep{height:2px;background:var(--lightG);margin-bottom:20px;border-radius:1px}
+.feat-card{background:#fff;border-radius:8px;padding:16px 20px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);display:flex;align-items:flex-start;gap:14px}
+.feat-card .fc-left{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch}
+.feat-card .fc-body h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
+.feat-card .fc-body p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ─────────────────────────────────────
+   SLIDE 9 — SECTION: ỨNG DỤNG THỰC CHIẾN
+───────────────────────────────────── */
+#s9{background:var(--dark)}
+#s9 .bg-orb.a{width:600px;height:600px;background:rgba(0,201,167,.05);right:-100px;bottom:-200px}
+#s9 .super{color:rgba(255,255,255,.45)}
+#s9 h1 span.line1{color:#fff}
+#s9 h1 span.line2{color:var(--teal)}
+#s9 .desc{color:rgba(255,255,255,.45)}
+#s9 .divider{background:var(--teal)}
+#s9 .abc-row{display:flex;gap:32px;margin-top:36px;justify-content:center}
+#s9 .abc-item{display:flex;flex-direction:column;align-items:center;gap:8px}
+#s9 .abc-circle{width:64px;height:64px;border-radius:50%;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--teal)}
+#s9 .abc-label{font-size:12px;color:rgba(255,255,255,.5);text-align:center;max-width:100px}
+
+/* ─────────────────────────────────────
+   SLIDE 10 — 3 NHÓM ỨNG DỤNG
+───────────────────────────────────── */
+#s10{background:var(--off);flex-direction:column}
+#s10 .header{background:var(--dark);padding:18px 50px;flex-shrink:0}
+#s10 .header h2{font-size:21px;font-weight:800;color:#fff}
+#s10 .cards{flex:1;display:flex;gap:14px;padding:20px 50px;align-items:stretch}
+.grp-card{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,.1)}
+.grp-card .gch{padding:16px 20px;display:flex;align-items:center;gap:14px}
+.grp-card .gch .gletter{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;flex-shrink:0}
+.grp-card .gch .ginfo{flex:1}
+.grp-card .gch .ginfo h3{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
+.grp-card .gch .ginfo .gtag{font-size:11px;color:rgba(255,255,255,.65);font-style:italic}
+.grp-card .gcb{flex:1;background:#fff;padding:16px 18px;display:flex;flex-direction:column;gap:0}
+.grp-card .gcb .gitem{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--text);line-height:1.45;padding:9px 0;border-bottom:1px solid #f0f0f0}
+.grp-card .gcb .gitem:last-child{border-bottom:none}
+.grp-card .gcb .gitem .gdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+
+/* ─────────────────────────────────────
+   SLIDE 11 — CREO
+───────────────────────────────────── */
+#s11{background:var(--dark);flex-direction:column}
+#s11 .header{background:var(--navyL);padding:16px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
+#s11 .header h2{font-size:18px;font-weight:700;color:var(--teal)}
+#s11 .intro{padding:22px 60px 10px}
+#s11 .intro h1{font-size:36px;font-weight:900;color:#fff;margin-bottom:6px}
+#s11 .intro p{font-size:14px;color:rgba(255,255,255,.5)}
+#s11 .cols{display:flex;gap:12px;padding:10px 60px 24px;flex:1;align-items:stretch}
+.creo-col{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;border:1px solid}
+.creo-col .creo-h{padding:14px 16px;display:flex;align-items:center;gap:12px}
+.creo-col .creo-h .cl{font-size:40px;font-weight:900;color:var(--dark);width:48px;flex-shrink:0;line-height:1}
+.creo-col .creo-h .cinfo{flex:1}
+.creo-col .creo-h .cinfo .cword{font-size:15px;font-weight:800;color:var(--dark)}
+.creo-col .creo-h .cinfo .cviet{font-size:12px;color:rgba(0,0,0,.55);font-weight:600}
+.creo-col .creo-b{flex:1;background:rgba(255,255,255,.04);padding:16px;display:flex;flex-direction:column;gap:12px}
+.creo-col .creo-b .cdesc{font-size:13px;color:rgba(255,255,255,.75);line-height:1.55}
+.creo-col .creo-b .cex{background:rgba(0,0,0,.25);border-radius:6px;padding:12px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;font-style:italic;border-left:3px solid}
+.creo-col .creo-b .cex-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+
+/* ─────────────────────────────────────
+   SLIDE 12 — LƯU Ý QUAN TRỌNG
+───────────────────────────────────── */
+#s12{background:var(--off);flex-direction:column}
+#s12 .header{background:var(--dark);padding:18px 60px;flex-shrink:0}
+#s12 .header h2{font-size:21px;font-weight:800;color:#fff}
+#s12 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;padding:24px 60px}
+.warn-card{background:#fff;border-radius:10px;padding:24px 26px;box-shadow:0 4px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:10px;border-left:5px solid}
+.warn-card .wicon{font-size:28px;line-height:1}
+.warn-card h3{font-size:16px;font-weight:800;line-height:1.2}
+.warn-card p{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* ─────────────────────────────────────
+   SLIDE 13 — KẾT LUẬN / CTA
+───────────────────────────────────── */
+#s13{background:var(--dark);flex-direction:column;justify-content:space-between;position:relative}
+#s13 .bg-orb.a{width:500px;height:500px;background:rgba(0,201,167,.06);right:-100px;top:-100px;filter:blur(60px)}
+#s13 .tl{padding:24px 70px 0;font-size:13px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--teal)}
+#s13 .quote-box{margin:20px 70px;background:rgba(255,255,255,.05);border:1px solid rgba(0,201,167,.35);border-radius:12px;padding:32px 40px;position:relative}
+#s13 .quote-box::before{content:'"';position:absolute;top:-20px;left:30px;font-size:100px;color:rgba(0,201,167,.15);font-family:Georgia,serif;line-height:1}
+#s13 .quote-box p{font-size:21px;font-weight:600;color:#fff;line-height:1.6;position:relative;z-index:1}
+#s13 .quote-box p em{color:var(--teal);font-style:normal}
+#s13 .actions{padding:0 70px}
+#s13 .actions h3{font-size:15px;font-weight:700;color:var(--teal);margin-bottom:14px}
+#s13 .actions ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+#s13 .actions ul li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.8);line-height:1.5}
+#s13 .actions ul li::before{content:'›';color:var(--teal);font-size:20px;font-weight:700;line-height:1;flex-shrink:0}
+#s13 .footer{padding:16px 70px;background:var(--navyL);font-size:13px;color:rgba(255,255,255,.35);text-align:center}
+
+/* ─────────────────────────────────────
+   NAV
+───────────────────────────────────── */
+.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:100;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);padding:10px 20px;border-radius:40px;border:1px solid rgba(255,255,255,.1)}
+.nav-btn{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .2s}
+.nav-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-dots{display:flex;gap:6px}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;border:none}
+.nav-dot.active{width:20px;border-radius:3px;background:var(--teal)}
+.nav-counter{font-size:12px;color:rgba(255,255,255,.4);min-width:40px;text-align:center}
+
+/* ─────────────────────────────────────
+   ANIMATIONS
+───────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+
+.slide.active .anim-1{animation:fadeUp .5s .05s both}
+.slide.active .anim-2{animation:fadeUp .5s .15s both}
+.slide.active .anim-3{animation:fadeUp .5s .25s both}
+.slide.active .anim-4{animation:fadeUp .5s .35s both}
+.slide.active .anim-5{animation:fadeUp .5s .45s both}
+.slide.active .anim-6{animation:fadeUp .5s .55s both}
+.slide.active .anim-fade{animation:fadeIn .6s .1s both}
+.slide.active .anim-left{animation:slideLeft .5s .1s both}
+.slide.active .anim-scale{animation:scaleIn .5s .1s both}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════════ SLIDE 1 ═══════════════ -->
+<div class="slide" id="s1">
+  <div class="accent-bar"></div>
+  <div class="bg-circle c1"></div>
+  <div class="bg-circle c2"></div>
+  <div class="content">
+    <div class="pill anim-1">Kỷ nguyên Agentic AI • 2026</div>
+    <h1 class="anim-2">
+      <span class="t">AI TRONG</span><br>
+      <span class="w">CÔNG VIỆC</span>
+    </h1>
+    <p class="sub anim-3">Hướng dẫn thực chiến cho Team Quản lý —<br>từ tư duy đến công cụ, từ lý thuyết đến kết quả ngay hôm nay</p>
+    <div class="badges anim-4">
+      <span class="badge g1">OpenAI</span>
+      <span class="badge g2">Google</span>
+      <span class="badge g3">Anthropic</span>
+    </div>
+  </div>
+  <div class="footer anim-fade">Internal Sharing Session &nbsp;•&nbsp; 2026</div>
+</div>
+
+<!-- ═══════════════ SLIDE 2 ═══════════════ -->
+<div class="slide" id="s2">
+  <div class="header">
+    <h2>Chương Trình 30 Phút</h2>
+    <span>Timeline chi tiết</span>
+  </div>
+  <div class="body">
+    <div class="agenda-card anim-1">
+      <div class="bar" style="background:var(--teal)"></div>
+      <div class="time-box" style="color:var(--teal)">5'</div>
+      <div class="info">
+        <h3>Tư Duy Đúng Về AI (Mindset)</h3>
+        <p>Xoá bỏ nỗi sợ bị thay thế — thiết lập vai trò <strong>"Cộng sự AI"</strong> thay vì chỉ dùng như công cụ tìm kiếm</p>
+      </div>
+      <div class="tag" style="background:rgba(0,201,167,.1);color:var(--teal)">Mindset</div>
+    </div>
+    <div class="agenda-card anim-2">
+      <div class="bar" style="background:var(--google)"></div>
+      <div class="time-box" style="color:var(--google)">15'</div>
+      <div class="info">
+        <h3>3 Nền Tảng AI Hàng Đầu + Ứng Dụng Thực Chiến</h3>
+        <p>Demo trực tiếp ChatGPT, Gemini, Claude — <strong>tính năng nổi bật 2026</strong> và case study áp dụng ngay trong công việc văn phòng</p>
+      </div>
+      <div class="tag" style="background:rgba(26,115,232,.1);color:var(--google)">Demo</div>
+    </div>
+    <div class="agenda-card anim-3">
+      <div class="bar" style="background:var(--openai)"></div>
+      <div class="time-box" style="color:var(--openai)">7'</div>
+      <div class="info">
+        <h3>Nghệ Thuật Đặt Câu Hỏi — Công Thức C.R.E.O</h3>
+        <p>Bí quyết để AI hiểu đúng ý <strong>ngay lần đầu</strong> — bộ công thức áp dụng được cho mọi vị trí trong team</p>
+      </div>
+      <div class="tag" style="background:rgba(16,163,127,.1);color:var(--openai)">Kỹ năng</div>
+    </div>
+    <div class="agenda-card anim-4">
+      <div class="bar" style="background:var(--anthropic)"></div>
+      <div class="time-box" style="color:var(--anthropic)">3'</div>
+      <div class="info">
+        <h3>Kết Luận & Thách Thức + Q&A</h3>
+        <p>Gói gọn thông điệp cốt lõi, cam kết hành động cụ thể và giải đáp thắc mắc của team</p>
+      </div>
+      <div class="tag" style="background:rgba(207,69,0,.1);color:var(--anthropic)">Q&A</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 3 ═══════════════ -->
+<div class="slide" id="s3">
+  <div class="header">
+    <h2>Tư Duy Đúng Về AI</h2>
+    <span>5 phút đầu tiên</span>
+  </div>
+  <div class="body">
+    <div class="mind-panel wrong anim-1">
+      <div class="ph">
+        <span style="font-size:20px">❌</span>
+        SAI LẦM — Dùng AI như Google Search
+      </div>
+      <div class="pc">
+        <div class="item"><div class="dot"></div><span>Hỏi một câu ngắn gọn, nhận một câu trả lời rồi thôi</span></div>
+        <div class="item"><div class="dot"></div><span>Không cung cấp ngữ cảnh, vai trò hay mục đích cụ thể</span></div>
+        <div class="item"><div class="dot"></div><span>Tin 100% kết quả mà không kiểm tra lại</span></div>
+        <div class="item"><div class="dot"></div><span>Dùng xong bỏ đi, không tiếp tục hội thoại để cải thiện</span></div>
+        <div class="item"><div class="dot"></div><span>Thất vọng vì "AI không hiểu ý mình" và bỏ cuộc</span></div>
+      </div>
+    </div>
+    <div class="mind-panel right anim-2">
+      <div class="ph">
+        <span style="font-size:20px">✅</span>
+        ĐÚNG ĐẮN — AI là Cộng sự thông minh
+      </div>
+      <div class="pc">
+        <div class="item"><div class="dot"></div><span><strong>Bạn là người ra quyết định (QC)</strong> — AI là người thực thi nhanh, 24/7</span></div>
+        <div class="item"><div class="dot"></div><span>Cung cấp ngữ cảnh đủ chi tiết → kết quả sát ý ngay lần đầu</span></div>
+        <div class="item"><div class="dot"></div><span>Chat qua lại để tinh chỉnh: "Ngắn hơn", "Trang trọng hơn"...</span></div>
+        <div class="item"><div class="dot"></div><span>Fact-check thông tin quan trọng trước khi sử dụng</span></div>
+        <div class="item"><div class="dot"></div><span>Giao cho AI những việc tốn thời gian để tập trung vào chiến lược</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="formula anim-3">
+    💡 &nbsp; Năng lực con người &nbsp;+&nbsp; Sức mạnh AI &nbsp;=&nbsp; Hiệu suất × 10
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 4 ═══════════════ -->
+<div class="slide section-slide" id="s4">
+  <div class="bg-orb a"></div>
+  <div class="bg-orb b"></div>
+  <p class="super anim-1">Phần 2 — Demo trực tiếp</p>
+  <h1 class="anim-2">
+    <span class="line1">THE</span>
+    <span class="line2">BIG THREE</span>
+  </h1>
+  <p class="desc anim-3">Ba nền tảng AI dẫn đầu thị trường toàn cầu năm 2026</p>
+  <div class="divider anim-4"></div>
+  <div class="sub-badges anim-5">
+    <span class="sub-badge" style="background:var(--openai)">OpenAI • GPT-5.4</span>
+    <span class="sub-badge" style="background:var(--google)">Google • Gemini v3.1</span>
+    <span class="sub-badge" style="background:var(--anthropic)">Anthropic • Claude v4.6</span>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 5 ═══════════════ -->
+<div class="slide" id="s5" style="flex-direction:column;background:var(--off)">
+  <div class="header" style="background:var(--dark);padding:18px 50px;flex-shrink:0">
+    <h2 style="font-size:21px;font-weight:800;color:#fff">So Sánh 3 Nền Tảng AI Hàng Đầu</h2>
+  </div>
+  <div class="cards">
+    <!-- ChatGPT -->
+    <div class="platform-card anim-1">
+      <div class="pch" style="background:var(--openai)">
+        <div class="pname">ChatGPT</div>
+        <div class="pco">OpenAI &nbsp;•&nbsp; GPT-5.4</div>
+      </div>
+      <div class="pcb">
+        <div class="plabel" style="color:var(--openai)">Điểm mạnh</div>
+        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Suy luận logic, lập kế hoạch phức tạp</div>
+        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Tạo video từ chat (Sora AI Integration)</div>
+        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Voice Mode cảm xúc tự nhiên, không độ trễ</div>
+        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Hệ sinh thái plugin rộng lớn nhất</div>
+      </div>
+      <div class="pcf" style="color:var(--openai);border-color:rgba(16,163,127,.2);background:rgba(16,163,127,.05)">Tốt nhất cho: Phân tích &amp; Lập kế hoạch</div>
+    </div>
+    <!-- Gemini -->
+    <div class="platform-card anim-2">
+      <div class="pch" style="background:var(--google)">
+        <div class="pname">Gemini</div>
+        <div class="pco">Google &nbsp;•&nbsp; v3.1</div>
+      </div>
+      <div class="pcb">
+        <div class="plabel" style="color:var(--google)">Điểm mạnh</div>
+        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Deep Research — tổng hợp hàng trăm nguồn web</div>
+        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Context siêu lớn: xử lý hàng giờ video, triệu dòng code</div>
+        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Tích hợp sâu Google Workspace (Gmail, Docs, Sheets)</div>
+        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Real-time search — thông tin mới nhất tức thì</div>
+      </div>
+      <div class="pcf" style="color:var(--google);border-color:rgba(26,115,232,.2);background:rgba(26,115,232,.05)">Tốt nhất cho: Nghiên cứu &amp; Dữ liệu</div>
+    </div>
+    <!-- Claude -->
+    <div class="platform-card anim-3">
+      <div class="pch" style="background:var(--anthropic)">
+        <div class="pname">Claude</div>
+        <div class="pco">Anthropic &nbsp;•&nbsp; v4.6</div>
+      </div>
+      <div class="pcb">
+        <div class="plabel" style="color:var(--anthropic)">Điểm mạnh</div>
+        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Computer Use — điều khiển màn hình máy tính</div>
+        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Viết lách văn phòng tự nhiên, có cảm xúc nhất</div>
+        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>An toàn dữ liệu cao — tiêu chuẩn doanh nghiệp</div>
+        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Artifacts — tạo ứng dụng nhỏ ngay trong chat</div>
+      </div>
+      <div class="pcf" style="color:var(--anthropic);border-color:rgba(207,69,0,.2);background:rgba(207,69,0,.05)">Tốt nhất cho: Viết lách &amp; Tự động hoá</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 6 — ChatGPT ═══════════════ -->
+<div class="slide deepdive" id="s6">
+  <div class="left anim-left" style="background:var(--openaiD)">
+    <div class="brand" style="margin-top:20px">Chat<br>GPT</div>
+    <div class="co" style="color:rgba(0,201,167,1)">OpenAI</div>
+    <div class="ver" style="color:rgba(255,255,255,.5)">GPT-5.4</div>
+    <div class="stat-box">200M+ người dùng toàn cầu</div>
+    <div class="stat-box">Tích hợp Sora Video AI</div>
+    <div class="stat-box">Hệ sinh thái plugin lớn nhất</div>
+  </div>
+  <div class="right">
+    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
+    <h2 class="anim-1">ChatGPT — Điểm mạnh vượt trội</h2>
+    <div class="sep anim-1"></div>
+    <div class="feat-card anim-2">
+      <div class="fc-left" style="background:var(--openai)"></div>
+      <div class="fc-body">
+        <h4>Sora Integration — Tạo video từ văn bản</h4>
+        <p>Mô tả nội dung quảng cáo bằng tiếng Việt, AI tự tạo video chuyên nghiệp trong vài phút. Không cần kỹ năng đồ hoạ. Ứng dụng ngay: clip giới thiệu sản phẩm, video đào tạo nội bộ, content mạng xã hội.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-3">
+      <div class="fc-left" style="background:var(--openai)"></div>
+      <div class="fc-body">
+        <h4>Advanced Voice Mode — Trợ lý giọng nói thật</h4>
+        <p>Giao tiếp bằng giọng nói không độ trễ, nhận diện cảm xúc qua âm điệu — như đang nói chuyện với người thật. Hoạt động trên điện thoại: thảo luận chiến lược trong lúc di chuyển.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-4">
+      <div class="fc-left" style="background:var(--openai)"></div>
+      <div class="fc-body">
+        <h4>Suy luận logic xuất sắc — Lập kế hoạch phức tạp</h4>
+        <p>Tốt nhất cho: phân tích tình huống kinh doanh, breakdown OKR thành task cụ thể, đánh giá rủi ro dự án. Ví dụ: "Lên kế hoạch triển khai hệ thống mới cho 200 nhân viên trong 3 tháng."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 7 — Gemini ═══════════════ -->
+<div class="slide deepdive" id="s7">
+  <div class="left anim-left" style="background:var(--googleD)">
+    <div class="brand" style="margin-top:20px">Gemini</div>
+    <div class="co" style="color:rgba(168,196,255,1)">Google</div>
+    <div class="ver" style="color:rgba(255,255,255,.5)">v3.1</div>
+    <div class="stat-box">Deep Research AI</div>
+    <div class="stat-box">Tích hợp Google Workspace</div>
+    <div class="stat-box">Real-time Web Search</div>
+  </div>
+  <div class="right">
+    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
+    <h2 class="anim-1">Gemini — Sức mạnh nghiên cứu</h2>
+    <div class="sep anim-1"></div>
+    <div class="feat-card anim-2">
+      <div class="fc-left" style="background:var(--google)"></div>
+      <div class="fc-body">
+        <h4>Deep Research — Báo cáo chuyên sâu tự động</h4>
+        <p>Tự động tra cứu hàng trăm nguồn web, tổng hợp thành báo cáo đầy đủ với trích dẫn cụ thể. Ví dụ: "Phân tích thị trường thực phẩm chức năng Việt Nam 2025-2026" — xong trong 5 phút thay vì 2 ngày.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-3">
+      <div class="fc-left" style="background:var(--google)"></div>
+      <div class="fc-body">
+        <h4>Multimodal Context siêu lớn — Đọc hiểu không giới hạn</h4>
+        <p>Xử lý cùng lúc: toàn bộ hợp đồng dài, hàng giờ video họp, cả cuốn sách sản phẩm. Không AI nào làm được điều này ở quy mô như Gemini. Upload file và hỏi thẳng.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-4">
+      <div class="fc-left" style="background:var(--google)"></div>
+      <div class="fc-body">
+        <h4>Google Workspace — Làm việc ngay trong công cụ quen thuộc</h4>
+        <p>Tóm tắt cuộc họp Meet, soạn email trong Gmail, phân tích dữ liệu Sheets — không cần rời ứng dụng. Giảm 70% thời gian chuyển đổi giữa các công cụ mỗi ngày.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 8 — Claude ═══════════════ -->
+<div class="slide deepdive" id="s8">
+  <div class="left anim-left" style="background:var(--anthropicD)">
+    <div class="brand" style="margin-top:20px">Claude</div>
+    <div class="co" style="color:rgba(255,204,168,1)">Anthropic</div>
+    <div class="ver" style="color:rgba(255,255,255,.5)">v4.6</div>
+    <div class="stat-box">Văn phong tự nhiên nhất</div>
+    <div class="stat-box">An toàn dữ liệu cao nhất</div>
+    <div class="stat-box">Computer Use & Artifacts</div>
+  </div>
+  <div class="right">
+    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
+    <h2 class="anim-1">Claude — Sáng tạo &amp; Tự động hoá</h2>
+    <div class="sep anim-1"></div>
+    <div class="feat-card anim-2">
+      <div class="fc-left" style="background:var(--anthropic)"></div>
+      <div class="fc-body">
+        <h4>Computer Use — AI điều khiển máy tính thay bạn</h4>
+        <p>Claude có thể nhìn màn hình và thao tác chuột/bàn phím. Tự động hoá toàn bộ quy trình lặp lại: điền form, nhập liệu, trích xuất dữ liệu từ nhiều hệ thống — không cần lập trình.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-3">
+      <div class="fc-left" style="background:var(--anthropic)"></div>
+      <div class="fc-body">
+        <h4>Artifacts — Tạo ứng dụng, dashboard ngay trong chat</h4>
+        <p>Mở cửa sổ riêng để chạy code, vẽ biểu đồ tương tác, thiết kế trang web tức thì. Ví dụ: "Tạo dashboard doanh thu tháng từ file Excel này" — hiển thị ngay, không cần phần mềm.</p>
+      </div>
+    </div>
+    <div class="feat-card anim-4">
+      <div class="fc-left" style="background:var(--anthropic)"></div>
+      <div class="fc-body">
+        <h4>Viết lách &amp; Sáng tạo nội dung hàng đầu</h4>
+        <p>Văn phong tự nhiên, có cảm xúc nhất trong 3 AI lớn. Xuất sắc với: email đối tác, báo cáo ban lãnh đạo, nội dung truyền thông, kịch bản đào tạo. Đầu ra gần như không cần chỉnh sửa nhiều.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 9 ═══════════════ -->
+<div class="slide section-slide" id="s9">
+  <div class="bg-orb a"></div>
+  <p class="super anim-1">Phần 3 — Ứng dụng thực tế</p>
+  <h1 class="anim-2">
+    <span class="line1">ỨNG DỤNG</span>
+    <span class="line2">THỰC CHIẾN</span>
+  </h1>
+  <p class="desc anim-3">3 nhóm công việc mang lại hiệu quả cao nhất ngay lập tức</p>
+  <div class="divider anim-4"></div>
+  <div class="abc-row anim-5">
+    <div class="abc-item">
+      <div class="abc-circle">A</div>
+      <div class="abc-label">Thông tin &amp; Tài liệu</div>
+    </div>
+    <div class="abc-item">
+      <div class="abc-circle">B</div>
+      <div class="abc-label">Sáng tạo &amp; Visual</div>
+    </div>
+    <div class="abc-item">
+      <div class="abc-circle">C</div>
+      <div class="abc-label">Brainstorm &amp; Tự động</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 10 ═══════════════ -->
+<div class="slide" id="s10">
+  <div class="header">
+    <h2>3 Nhóm Ứng Dụng Thực Chiến Cho Team</h2>
+  </div>
+  <div class="cards">
+    <div class="grp-card anim-1">
+      <div class="gch" style="background:var(--tealD)">
+        <div class="gletter">A</div>
+        <div class="ginfo">
+          <h3>Xử Lý Thông Tin &amp; Tài Liệu</h3>
+          <div class="gtag">Tiết kiệm 2h đọc mỗi ngày</div>
+        </div>
+      </div>
+      <div class="gcb">
+        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Tóm tắt PDF 50 trang → 5 ý chính cho buổi họp chiều (10 giây)</div>
+        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Upload Excel, hỏi: "Doanh thu tháng nào cao bất thường và tại sao?"</div>
+        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Chuyển ghi chú thô → Email lịch thiệp, trang trọng cho đối tác</div>
+        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Dịch tài liệu đa ngôn ngữ tức thì với ngữ cảnh chuyên ngành chính xác</div>
+      </div>
+    </div>
+    <div class="grp-card anim-2">
+      <div class="gch" style="background:var(--googleD)">
+        <div class="gletter">B</div>
+        <div class="ginfo">
+          <h3>Sáng Tạo &amp; Visual</h3>
+          <div class="gtag">Dành cho người không chuyên thiết kế</div>
+        </div>
+      </div>
+      <div class="gcb">
+        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo slide thuyết trình đẹp từ 1 đoạn mô tả (Gamma AI / Canva AI)</div>
+        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo hình ảnh minh hoạ không lo bản quyền (DALL-E / Gemini Imagen)</div>
+        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Thiết kế poster, banner, social media content trong 5 phút</div>
+        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo video ngắn cho quảng cáo sản phẩm (Sora / Google Veo)</div>
+      </div>
+    </div>
+    <div class="grp-card anim-3">
+      <div class="gch" style="background:var(--anthropicD)">
+        <div class="gletter">C</div>
+        <div class="ginfo">
+          <h3>Brainstorm &amp; Giải Quyết Vấn Đề</h3>
+          <div class="gtag">Tăng tốc quyết định</div>
+        </div>
+      </div>
+      <div class="gcb">
+        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Nhờ AI đóng vai khách hàng khó tính để phản biện kế hoạch của team</div>
+        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>10 ý tưởng chiến dịch marketing mới trong vòng 30 giây</div>
+        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Tự động hoá quy trình lặp lại qua Zapier Central (6.000+ ứng dụng)</div>
+        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Phân tích SWOT, lên kịch bản họp, draft OKR cho quý mới</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 11 — CREO ═══════════════ -->
+<div class="slide" id="s11">
+  <div class="header">
+    <h2>Nghệ Thuật Đặt Câu Hỏi — Prompt Engineering</h2>
+    <span style="color:rgba(255,255,255,.4);font-size:13px">7 phút</span>
+  </div>
+  <div class="intro">
+    <h1>Công thức <span style="color:var(--teal)">C.R.E.O</span></h1>
+    <p>Để AI hiểu đúng ý ngay lần đầu — chất lượng đầu vào quyết định chất lượng đầu ra</p>
+  </div>
+  <div class="cols">
+    <!-- C -->
+    <div class="creo-col anim-1" style="border-color:var(--teal)">
+      <div class="creo-h" style="background:var(--teal)">
+        <div class="cl">C</div>
+        <div class="cinfo">
+          <div class="cword">Context</div>
+          <div class="cviet">Bối Cảnh</div>
+        </div>
+      </div>
+      <div class="creo-b">
+        <div class="cdesc">Bạn là ai? Đang làm gì? Cung cấp đủ thông tin về tình huống để AI không cần đoán.</div>
+        <div class="cex" style="border-color:var(--teal)">
+          <div class="cex-label" style="color:var(--teal)">Ví dụ</div>
+          "Tôi là Trưởng phòng KD tại công ty thực phẩm 500 nhân viên, đang chuẩn bị báo cáo doanh thu Q2..."
+        </div>
+      </div>
+    </div>
+    <!-- R -->
+    <div class="creo-col anim-2" style="border-color:var(--google)">
+      <div class="creo-h" style="background:var(--google)">
+        <div class="cl" style="color:#fff">R</div>
+        <div class="cinfo">
+          <div class="cword" style="color:#fff">Role</div>
+          <div class="cviet" style="color:rgba(255,255,255,.7)">Vai Trò</div>
+        </div>
+      </div>
+      <div class="creo-b">
+        <div class="cdesc">Yêu cầu AI đóng vai chuyên gia cụ thể để nhận phản hồi chuyên nghiệp, sát thực tế hơn.</div>
+        <div class="cex" style="border-color:var(--google)">
+          <div class="cex-label" style="color:var(--google)">Ví dụ</div>
+          "Bạn là chuyên gia Marketing F&B dày dặn kinh nghiệm tại thị trường Đông Nam Á..."
+        </div>
+      </div>
+    </div>
+    <!-- E -->
+    <div class="creo-col anim-3" style="border-color:var(--openai)">
+      <div class="creo-h" style="background:var(--openai)">
+        <div class="cl">E</div>
+        <div class="cinfo">
+          <div class="cword">Execute</div>
+          <div class="cviet">Nhiệm Vụ</div>
+        </div>
+      </div>
+      <div class="creo-b">
+        <div class="cdesc">Mô tả rõ ràng bạn muốn AI làm gì: viết, tóm tắt, phân tích, lập bảng, phản biện...</div>
+        <div class="cex" style="border-color:var(--openai)">
+          <div class="cex-label" style="color:var(--openai)">Ví dụ</div>
+          "Hãy viết 5 ý tưởng chiến dịch ra mắt sản phẩm mới, mỗi ý một câu chủ đề và 2 điểm nổi bật..."
+        </div>
+      </div>
+    </div>
+    <!-- O -->
+    <div class="creo-col anim-4" style="border-color:var(--anthropic)">
+      <div class="creo-h" style="background:var(--anthropic)">
+        <div class="cl">O</div>
+        <div class="cinfo">
+          <div class="cword">Output</div>
+          <div class="cviet">Đầu Ra</div>
+        </div>
+      </div>
+      <div class="creo-b">
+        <div class="cdesc">Chỉ định: độ dài, giọng văn (trang trọng/thân thiện), định dạng (bảng, gạch đầu dòng, đoạn văn).</div>
+        <div class="cex" style="border-color:var(--anthropic)">
+          <div class="cex-label" style="color:var(--anthropic)">Ví dụ</div>
+          "Trả lời tiếng Việt, tối đa 200 từ, trình bày dạng bảng so sánh, giọng trang trọng."
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 12 ═══════════════ -->
+<div class="slide" id="s12">
+  <div class="header" style="background:var(--dark);padding:18px 60px;flex-shrink:0">
+    <h2 style="font-size:21px;font-weight:800;color:#fff">4 Lưu Ý Quan Trọng Khi Dùng AI</h2>
+  </div>
+  <div class="grid">
+    <div class="warn-card anim-1" style="border-color:#DC2626">
+      <div class="wicon">🔒</div>
+      <h3 style="color:#DC2626">Bảo Mật Dữ Liệu (Privacy First)</h3>
+      <p>Tuyệt đối <strong>không dán thông tin nhạy cảm</strong> của công ty vào AI công cộng: báo cáo tài chính nội bộ, dữ liệu khách hàng, bí mật kinh doanh. Dữ liệu có thể được dùng để huấn luyện mô hình. Dùng phiên bản doanh nghiệp có ký NDA nếu cần.</p>
+    </div>
+    <div class="warn-card anim-2" style="border-color:#D97706">
+      <div class="wicon">🔍</div>
+      <h3 style="color:#D97706">Kiểm Chứng Thông Tin (Fact-Check)</h3>
+      <p>AI có thể <strong>"ảo giác" (Hallucination)</strong> — bịa số liệu, tên người, sự kiện một cách cực kỳ thuyết phục đến mức bạn tin ngay. Luôn xác minh lại các thông tin quan trọng (số liệu, tên người, ngày tháng) trước khi sử dụng trong báo cáo hay quyết định.</p>
+    </div>
+    <div class="warn-card anim-3" style="border-color:#0891B2">
+      <div class="wicon">👤</div>
+      <h3 style="color:#0891B2">Con Người Kiểm Soát (Human-in-the-Loop)</h3>
+      <p>AI chỉ là người <strong>soạn bản nháp</strong>. Bạn là biên tập viên cuối cùng và chịu hoàn toàn trách nhiệm cho nội dung xuất bản hoặc gửi đi. Đừng bao giờ tin AI 100% — đặc biệt với các quyết định có hệ quả lớn.</p>
+    </div>
+    <div class="warn-card anim-4" style="border-color:#7C3AED">
+      <div class="wicon">✨</div>
+      <h3 style="color:#7C3AED">Giữ Cá Tính Riêng (Human Touch)</h3>
+      <p>AI viết rất giỏi nhưng thường <strong>thiếu cảm xúc và cá tính</strong>. Khi dùng AI viết email hay nội dung truyền thông, hãy chỉnh sửa để giữ "cái tôi" và sự chân thành — tránh cảm giác máy móc, vô hồn. Đây chính là lợi thế con người.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ SLIDE 13 ═══════════════ -->
+<div class="slide" id="s13">
+  <div class="bg-orb a"></div>
+  <div class="tl anim-1">Kết Luận</div>
+  <div class="quote-box anim-2">
+    <p>"AI sẽ không thay thế bạn.<br>
+    Nhưng <em>người biết dùng AI</em> sẽ thay thế người không biết dùng."</p>
+  </div>
+  <div class="actions anim-3">
+    <h3>Bắt đầu ngay hôm nay — 3 cam kết cụ thể:</h3>
+    <ul>
+      <li>Mỗi ngày giao cho AI <strong>ít nhất 1 nhiệm vụ</strong> thường mất hơn 15 phút — xem kết quả ra sao</li>
+      <li>Áp dụng công thức <strong>C.R.E.O</strong> trong mọi lần chat với AI — càng chi tiết, càng sát ý</li>
+      <li>Ưu tiên theo nhu cầu: <strong>ChatGPT</strong> (logic, kế hoạch) — <strong>Gemini</strong> (nghiên cứu, data) — <strong>Claude</strong> (viết lách, tự động hoá)</li>
+    </ul>
+  </div>
+  <div class="footer anim-4">Cảm ơn đã lắng nghe! &nbsp;—&nbsp; Mọi câu hỏi xin để lại ở phần Q&amp;A</div>
+</div>
+
+</div><!-- /.deck -->
+
+<!-- Navigation -->
+<div class="nav" id="nav">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&#8592;</button>
+  <div class="nav-dots" id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">&#8594;</button>
+  <span class="nav-counter" id="counter">1 / 13</span>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let cur = 0;
+
+const dotsEl = document.getElementById('dots');
+const counter = document.getElementById('counter');
+
+// Build dots
+slides.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = (n + total) % total;
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  counter.textContent = (cur + 1) + ' / ' + total;
+}
+
+function go(dir) { goTo(cur + dir); }
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
+  if (e.key === 'Home') goTo(0);
+  if (e.key === 'End') goTo(total - 1);
+});
+
+// Swipe
+let tx = 0;
+document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 50) go(dx > 0 ? 1 : -1);
+});
+
+// Scale to viewport
+function scale() {
+  const deck = document.getElementById('deck');
+  const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+  deck.style.transform = `scale(${s})`;
+}
+window.addEventListener('resize', scale);
+scale();
+
+// Init first slide
+slides[0].classList.add('active');
+</script>
+</body>
+</html>
