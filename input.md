@@ -1,90 +1,196 @@
-Thời lượng	Phần nội dung	Mục tiêu
-5 Phút	Tư duy đúng về AI (Mindset)	Xóa bỏ nỗi sợ bị thay thế, thiết lập vai trò "Cộng sự".
-15 Phút	3 Nhóm ứng dụng thực tế nhất	Demo các "Case study" thực tế trong công việc văn phòng.
-7 Phút	Nghệ thuật đặt câu hỏi (Prompt Engineering)	Công thức để AI hiểu đúng ý ngay lần đầu.
-3 Phút	Kết luận & Thách thức (Q&A)	Gói gọn thông điệp và giải đáp thắc mắc.
+# 🤖 AI Trong Công Việc — Sharing Session (30 Phút)
 
+> **Mục tiêu buổi sharing:** Xóa bỏ nỗi sợ, xây dựng tư duy đúng, và đưa ra các ứng dụng thực tế có thể áp dụng ngay ngày hôm sau.
 
-Chào bạn! Với 30 phút, chúng ta không nên đi quá sâu vào lý thuyết kỹ thuật mà nên tập trung vào "Wow-factor" (thấy được hiệu quả ngay) và "Quick wins" (áp dụng được luôn).
-Dưới đây là khung nội dung súc tích, chuyên nghiệp và đầy cảm hứng để bạn chia sẻ với team:
-🕒 Timeline Chi Tiết (30 Phút)
-Thời lượng	Phần nội dung	Mục tiêu
-5 Phút	Tư duy đúng về AI (Mindset)	Xóa bỏ nỗi sợ bị thay thế, thiết lập vai trò "Cộng sự".
-15 Phút	3 Nhóm ứng dụng thực tế nhất	Demo các "Case study" thực tế trong công việc văn phòng.
-7 Phút	Nghệ thuật đặt câu hỏi (Prompt Engineering)	Công thức để AI hiểu đúng ý ngay lần đầu.
-3 Phút	Kết luận & Thách thức (Q&A)	Gói gọn thông điệp và giải đáp thắc mắc.
-1. Tư duy: Đừng dùng AI như Google, hãy dùng như "Thực tập sinh tinh nhuệ"
-• Sai lầm: Coi AI là công cụ tìm kiếm (Search Engine).
-• Đúng đắn: Coi AI là một Cộng sự ảo (AI Co-pilot). • Nó biết mọi thứ nhưng đôi khi "nói hươu nói vượn" (Hallucination). • Bạn là người kiểm soát chất lượng (QC), AI là người thực thi. • Công thức: Năng lực con người + Sức mạnh AI = Hiệu suất x10.
-2. 3 Nhóm ứng dụng "Thực chiến" cho Team
-A. Xử lý thông tin & Tài liệu (Tiết kiệm 2h đọc mỗi ngày)
-• Tóm tắt văn bản: "Đây là file PDF 50 trang, hãy tóm tắt cho tôi 5 ý chính cần lưu ý cho buổi họp chiều nay."
-• Phân tích dữ liệu: Tải file Excel lên và yêu cầu AI tìm ra xu hướng hoặc các con số bất thường.
-• Viết lách chuyên nghiệp: Chuyển đổi một đoạn note thô thành email lịch thiệp cho đối tác hoặc một bài post LinkedIn thu hút.
-B. Sáng tạo & Visual (Dành cho người không chuyên)
-• Tạo slide thuyết trình: Dùng AI (như Gamma hoặc Canva AI) để lên khung bài thuyết trình từ một dòng mô tả.
-• Thiết kế hình ảnh: Tạo ảnh minh họa cho bài thuyết trình mà không lo bản quyền (Dùng Gemini/DALL-E).
-C. Brainstorming & Giải quyết vấn đề
-• Đóng vai khách hàng khó tính để phản biện kế hoạch của team.
-• Lên danh sách 10 ý tưởng cho chiến dịch marketing mới trong 30 giây.
-3. Bí kíp "Ra lệnh" (Prompt Engineering)
-Để AI làm việc hiệu quả, hãy dạy team công thức C.R.E.O:
-1. C (Context - Bối cảnh): Bạn là ai? Bạn đang làm gì? (VD: "Bạn là một chuyên gia Marketing dày dặn kinh nghiệm...")
-2. R (Role - Vai trò): Đóng vai một người tư vấn, một biên tập viên hay một coder.
-3. E (Execute - Nhiệm vụ): Hãy viết, hãy tóm tắt, hãy lập bảng...
-4. O (Output - Đầu ra): Độ dài bao nhiêu? Giọng văn gì (Hài hước/Trang trọng)? Định dạng gì (Bảng/Gạch đầu dòng)?
-4. Hành động ngay (Call to Action)
-"AI sẽ không thay thế bạn, nhưng người biết dùng AI sẽ thay thế người không biết dùng."
-• Tip nhỏ cho team: Mỗi ngày hãy thử giao cho AI ít nhất 1 nhiệm vụ mà bạn thường mất hơn 15 phút để làm.
-• Công cụ gợi ý: Gemini (Google), ChatGPT (OpenAI), Claude (Anthropic), và Canva Magic Design.
-Một vài lưu ý nhỏ cho bạn khi thuyết trình:
-• Hãy Demo trực tiếp: Không gì thuyết phục bằng việc bạn dán một đoạn text dài vào AI và bắt nó tóm tắt ngay trước mặt mọi người trong 5 giây.
-• Tính bảo mật: Nhắc nhở team không đưa các dữ liệu nhạy cảm của công ty, khách hàng lên các bản AI miễn phí.
-Chúc bạn có một buổi sharing thành công rực rỡ! Bạn có muốn mình đi sâu hơn vào cách viết Prompt cho một vị trí cụ thể nào trong team không?
+---
 
+## 🕒 Timeline Tổng Quan
 
-Thị trường AI vào giữa năm 2026 đã bước sang giai đoạn "Agentic AI" (AI đại lý) – không chỉ dừng lại ở việc trả lời câu hỏi mà đã có thể tự thực hiện các chuỗi công việc phức tạp.
-Dưới đây là bảng tổng hợp các sản phẩm AI dẫn đầu theo từng nhóm công dụng:
-1. Nhóm Đa năng & Tư duy (The Big Three)
-Đây là những "bộ não" chính mà hầu hết doanh nghiệp đang sử dụng.
-• ChatGPT (OpenAI - GPT-5.4): • Tính năng nổi bật: Sora Integration (tạo video trực tiếp từ chat), Advanced Voice Mode (giao tiếp bằng giọng nói không có độ trễ, nhận diện được cảm xúc qua âm điệu). • Thế mạnh: Khả năng suy luận (reasoning) cực tốt cho các bài toán logic và lập kế hoạch.
-• Gemini (Google - v3.1): • Tính năng nổi bật: Deep Research (tự động tra cứu hàng trăm nguồn web để viết báo cáo chuyên sâu), Multimodal Context (xử lý cùng lúc hàng giờ video hoặc hàng triệu dòng code trong một lần nhập). • Thế mạnh: Hệ sinh thái Google (Workspace), cực mạnh trong việc phân tích dữ liệu và tra cứu thông tin thời gian thực.
-• Claude (Anthropic - v4.6): • Tính năng nổi bật: Computer Use (AI có thể nhìn màn hình và điều khiển chuột/bàn phím thay bạn), Artifacts (tạo ra cửa sổ riêng để chạy code, vẽ biểu đồ hoặc thiết kế web ngay lập tức). • Thế mạnh: Văn phong tự nhiên nhất, an toàn dữ liệu cao và cực kỳ giỏi trong việc viết lách/sáng tạo.
-2. Nhóm Năng suất & Làm việc Nhóm
-• Gamma: Top 1 về tạo slide. Chỉ cần nhập nội dung, AI sẽ tự dàn trang, chọn hình ảnh và thiết kế toàn bộ bài thuyết trình chuyên nghiệp.
-• Notion AI: Tự động hóa việc ghi chú, tóm tắt cuộc họp và quản lý dự án ngay trong không gian làm việc chung của team.
-• Perplexity: Thay thế hoàn toàn Google Search truyền thống. Nó tổng hợp câu trả lời từ các nguồn tin cậy nhất và trích dẫn nguồn cụ thể cho từng câu chữ.
-3. Nhóm Sáng tạo Hình ảnh & Video
-• Midjourney (v7): Vẫn là "ông vua" về chất lượng nghệ thuật và độ chi tiết của hình ảnh.
-• Runway (Gen-4.5): Công cụ hàng đầu cho video chuyên nghiệp. Tính năng Multi-Motion Brush cho phép bạn chọn chính xác vật thể nào trong ảnh được phép chuyển động.
-• Google Veo: Tạo video chất lượng 4K với độ ổn định cực cao, phù hợp cho làm quảng cáo và truyền thông.
-4. Nhóm Tự động hóa & Lập trình
-• Cursor: Trình soạn thảo mã nguồn tích hợp AI mạnh nhất hiện nay. Nó có thể tự viết toàn bộ một ứng dụng nhỏ dựa trên yêu cầu bằng ngôn ngữ tự nhiên.
-• Zapier Central: Cho phép bạn tạo ra các "AI Agents" tự thực hiện tác vụ giữa hơn 6.000 ứng dụng khác nhau (ví dụ: Tự động lọc email khách hàng tiềm năng -> Lưu vào Excel -> Gửi tin nhắn Slack cho team).
-💡 Lời khuyên cho buổi Sharing:
-Nếu team bạn thiên về Quản lý/Vận hành, hãy tập trung demo Gemini Deep Research hoặc Zapier Central. Nếu team thiên về Marketing/Sáng tạo, hãy trình diễn Claude Artifacts hoặc Gamma.
-Mọi người thường sẽ rất hứng thú khi thấy AI làm thay những việc "nhàm chán" mà họ phải làm hàng ngày! Bạn có muốn mình lấy ví dụ cụ thể về một quy trình làm việc (workflow) kết hợp các công cụ này không?
+| Thời lượng | Phần nội dung | Mục tiêu |
+|---|---|---|
+| 5 Phút | Tư duy đúng về AI (Mindset) | Xóa bỏ nỗi sợ bị thay thế, thiết lập vai trò "Cộng sự". |
+| 15 Phút | 3 Nhóm ứng dụng thực tế nhất | Demo các "Case study" thực tế trong công việc văn phòng. |
+| 7 Phút | Nghệ thuật đặt câu hỏi (Prompt Engineering) | Công thức để AI hiểu đúng ý ngay lần đầu. |
+| 3 Phút | Kết luận & Thách thức (Q&A) | Gói gọn thông điệp và giải đáp thắc mắc. |
 
+---
 
-Để buổi sharing của bạn thực sự giá trị, hãy giúp team nhìn thấy cả cơ hội lẫn những "cái bẫy" khi dùng AI. Dưới đây là 10 điểm lưu ý quan trọng, đi từ tư duy đến kỹ thuật:
-1. Nguyên tắc "Human-in-the-loop" (Con người kiểm soát)
-Đừng bao giờ tin tưởng AI 100%. Hãy coi AI là người soạn thảo bản nháp (Draft), còn bạn là người biên tập cuối cùng. Bạn phải chịu trách nhiệm hoàn toàn cho nội dung mà mình xuất bản hoặc gửi đi.
-2. Bảo mật dữ liệu doanh nghiệp (Privacy First)
-Tuyệt đối không dán các thông tin nhạy cảm của công ty (báo cáo tài chính nội bộ, thông tin cá nhân khách hàng, bí mật kinh doanh) vào các công cụ AI công cộng như ChatGPT hay Claude. Hầu hết dữ liệu này sẽ được dùng để huấn luyện mô hình sau này.
-3. Hiểm họa "Ảo giác" (Hallucination)
-AI có khả năng nói dối một cách cực kỳ thuyết phục. Nó có thể bịa ra các số liệu, tên người hoặc sự kiện không có thật. Luôn phải Fact-check (kiểm chứng lại) các thông tin quan trọng trước khi sử dụng.
-4. Kỹ năng đặt câu hỏi (Prompting là chìa khóa)
-Chất lượng đầu ra phụ thuộc vào chất lượng đầu vào. Thay vì ra lệnh chung chung "Viết báo cáo", hãy cung cấp: Vai trò + Bối cảnh + Nhiệm vụ + Định dạng. Càng chi tiết, kết quả càng sát ý.
-5. Tư duy "Iterative" (Cải thiện dần dần)
-Hiếm khi AI cho kết quả hoàn hảo ngay lần đầu. Hãy học cách "chat" với nó để điều chỉnh: "Dài quá, rút ngắn lại", "Thay đổi giọng văn sang trang trọng hơn", "Bổ sung thêm phần rủi ro vào bảng này".
-6. Sử dụng AI để "Nâng cấp" thay vì "Thay thế"
-Đừng dùng AI để lười biếng tư duy. Hãy dùng nó để làm những việc tốn thời gian (tóm tắt, định dạng, dịch thuật) để bạn có thời gian tập trung vào việc ra quyết định và sáng tạo chiến lược.
-7. Luôn giữ "Giọng điệu cá nhân" (Human Touch)
-AI viết rất giỏi nhưng thường thiếu cảm xúc và cá tính riêng. Khi dùng AI viết email hay nội dung truyền thông, hãy chỉnh sửa lại để giữ được "cái tôi" và sự chân thành, tránh cảm giác máy móc, vô hồn.
-8. Cập nhật liên tục (Keep Up-to-Date)
-Thế giới AI thay đổi theo từng tuần. Một công cụ hôm nay là tốt nhất, nhưng tuần sau có thể đã có sản phẩm khác vượt trội hơn. Hãy dành ít nhất 30 phút mỗi tuần để cập nhật các tính năng mới.
-9. Kết hợp đa công cụ (Workflow Integration)
-Đừng chỉ dùng một mình ChatGPT. Hãy học cách kết hợp: Dùng Perplexity để tra cứu dữ liệu thực tế -> Dùng Claude để viết lách -> Dùng Canva/Gamma để trình bày. Việc kết nối các công cụ sẽ tạo ra hiệu suất đột phá.
-10. Đạo đức và Bản quyền
-Luôn tự đặt câu hỏi: "Việc sử dụng hình ảnh hay nội dung do AI tạo ra này có vi phạm bản quyền hay gây hiểu lầm cho người xem không?". Tính minh bạch là yếu tố sống còn để xây dựng uy tín chuyên nghiệp.
-Tip cho bạn: Trong buổi sharing, bạn có thể nhấn mạnh điểm số 2 (Bảo mật) và số 3 (Ảo giác). Đây là hai điểm mà các sếp và quản lý thường lo lắng nhất khi nhân viên bắt đầu dùng AI.
+## 1. Tư Duy: Đừng Dùng AI Như Google — Hãy Dùng Như "Thực Tập Sinh Tinh Nhuệ"
+
+| | Sai lầm phổ biến | Tư duy đúng |
+|---|---|---|
+| **Cách nhìn** | Coi AI là công cụ tìm kiếm (Search Engine) | Coi AI là Cộng sự ảo (AI Co-pilot) |
+| **Cách dùng** | Hỏi → Nhận → Copy | Giao việc → Review → Tinh chỉnh |
+| **Vai trò bạn** | Người dùng thụ động | Người kiểm soát chất lượng (QC) |
+
+**Công thức cốt lõi:**
+> 💡 Năng lực con người × Sức mạnh AI = Hiệu suất x10
+
+**Lưu ý quan trọng:** AI biết rất nhiều nhưng đôi khi "bịa" rất thuyết phục (Hallucination). Bạn là người chịu trách nhiệm cuối cùng.
+
+---
+
+## 2. Bản Đồ Công Cụ AI — Giữa Năm 2026
+
+> Thị trường AI đã bước sang giai đoạn **Agentic AI** — không chỉ trả lời câu hỏi mà có thể **tự lập kế hoạch và thực thi chuỗi công việc phức tạp** mà không cần hướng dẫn từng bước.
+
+### 🧠 Nhóm 1: Đa Năng & Tư Duy (The Big Three)
+
+| Công cụ | Tính năng nổi bật (2026) | Thế mạnh |
+|---|---|---|
+| **ChatGPT** (OpenAI – GPT-5.4) | Sora Integration (tạo video từ chat); Advanced Voice Mode nhận diện cảm xúc qua giọng nói | Suy luận logic, lập kế hoạch đa bước |
+| **Gemini** (Google – v3.1) | Deep Research (tự tra cứu hàng trăm nguồn); Multimodal Context (hàng giờ video + triệu dòng code một lần) | Hệ sinh thái Google Workspace; phân tích dữ liệu thời gian thực |
+| **Claude** (Anthropic – v4.6) | Computer Use (AI nhìn màn hình, điều khiển chuột/bàn phím); Artifacts (chạy code, vẽ biểu đồ trực tiếp) | Văn phong tự nhiên nhất; an toàn dữ liệu cao; viết lách/sáng tạo |
+
+### 📋 Nhóm 2: Năng Suất & Làm Việc Nhóm
+
+| Công cụ | Ứng dụng tiêu biểu |
+|---|---|
+| **Gamma** | Tạo slide thuyết trình chuyên nghiệp từ một đoạn mô tả — Top 1 thị trường |
+| **Notion AI** | Tự động ghi chú, tóm tắt cuộc họp, quản lý dự án |
+| **Perplexity** | Thay thế Google Search — tổng hợp + trích dẫn nguồn cụ thể |
+
+### 🎨 Nhóm 3: Sáng Tạo Hình Ảnh & Video
+
+| Công cụ | Điểm mạnh |
+|---|---|
+| **Midjourney v7** | "Ông vua" chất lượng nghệ thuật, độ chi tiết hình ảnh |
+| **Runway Gen-4.5** | Video chuyên nghiệp; Multi-Motion Brush chọn vật thể chuyển động |
+| **Google Veo** | Video 4K ổn định cao — phù hợp quảng cáo & truyền thông |
+
+### ⚙️ Nhóm 4: Tự Động Hóa & Lập Trình
+
+| Công cụ | Ứng dụng tiêu biểu |
+|---|---|
+| **Cursor** | Viết toàn bộ ứng dụng từ yêu cầu ngôn ngữ tự nhiên |
+| **Zapier Central** | Tạo AI Agents tự thực thi workflow giữa 6.000+ ứng dụng |
+
+---
+
+## 3. ⚡ Điểm Khác Biệt Cốt Lõi: AI Thông Thường vs. Agentic AI
+
+> Đây là sự thay đổi **mang tính bước ngoặt** mà mọi người dùng AI cần hiểu rõ.
+
+### So Sánh Trực Tiếp
+
+| Tiêu chí | AI Thông Thường (2023–2024) | Agentic AI (2025–nay) |
+|---|---|---|
+| **Cơ chế** | Hỏi → Nhận 1 câu trả lời | Nhận mục tiêu → Tự lập kế hoạch → Tự thực thi nhiều bước |
+| **Tương tác** | Mỗi câu hỏi độc lập | Nhớ ngữ cảnh, hành động xuyên suốt phiên làm việc |
+| **Phạm vi** | Chỉ tạo ra văn bản/hình ảnh | Có thể truy cập web, mở file, gửi email, điều khiển máy tính |
+| **Vai trò người dùng** | Ra lệnh từng bước một | Giao mục tiêu, AI tự chia nhỏ và thực hiện |
+| **Ví dụ** | "Viết email cảm ơn khách hàng" | "Tổng hợp phản hồi khách tuần này, phân loại theo vấn đề, soạn email trả lời từng nhóm và lưu vào Google Sheet" |
+
+### Những Gì Agentic AI Có Thể Làm (Mà Nhiều Người Chưa Biết)
+
+- 🔎 **Tự research:** Mở trình duyệt, tra cứu nhiều nguồn, tổng hợp báo cáo — không cần bạn copy-paste
+- 📂 **Xử lý file end-to-end:** Đọc email → Trích xuất thông tin → Điền vào form → Lưu file
+- 🔄 **Chạy workflow lặp lại:** Thực hiện quy trình giống nhau cho 100 trường hợp mà không cần giám sát từng bước
+- 🖥️ **Điều khiển máy tính:** Click, type, chụp màn hình, mở ứng dụng (Claude Computer Use, Operator của OpenAI)
+- 🤝 **Phối hợp đa agent:** Nhiều AI chuyên biệt làm việc song song, giao việc cho nhau
+
+### ⚠️ Rủi Ro Mới Phát Sinh Với Agentic AI
+
+| Rủi ro | Mô tả | Cách phòng tránh |
+|---|---|---|
+| **Mất kiểm soát hành động** | AI thực hiện nhiều bước — một bước sai có thể gây hậu quả dây chuyền | Luôn đặt "checkpoint" — xác nhận trước khi AI thực hiện hành động không thể hoàn tác |
+| **Rò rỉ dữ liệu tự động** | Agent có thể upload file hoặc gửi email nếu không được cài quyền hạn rõ | Giới hạn quyền truy cập của Agent (principle of least privilege) |
+| **Prompt Injection** | Kẻ xấu nhúng lệnh ẩn trong file/email để Agent thực thi | Không cho Agent xử lý dữ liệu từ nguồn không tin cậy mà không review |
+| **Ảo giác trong chuỗi dài** | Sai lầm ở bước 2 có thể nhân rộng qua bước 3, 4, 5 | Review output ở từng checkpoint quan trọng |
+
+---
+
+## 4. 🏢 Ứng Dụng Nào Cần Sẵn Sàng Cho Thay Đổi Này?
+
+> Không phải mọi quy trình đều cần Agentic AI ngay. Đây là bản đồ ưu tiên theo bộ phận.
+
+### Ma Trận Ưu Tiên Triển Khai
+
+| Bộ phận | Ứng dụng Agentic AI phù hợp | Mức độ sẵn sàng cần thiết |
+|---|---|---|
+| **Marketing** | Tự động tổng hợp social listening → phân tích → soạn báo cáo hàng tuần | 🟡 Trung bình — cần review output |
+| **Sales / CRM** | Agent đọc email khách, cập nhật CRM, đặt lịch follow-up tự động | 🔴 Cao — cần phân quyền chặt |
+| **HR / Tuyển dụng** | Lọc CV → tóm tắt hồ sơ → soạn email mời phỏng vấn | 🟡 Trung bình — cần policy rõ |
+| **Vận hành / Ops** | Tự động tổng hợp KPI từ nhiều nguồn → tạo dashboard → gửi báo cáo | 🔴 Cao — cần kiểm soát nguồn dữ liệu |
+| **Kế toán / Finance** | Đọc hóa đơn → phân loại → cập nhật bảng theo dõi | 🔴 Rất cao — tuyệt đối không dùng AI công cộng |
+| **Sản phẩm / R&D** | Research thị trường → tổng hợp xu hướng → soạn brief | 🟢 Thấp — rủi ro thấp, lợi ích cao |
+| **Dịch vụ khách hàng** | Phân loại ticket → soạn nháp trả lời → escalate nếu cần | 🟡 Trung bình — cần Human-in-the-loop |
+
+### Checklist Sẵn Sàng Cho Tổ Chức
+
+Trước khi triển khai Agentic AI, tổ chức cần trả lời được các câu hỏi sau:
+
+- [ ] **Phân quyền:** Công cụ AI được phép truy cập những hệ thống nào? Giới hạn ra sao?
+- [ ] **Policy dữ liệu:** Dữ liệu nào được phép đưa vào AI? (Không bao giờ: CCCD, BHXH, báo cáo tài chính nội bộ)
+- [ ] **Checkpoint:** Ở bước nào trong workflow AI cần dừng lại để người xác nhận?
+- [ ] **Audit log:** Có ghi lại được toàn bộ hành động của AI không để truy vết khi sự cố xảy ra?
+- [ ] **Người chịu trách nhiệm:** Ai là người chịu trách nhiệm khi AI làm sai?
+
+---
+
+## 5. 🎯 Bí Kíp "Ra Lệnh" — Prompt Engineering
+
+Công thức **C.R.E.O** để AI luôn hiểu đúng ý:
+
+| Chữ | Ý nghĩa | Ví dụ |
+|---|---|---|
+| **C** — Context | Bối cảnh: Bạn là ai? Đang làm gì? | *"Tôi là Marketing Manager tại công ty FMCG..."* |
+| **R** — Role | Vai trò AI đóng | *"Hãy đóng vai một chuyên gia copywriter dày dặn kinh nghiệm..."* |
+| **E** — Execute | Nhiệm vụ cụ thể | *"Viết 3 phiên bản caption cho bài đăng về sản phẩm mới..."* |
+| **O** — Output | Định dạng & yêu cầu đầu ra | *"Mỗi caption dưới 100 chữ, tone hài hước, kèm 3 hashtag"* |
+
+**Kỹ năng nâng cao (Agentic era):**
+- Chia mục tiêu lớn thành **mini-goals** rõ ràng thay vì một prompt dài
+- Dùng **vòng lặp phản hồi**: Yêu cầu AI tự đánh giá output trước khi gửi lại bạn
+- Đặt **ràng buộc rõ ràng**: "Chỉ dùng thông tin trong file đính kèm, không tự suy luận thêm"
+
+---
+
+## 6. 10 Lưu Ý Quan Trọng Khi Dùng AI
+
+| # | Nguyên tắc | Nội dung cốt lõi |
+|---|---|---|
+| 1 | **Human-in-the-loop** | AI soạn bản nháp — Bạn biên tập cuối — Bạn chịu trách nhiệm |
+| 2 | **Privacy First** ⚠️ | Không đưa dữ liệu nhạy cảm (tài chính, cá nhân KH) vào AI công cộng |
+| 3 | **Fact-check mọi số liệu** ⚠️ | AI có thể bịa số liệu/tên người rất thuyết phục — luôn kiểm chứng |
+| 4 | **Prompt là chìa khóa** | Vai trò + Bối cảnh + Nhiệm vụ + Định dạng = Output chuẩn |
+| 5 | **Tư duy Iterative** | Hiếm khi AI đúng ngay lần đầu — hãy tinh chỉnh từng vòng |
+| 6 | **Nâng cấp, không thay thế tư duy** | Dùng AI cho việc tốn thời gian để bạn tập trung vào quyết định chiến lược |
+| 7 | **Giữ Human Touch** | Chỉnh sửa lại output AI để giữ giọng điệu và cá tính riêng |
+| 8 | **Cập nhật liên tục** | AI thay đổi theo tuần — dành 30 phút/tuần theo dõi tin tức AI |
+| 9 | **Kết hợp đa công cụ** | Perplexity (tra cứu) → Claude (viết) → Gamma (trình bày) |
+| 10 | **Đạo đức & Bản quyền** | Minh bạch về việc dùng AI — không gây hiểu lầm cho người xem |
+
+> **💡 Tip cho người thuyết trình:** Nhấn mạnh **#2 (Bảo mật)** và **#3 (Ảo giác)** — đây là 2 điểm sếp và quản lý lo lắng nhất.
+
+---
+
+## 7. 🚀 Hành Động Ngay (Call to Action)
+
+> *"AI sẽ không thay thế bạn — nhưng người biết dùng AI sẽ thay thế người không biết dùng."*
+
+**3 thứ nên làm ngay sau buổi sharing này:**
+
+1. **Ngày 1:** Thử giao cho AI 1 việc bạn thường mất hơn 15 phút để làm
+2. **Tuần 1:** Xây dựng 1 prompt template chuẩn cho công việc của bạn
+3. **Tháng 1:** Thử kết nối 2–3 công cụ thành 1 workflow nhỏ tiết kiệm thời gian
+
+**Công cụ gợi ý để bắt đầu (miễn phí):**
+- 🔵 **Gemini** — google.com/gemini (tích hợp sẵn Google Workspace)
+- 🟢 **ChatGPT** — chatgpt.com
+- 🟠 **Claude** — claude.ai
+- 🎨 **Gamma** — gamma.app (tạo slide)
+- 🔍 **Perplexity** — perplexity.ai (thay thế Google Search)
+
+---
+
+> **⚠️ Lưu ý bảo mật khi Demo:** Hãy demo trực tiếp trước team — không gì thuyết phục hơn thấy AI xử lý việc thật trong 5 giây. Nhưng nhắc team: **không đưa dữ liệu thật của công ty vào AI công cộng khi demo.**
+
+---
+
+## 📌 Version History
+
+| Version | Ngày | Nội dung thay đổi |
+|---|---|---|
+| v1.0 | 2026-05-11 | Tạo nội dung gốc từ buổi brainstorm |
+| v2.0 | 2026-05-12 | Review & restructure toàn bộ: chuẩn hóa format, bổ sung section Agentic AI (so sánh, rủi ro mới, ma trận ưu tiên theo bộ phận, checklist tổ chức), nâng cấp Prompt Engineering cho agentic era |
