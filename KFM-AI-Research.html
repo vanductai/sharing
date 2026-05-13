@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ứng Dụng AI Trong Công Việc — King Food Mart 2026</title>
+<style>
+  /* ============================================================
+     RESET & BASE
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --purple-900: #26215C;
+    --purple-800: #3C3489;
+    --purple-600: #534AB7;
+    --purple-400: #7F77DD;
+    --purple-200: #AFA9EC;
+    --purple-100: #CECBF6;
+    --purple-50:  #EEEDFE;
+    --gray-900: #2C2C2A;
+    --gray-800: #444441;
+    --gray-600: #5F5E5A;
+    --gray-400: #888780;
+    --gray-200: #B4B2A9;
+    --gray-100: #D3D1C7;
+    --gray-50:  #F1EFE8;
+    --blue-800: #0C447C;
+    --blue-600: #185FA5;
+    --blue-50:  #E6F1FB;
+    --amber-600: #BA7517;
+    --amber-50:  #FAEEDA;
+    --teal-600: #0F6E56;
+    --teal-50:  #E1F5EE;
+    --coral-600: #993C1D;
+    --coral-50:  #FAECE7;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --max-width: 860px;
+    --sidebar-width: 220px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--gray-900);
+    background: #fff;
+  }
+
+  /* ============================================================
+     LAYOUT
+  ============================================================ */
+  .page-wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .content-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) 1fr;
+    gap: 56px;
+    align-items: start;
+    padding: 56px 0 80px;
+  }
+
+  @media (max-width: 900px) {
+    .content-layout { grid-template-columns: 1fr; gap: 32px; }
+    .sidebar { display: none; }
+  }
+
+  /* ============================================================
+     HERO
+  ============================================================ */
+  .hero {
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-100);
+    padding: 64px 0 56px;
+  }
+
+  .hero-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .issue-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--purple-600);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .issue-badge .dot {
+    width: 5px; height: 5px;
+    background: var(--purple-200);
+    border-radius: 50%;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.25;
+    max-width: 720px;
+    margin-bottom: 10px;
+  }
+
+  .hero .subtitle {
+    font-family: var(--font-serif);
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 32px;
+    max-width: 620px;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    font-weight: 600;
+  }
+
+  .meta-item .value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-800);
+  }
+
+  .meta-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--gray-100);
+  }
+
+  /* ============================================================
+     SIDEBAR / TOC
+  ============================================================ */
+  .sidebar {
+    position: sticky;
+    top: 32px;
+  }
+
+  .toc-box {
+    border: 1px solid var(--gray-100);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .toc-box .toc-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-400);
+    margin-bottom: 14px;
+  }
+
+  .toc-list { list-style: none; }
+
+  .toc-list li { margin-bottom: 4px; }
+
+  .toc-list a {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--gray-600);
+    text-decoration: none;
+    padding: 5px 6px;
+    border-radius: 6px;
+    line-height: 1.4;
+    transition: background 0.12s, color 0.12s;
+  }
+
+  .toc-list a:hover {
+    background: var(--purple-50);
+    color: var(--purple-800);
+  }
+
+  .toc-list .num {
+    font-weight: 700;
+    color: var(--purple-400);
+    flex-shrink: 0;
+    min-width: 18px;
+    font-size: 12px;
+  }
+
+  .toc-divider {
+    height: 1px;
+    background: var(--gray-100);
+    margin: 12px 0;
+  }
+
+  /* ============================================================
+     MAIN ARTICLE
+  ============================================================ */
+  .article {
+    min-width: 0;
+  }
+
+  /* Abstract / Lead */
+  .lead-block {
+    background: var(--purple-50);
+    border-left: 4px solid var(--purple-600);
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+
+  .lead-block .lead-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--purple-600);
+    margin-bottom: 8px;
+  }
+
+  .lead-block p {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--purple-900);
+    font-family: var(--font-serif);
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* Section Header */
+  .section-header {
+    margin: 56px 0 20px;
+  }
+
+  .section-header:first-child { margin-top: 0; }
+
+  .section-tag {
+    display: inline-block;
+    background: var(--purple-50);
+    color: var(--purple-800);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--gray-900);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .section-header .section-lead {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .divider-line {
+    height: 2px;
+    background: linear-gradient(to right, var(--purple-600), var(--purple-100), transparent);
+    margin: 8px 0 24px;
+    border-radius: 2px;
+  }
+
+  /* Body text */
+  .article p {
+    margin-bottom: 18px;
+    color: var(--gray-900);
+    font-size: 16.5px;
+  }
+
+  .article h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 32px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1.5px solid var(--gray-100);
+  }
+
+  .article h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--purple-800);
+    margin: 22px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 13px;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    margin: 36px 0;
+    padding: 20px 28px;
+    border-left: 4px solid var(--purple-600);
+    background: var(--gray-50);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .pull-quote blockquote {
+    font-family: var(--font-serif);
+    font-size: clamp(17px, 2.5vw, 20px);
+    font-style: italic;
+    color: var(--purple-900);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .pull-quote .attribution {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--gray-400);
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  /* Highlight / callout boxes */
+  .highlight-box {
+    background: var(--purple-50);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin: 24px 0;
+  }
+
+  .highlight-box .hb-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple-600);
+    margin-bottom: 8px;
+  }
+
+  .highlight-box p {
+    color: var(--purple-900);
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .warn-box {
+    background: var(--amber-50);
+    border-left: 3px solid var(--amber-600);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+  }
+
+  .warn-box p {
+    font-size: 15px;
+    color: #4a3000;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .warn-box .warn-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--amber-600);
+    margin-bottom: 6px;
+  }
+
+  .success-box {
+    background: var(--teal-50);
+    border-left: 3px solid var(--teal-600);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 20px 0;
+  }
+
+  .success-box p {
+    font-size: 15px;
+    color: #042e20;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* Stat cards */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin: 28px 0;
+  }
+
+  .stat-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-100);
+    border-radius: 10px;
+    padding: 16px 18px;
+    text-align: center;
+  }
+
+  .stat-card .stat-num {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--purple-600);
+    display: block;
+    line-height: 1.1;
+  }
+
+  .stat-card .stat-label {
+    font-size: 12px;
+    color: var(--gray-600);
+    margin-top: 5px;
+    line-height: 1.4;
+  }
+
+  /* Tables */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 24px 0;
+    border-radius: 10px;
+    border: 1px solid var(--gray-100);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  thead tr {
+    background: var(--purple-900);
+    color: #fff;
+  }
+
+  thead th {
+    padding: 12px 16px;
+    font-weight: 600;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  tbody tr:nth-child(even) {
+    background: #fafaf8;
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  tbody td {
+    padding: 11px 16px;
+    color: var(--gray-900);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  tbody td strong {
+    color: var(--purple-800);
+    font-weight: 600;
+  }
+
+  /* Comparison table (before/after) */
+  .compare-table thead tr { background: var(--gray-900); }
+
+  .compare-table .col-before { color: var(--coral-600); }
+  .compare-table .col-after  { color: var(--teal-600); }
+
+  /* Step list */
+  .step-list { list-style: none; counter-reset: steps; margin: 20px 0; }
+
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .step-list li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--purple-600);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .step-list li .step-content { flex: 1; }
+  .step-list li .step-content strong { display: block; font-size: 15px; margin-bottom: 3px; }
+  .step-list li .step-content p { font-size: 14px; color: var(--gray-600); margin: 0; }
+
+  /* Bullet list */
+  .article ul {
+    padding-left: 22px;
+    margin: 14px 0 18px;
+  }
+
+  .article ul li {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+    line-height: 1.65;
+  }
+
+  .article ul li strong {
+    color: var(--purple-800);
+  }
+
+  /* Timeline */
+  .timeline { margin: 24px 0; }
+
+  .timeline-item {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+
+  .timeline-marker {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--purple-600);
+    border-radius: 50%;
+    margin-top: 5px;
+  }
+
+  .timeline-line {
+    width: 2px;
+    flex: 1;
+    background: var(--purple-100);
+    min-height: 24px;
+    margin-top: 4px;
+  }
+
+  .timeline-item:last-child .timeline-line { display: none; }
+
+  .timeline-content .timeline-period {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--purple-600);
+    margin-bottom: 4px;
+  }
+
+  .timeline-content .timeline-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+  }
+
+  .timeline-content p {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Roadmap cards */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .roadmap-card {
+    border: 1px solid var(--gray-100);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+  }
+
+  .roadmap-card .phase-num {
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    background: var(--purple-600);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .roadmap-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 8px 0 6px;
+    padding: 0;
+    border: none;
+  }
+
+  .roadmap-card .phase-period {
+    font-size: 11px;
+    color: var(--purple-400);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .roadmap-card p {
+    font-size: 13.5px;
+    color: var(--gray-600);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .roadmap-card .phase-goal {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--gray-100);
+    font-size: 13px;
+    color: var(--purple-800);
+    font-weight: 500;
+  }
+
+  /* Prompt example */
+  .prompt-example {
+    background: var(--gray-900);
+    color: #e8e8e5;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13.5px;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .prompt-example .prompt-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--purple-200);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  /* CSCF formula */
+  .formula-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+  }
+
+  .formula-card {
+    background: var(--gray-50);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border-top: 3px solid var(--purple-400);
+  }
+
+  .formula-card .f-letter {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--purple-600);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .formula-card .f-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+  }
+
+  .formula-card p {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Flow diagram */
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+
+  .flow-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .flow-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .flow-icon.ai-step { background: var(--purple-50); border: 1px solid var(--purple-100); }
+  .flow-icon.human-step { background: var(--teal-50); border: 1px solid #9FE1CB; }
+
+  .flow-node .fn-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-900);
+    max-width: 80px;
+  }
+
+  .flow-node .fn-who {
+    font-size: 10px;
+    color: var(--gray-400);
+  }
+
+  .flow-arrow {
+    font-size: 16px;
+    color: var(--gray-200);
+    flex-shrink: 0;
+  }
+
+  /* Ecosystem table header colors */
+  .header-openai { background: #1a1a18; }
+  .header-anthropic { background: var(--purple-900); }
+  .header-google { background: #1a3a1a; }
+  .header-microsoft { background: #0c2a5a; }
+
+  /* Footer / footnotes */
+  .article-footer {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 2px solid var(--gray-100);
+  }
+
+  .article-footer .footer-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-400);
+    margin-bottom: 12px;
+  }
+
+  .article-footer p {
+    font-size: 13.5px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Conclusion */
+  .conclusion-block {
+    background: var(--purple-900);
+    color: #fff;
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin: 48px 0;
+    text-align: center;
+  }
+
+  .conclusion-block blockquote {
+    font-family: var(--font-serif);
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--purple-100);
+    margin-bottom: 16px;
+  }
+
+  .conclusion-block .conclusion-sub {
+    font-size: 14px;
+    color: var(--purple-200);
+    line-height: 1.65;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; margin: 16px 0; }
+
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 9px 12px;
+    border-radius: 6px;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: var(--gray-800);
+    background: var(--gray-50);
+    line-height: 1.5;
+  }
+
+  .checklist li .check-icon {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--purple-400);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Print */
+  @media print {
+    .sidebar { display: none; }
+    .content-layout { grid-template-columns: 1fr; }
+    .hero { padding: 32px 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="issue-badge">
+      <span class="dot"></span>
+      Nghiên cứu nội bộ · Tháng 5/2026
+    </div>
+    <h1>Ứng Dụng Trí Tuệ Nhân Tạo<br>Trong Công Việc Doanh Nghiệp</h1>
+    <p class="subtitle">Từ công cụ hỗ trợ đến đồng nghiệp số — tổng quan, rủi ro và lộ trình triển khai thực chiến cho King Food Mart</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="label">Tổ chức</span>
+        <span class="value">King Food Mart</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="label">Đối tượng</span>
+        <span class="value">Team Quản Lý</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="label">Phát hành</span>
+        <span class="value">Tháng 5/2026</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="label">Thời gian đọc</span>
+        <span class="value">~20 phút</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="label">Nguồn tổng hợp</span>
+        <span class="value">McKinsey · WEF · Cisco · Anthropic</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== BODY ===== -->
+<div class="page-wrap">
+  <div class="content-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav class="toc-box" aria-label="Mục lục">
+        <div class="toc-title">Mục Lục</div>
+        <ul class="toc-list">
+          <li><a href="#intro"><span class="num">→</span> Dẫn nhập</a></li>
+          <div class="toc-divider"></div>
+          <li><a href="#s1"><span class="num">I</span> AI đã thay đổi thế nào</a></li>
+          <li><a href="#s2"><span class="num">II</span> Chat AI vs Agentic AI</a></li>
+          <li><a href="#s3"><span class="num">III</span> Rủi ro cần lưu ý</a></li>
+          <li><a href="#s4"><span class="num">IV</span> Use cases hiệu quả nhất</a></li>
+          <li><a href="#s5"><span class="num">V</span> Top công cụ AI 2026</a></li>
+          <li><a href="#s6"><span class="num">VI</span> Ứng dụng thực chiến KFM</a></li>
+          <li><a href="#s7"><span class="num">VII</span> Quy trình ứng dụng AI</a></li>
+          <li><a href="#s8"><span class="num">VIII</span> Lộ trình 90 ngày</a></li>
+          <li><a href="#s9"><span class="num">IX</span> AI trong 5–10 năm tới</a></li>
+          <div class="toc-divider"></div>
+          <li><a href="#conclusion"><span class="num">→</span> Kết luận</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN ARTICLE -->
+    <main class="article" id="main">
+
+      <!-- LEAD / ABSTRACT -->
+      <div id="intro" class="lead-block">
+        <div class="lead-label">Dẫn nhập</div>
+        <p>Mỗi tuần, một nhà quản lý trung bình tốn từ 15 đến 22 giờ cho những công việc lặp đi lặp lại: soạn email, tóm tắt biên bản họp, nghiên cứu thị trường, tổng hợp báo cáo. Tài liệu này trình bày cách Trí Tuệ Nhân Tạo có thể rút ngắn quỹ thời gian đó một cách đáng kể — đồng thời phân tích những rủi ro cần kiểm soát, hệ sinh thái công cụ hiện có, và lộ trình triển khai thực chiến được thiết kế riêng cho King Food Mart.</p>
+      </div>
+
+      <p>Chúng ta đang bước vào giai đoạn chuyển dịch quan trọng nhất của AI kể từ khi ChatGPT ra đời vào cuối năm 2022. Không còn là công cụ trả lời câu hỏi đơn thuần, AI thế hệ mới có khả năng tự lên kế hoạch, sử dụng các ứng dụng bên ngoài và hoàn thành chuỗi công việc phức tạp mà không cần sự can thiệp từng bước của con người. Với đội ngũ quản lý của King Food Mart, đây vừa là cơ hội để nâng cao năng suất, vừa là thời điểm cần thiết lập chính sách sử dụng AI rõ ràng và có kiểm soát.</p>
+
+      <!-- SECTION 1 -->
+      <div id="s1" class="section-header">
+        <div class="section-tag">Phần I</div>
+        <h2>AI Đã Thay Đổi Như Thế Nào?</h2>
+        <p class="section-lead">Ba giai đoạn phát triển định hình cách chúng ta làm việc từ 2020 đến nay.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <p>Để hiểu đúng bản chất của cuộc cách mạng hiện tại, cần nhìn lại hành trình phát triển của AI theo ba giai đoạn rõ rệt:</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-period">Trước 2022 — Giai đoạn Tìm kiếm</div>
+            <div class="timeline-title">Google thông minh hơn</div>
+            <p>AI chủ yếu phục vụ tìm kiếm thông tin: gõ từ khoá, nhận kết quả. Người dùng vẫn cần tự đọc, tổng hợp và xử lý thông tin một mình.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-period">2022 – 2024 — Giai đoạn Chat AI</div>
+            <div class="timeline-title">ChatGPT ra đời — hỏi một câu, nhận một câu trả lời</div>
+            <p>Mô hình ngôn ngữ lớn (LLM) trở thành sản phẩm đại chúng. Người dùng lần đầu tiên có thể đối thoại với AI bằng ngôn ngữ tự nhiên — đặt câu hỏi, nhận văn bản, yêu cầu viết lách hay phân tích đơn giản.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="timeline-dot"></div>
+            <div class="timeline-line"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-period">2025 – 2026 — Giai đoạn Agentic AI ← Chúng ta đang ở đây</div>
+            <div class="timeline-title">AI tự lên kế hoạch và chủ động làm việc</div>
+            <p>AI thế hệ mới không chờ người dùng hỏi từng bước. Nó có thể nhận một mục tiêu, tự phân tích các bước cần thiết, sử dụng các công cụ bên ngoài (trình duyệt, email, file, database) và hoàn thành toàn bộ quy trình với sự giám sát tối thiểu từ con người.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pull-quote">
+        <blockquote>"Chúng ta không còn ở giai đoạn 'hỏi AI' nữa — AI đang bắt đầu chủ động làm việc, theo dõi, phân loại và báo cáo thay cho con người."</blockquote>
+        <span class="attribution">Tổng hợp nghiên cứu thị trường 2025–2026</span>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div id="s2" class="section-header">
+        <div class="section-tag">Phần II</div>
+        <h2>Chat AI và Agentic AI — Khác Nhau Ở Đâu?</h2>
+        <p class="section-lead">Một tình huống cụ thể để hiểu rõ sự chuyển dịch mang tính quyết định này.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <p>Để minh họa sự khác biệt căn bản giữa hai thế hệ AI, hãy xem xét một tình huống thực tế tại King Food Mart: <strong>Khách hàng khiếu nại sản phẩm trên Facebook.</strong></p>
+
+      <h3>Với Chat AI (thế hệ cũ) — Bạn làm hầu hết</h3>
+
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-icon human-step">👤</div>
+          <div class="fn-label">Phát hiện bình luận</div>
+          <div class="fn-who">Bạn làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon human-step">👤</div>
+          <div class="fn-label">Copy vào AI, nhập prompt</div>
+          <div class="fn-who">Bạn làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon ai-step">🤖</div>
+          <div class="fn-label">Viết bản nháp</div>
+          <div class="fn-who">AI làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon human-step">👤</div>
+          <div class="fn-label">Chỉnh sửa & gửi</div>
+          <div class="fn-who">Bạn làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon human-step">👤</div>
+          <div class="fn-label">Ghi chép, báo cáo</div>
+          <div class="fn-who">Bạn làm</div>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <div class="warn-label">Thời gian tiêu tốn</div>
+        <p>Khoảng <strong>15 phút cho mỗi khiếu nại</strong>. Với 20–30 phản hồi mỗi tuần, đây là 5–7 giờ làm việc lặp đi lặp lại.</p>
+      </div>
+
+      <h3>Với Agentic AI (thế hệ mới) — Bạn chỉ cần duyệt</h3>
+
+      <div class="flow-row">
+        <div class="flow-node">
+          <div class="flow-icon ai-step">🤖</div>
+          <div class="fn-label">Theo dõi Facebook liên tục</div>
+          <div class="fn-who">AI làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon ai-step">🤖</div>
+          <div class="fn-label">Phân loại & soạn phản hồi</div>
+          <div class="fn-who">AI làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon human-step">👤</div>
+          <div class="fn-label">Nhấn "Duyệt"</div>
+          <div class="fn-who">10 giây</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon ai-step">🤖</div>
+          <div class="fn-label">Tự gửi & log dữ liệu</div>
+          <div class="fn-who">AI làm</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node">
+          <div class="flow-icon ai-step">🤖</div>
+          <div class="fn-label">Báo cáo cuối tuần</div>
+          <div class="fn-who">AI làm</div>
+        </div>
+      </div>
+
+      <div class="success-box">
+        <p>Kết quả: từ 15 phút xuống còn 10 giây để duyệt. Xử lý 24/7, không bỏ sót, giọng điệu thương hiệu đồng nhất. Các công cụ làm được điều này ngay hôm nay bao gồm Claude Cowork, ChatGPT Tasks, Zapier AI và Make.com.</p>
+      </div>
+
+      <!-- SECTION 3 -->
+      <div id="s3" class="section-header">
+        <div class="section-tag">Phần III</div>
+        <h2>Rủi Ro Cần Lưu Ý Khi Sử Dụng AI</h2>
+        <p class="section-lead">88% tổ chức đã dùng AI — nhưng phần lớn thiếu kiểm soát và chính sách rõ ràng.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="stat-num">64%</span>
+          <div class="stat-label">người dùng vô tình chia sẻ thông tin nhạy cảm với AI <em>(Cisco, 2025)</em></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">88%</span>
+          <div class="stat-label">tổ chức đã dùng AI, nhưng phần lớn thiếu chính sách kiểm soát</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">62%</span>
+          <div class="stat-label">tổ chức không kiểm soát được Shadow AI trong nội bộ</div>
+        </div>
+      </div>
+
+      <h3>Rủi ro 1 — Bảo mật &amp; Rò rỉ Dữ liệu</h3>
+
+      <p>Khi nhân viên nhập dữ liệu nội bộ — bao gồm giá bán, thông tin khách hàng, chiến lược kinh doanh — vào các công cụ AI bên thứ ba (phiên bản miễn phí), dữ liệu đó có thể được lưu trữ và sử dụng để huấn luyện mô hình AI của nhà cung cấp. Đây là rủi ro thường bị xem nhẹ, đặc biệt trong giai đoạn đầu khi nhân viên tự khám phá AI mà chưa có hướng dẫn rõ ràng.</p>
+
+      <p>Hiện tượng <strong>Shadow AI</strong> — nhân viên tự ý sử dụng các công cụ AI chưa được công ty phê duyệt — đang trở thành mối lo ngại hàng đầu của các tổ chức toàn cầu. Khi không có danh sách công cụ được phép sử dụng và phân loại dữ liệu rõ ràng, doanh nghiệp đang để lộ lỗ hổng an ninh nghiêm trọng mà không hề hay biết.</p>
+
+      <div class="warn-box">
+        <div class="warn-label">Lưu ý đặc biệt — Năm 2026</div>
+        <p>Nhiều hãng bảo hiểm đã bắt đầu từ chối bồi thường cho các tổn thất phát sinh từ rủi ro AI. Doanh nghiệp đang tự gánh chịu toàn bộ trách nhiệm này.</p>
+      </div>
+
+      <h3>Rủi ro 2 — Hallucination (AI Tạo Thông Tin Sai)</h3>
+
+      <p>AI có thể tạo ra thông tin hoàn toàn không có thật nhưng trình bày với giọng điệu cực kỳ tự tin và thuyết phục. Đây là điểm nguy hiểm nhất đối với người mới sử dụng, vì AI không biết mình đang sai — nó không có khái niệm về "sự thật" mà chỉ đang dự đoán xem văn bản tiếp theo nên là gì.</p>
+
+      <div class="highlight-box">
+        <div class="hb-label">Ví dụ thực tế đã xảy ra</div>
+        <p>Năm 2023, một luật sư tại Hoa Kỳ đã bị toà phạt nặng vì nộp hồ sơ pháp lý sử dụng ChatGPT. Các trích dẫn luật trong hồ sơ — được trình bày hoàn toàn chính xác về hình thức — đều là <strong>không tồn tại</strong> trong thực tế. AI đã "bịa" chúng một cách hoàn toàn tự nhiên. Quy tắc vàng: luôn kiểm tra lại số liệu, tên người, ngày tháng và tất cả thông tin quan trọng từ nguồn gốc chính thống.</p>
+      </div>
+
+      <h3>Rủi ro 3 — Thiên Kiến (Bias) và Phân Biệt Đối Xử</h3>
+
+      <p>AI được huấn luyện trên dữ liệu khổng lồ do con người tạo ra, vì vậy nó có thể kế thừa và tái tạo những thiên kiến tiềm ẩn trong dữ liệu đó. Trong bối cảnh tuyển dụng, điều này có nghĩa là AI có thể vô tình phân biệt đối xử dựa trên giới tính, tuổi tác hay nền tảng văn hoá khi sàng lọc hồ sơ tự động. Nguyên tắc cơ bản là: <em>garbage in, garbage out</em> — chất lượng kết quả phụ thuộc hoàn toàn vào chất lượng dữ liệu đầu vào và cách bạn đặt câu hỏi.</p>
+
+      <h3>Rủi ro 4 — Phụ Thuộc và Mất Kỹ Năng</h3>
+
+      <p>Khi sử dụng AI quá thường xuyên mà không có nhận thức rõ ràng, các kỹ năng cốt lõi như viết lách, phân tích và tư duy phản biện có thể dần suy giảm. Ngoài ra, khi hệ thống AI gặp sự cố — điều hoàn toàn có thể xảy ra — quy trình làm việc sẽ bị đình trệ nếu đội ngũ không còn quen với các phương thức truyền thống. Nguyên tắc sử dụng bền vững: dùng AI để <em>tăng cường</em> năng lực, không phải để thay thế tư duy.</p>
+
+      <h3>Rủi ro 5 — Pháp Lý và Tuân Thủ</h3>
+
+      <p>Việt Nam đã ban hành các quy định về AI có hiệu lực từ ngày <strong>1 tháng 3 năm 2026</strong>. Doanh nghiệp cần chủ động theo dõi để đảm bảo tuân thủ, đặc biệt liên quan đến việc xử lý dữ liệu cá nhân của nhân viên và khách hàng. Quyền sở hữu trí tuệ đối với nội dung do AI tạo ra cũng vẫn đang là vùng xám về mặt pháp lý tại nhiều quốc gia.</p>
+
+      <div class="pull-quote">
+        <blockquote>"Doanh nghiệp thông minh không hỏi 'Có nên dùng AI không?' — họ hỏi 'Dùng AI như thế nào để an toàn và có kiểm soát?'"</blockquote>
+      </div>
+
+      <!-- SECTION 4 -->
+      <div id="s4" class="section-header">
+        <div class="section-tag">Phần IV</div>
+        <h2>Use Cases AI Hiệu Quả Nhất Cho Người Mới</h2>
+        <p class="section-lead">Nghiên cứu cho thấy người ít kinh nghiệm hưởng lợi nhiều nhất từ AI — năng suất tăng 14–15% ngay từ giai đoạn đầu.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <p>Thay vì cố gắng ứng dụng AI vào mọi thứ cùng lúc, cách tiếp cận hiệu quả nhất được ghi nhận trong các nghiên cứu là bắt đầu từ những use case đơn giản nhất, có kết quả rõ ràng và có thể đo lường được. Sau đây là bảy nhóm use case được đánh giá là phù hợp nhất cho người mới bắt đầu.</p>
+
+      <h3>1. Viết Email và Tài Liệu</h3>
+      <p>Đây là điểm khởi đầu lý tưởng nhất: dễ thực hành, kết quả nhìn thấy ngay và không đòi hỏi kiến thức kỹ thuật. Các nghiên cứu ghi nhận tiết kiệm trung bình <strong>70% thời gian</strong> so với tự soạn thảo, đặc biệt với các văn bản lặp đi lặp lại như email khiếu nại, thông báo nội bộ hay báo cáo tuần.</p>
+
+      <h3>2. Tóm Tắt và Tổng Hợp Thông Tin</h3>
+      <p>AI đặc biệt mạnh ở khả năng xử lý khối lượng văn bản lớn. Một báo cáo 50 trang có thể được tóm tắt thành một trang key points trong vài chục giây. Biên bản họp từ file ghi âm có thể được chuyển thành danh sách action items có phân công rõ ràng mà không cần ai ngồi gõ lại.</p>
+
+      <h3>3. Phân Tích Dữ Liệu và Báo Cáo</h3>
+      <p>Không cần kỹ năng lập trình hay Excel nâng cao. Bạn có thể upload file dữ liệu doanh thu và hỏi bằng ngôn ngữ tự nhiên: "Tháng nào có doanh thu bất thường nhất và tại sao?" — AI sẽ phân tích, vẽ biểu đồ và giải thích xu hướng cho bạn.</p>
+
+      <h3>4. Nghiên Cứu Thị Trường</h3>
+      <p>Nghiên cứu đối thủ cạnh tranh, tổng hợp review sản phẩm từ Shopee và TikTok, tìm hiểu xu hướng tiêu dùng thực phẩm — những việc thường mất 2–3 ngày nay có thể hoàn thành trong 30 phút với chất lượng tương đương.</p>
+
+      <h3>5. Lên Kế Hoạch và Quản Lý Công Việc</h3>
+      <p>Từ kế hoạch triển khai chiến dịch khuyến mãi đến checklist kiểm tra chất lượng cửa hàng — AI có thể tạo ra các tài liệu có cấu trúc rõ ràng, phân công cụ thể và đề xuất timeline hợp lý trong vài phút.</p>
+
+      <h3>6. Marketing và Sáng Tạo Nội Dung</h3>
+      <p>Caption Facebook, kịch bản TikTok, nội dung email marketing, SMS chăm sóc khách hàng — AI có thể tạo ra nhiều lựa chọn nội dung trong thời gian ngắn, giúp team marketing tập trung vào việc lựa chọn và hoàn thiện thay vì phải bắt đầu từ trang giấy trắng.</p>
+
+      <h3>7. Đào Tạo và Hỗ Trợ Nhân Viên</h3>
+      <p>Tạo quy trình vận hành chuẩn (SOP) cho từng vị trí, thiết kế bài kiểm tra đánh giá kỹ năng, xây dựng FAQ nội bộ cho nhân viên mới — đây là những tài liệu vừa quan trọng vừa thường xuyên bị trì hoãn vì tốn thời gian soạn thảo. AI có thể rút ngắn quá trình này từ vài ngày xuống còn vài giờ.</p>
+
+      <!-- SECTION 5 -->
+      <div id="s5" class="section-header">
+        <div class="section-tag">Phần V</div>
+        <h2>Top Công Cụ AI Hàng Đầu Năm 2026</h2>
+        <p class="section-lead">Bốn hệ sinh thái lớn đang định hình thị trường — mỗi hệ sinh thái có điểm mạnh khác nhau.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <p>Thị trường AI năm 2026 không còn là cuộc đua giữa các chatbot đơn lẻ. Bốn công ty dẫn đầu — OpenAI, Anthropic, Google và Microsoft — đang xây dựng các hệ sinh thái sản phẩm toàn diện, bao phủ từ giao tiếp hàng ngày đến tự động hóa quy trình phức tạp. Hiểu rõ thế mạnh của từng hệ sinh thái giúp bạn chọn đúng công cụ cho đúng loại công việc.</p>
+
+      <h3>Ba Công Cụ Cần Biết — Mỗi Cái Nhớ Một Câu</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Công cụ</th>
+              <th>Nhớ bằng câu này</th>
+              <th>Ví dụ ứng dụng tại KFM</th>
+              <th>Chi phí</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ChatGPT</strong><br><small>OpenAI · GPT-5.5</small></td>
+              <td>"Lên kế hoạch, viết lách và phân tích mọi thứ"</td>
+              <td>Soạn kịch bản khuyến mãi tháng 6, lên lịch đăng từng ngày, viết caption cho 20 sản phẩm — tất cả trong 1 buổi sáng thay vì cả tuần</td>
+              <td>Miễn phí / $20/tháng (Plus)</td>
+            </tr>
+            <tr>
+              <td><strong>Claude</strong><br><small>Anthropic · v4.6</small></td>
+              <td>"Đọc tài liệu dài, điều khiển máy tính, viết chuẩn chỉnh nhất"</td>
+              <td>Upload toàn bộ báo cáo tháng, hỏi "Cửa hàng nào đang có vấn đề và tại sao?" — nhận phân tích chi tiết trong 30 giây</td>
+              <td>Miễn phí / $20/tháng (Pro)</td>
+            </tr>
+            <tr>
+              <td><strong>Gemini</strong><br><small>Google · v3.1</small></td>
+              <td>"Nghiên cứu thị trường và làm việc ngay trong Google Workspace"</td>
+              <td>Trong Gmail: tóm tắt 50 email chưa đọc; trong Google Sheets: hỏi "Tháng nào doanh thu giảm bất thường?" không cần công thức</td>
+              <td>Miễn phí / $19.99/tháng</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Hệ Sinh Thái OpenAI — ChatGPT</h3>
+      <p>Model mới nhất GPT-5.5 (tháng 4/2026) được thiết kế cho công việc thực tế phức tạp. Ngoài ChatGPT thuần túy, OpenAI cung cấp ChatGPT Canvas (làm việc trực tiếp trên tài liệu), Deep Research (nghiên cứu chuyên sâu 5–30 phút), Codex (viết code tự động) và Operator (điều khiển trình duyệt thay bạn). Đây là hệ sinh thái đa năng nhất với 900 triệu người dùng mỗi tuần.</p>
+
+      <h3>Hệ Sinh Thái Anthropic — Claude</h3>
+      <p>Claude Opus 4.7 và Sonnet 4.6 nổi bật với khả năng xử lý context lên đến 200.000 từ — tương đương toàn bộ một cuốn sách — trong một lần. Anthropic đang mở rộng mạnh sang phần mềm văn phòng với Claude for Excel, Claude for Word, Claude for Outlook và sản phẩm desktop Claude Cowork dành riêng cho người không lập trình.</p>
+
+      <h3>Hệ Sinh Thái Google — Gemini</h3>
+      <p>Gemini 3.1 Pro (tháng 2/2026) có context window 2 triệu token — lớn nhất thị trường. NotebookLM cho phép upload tài liệu nội bộ để AI phân tích và trả lời câu hỏi trực tiếp từ dữ liệu của bạn. Nếu tổ chức đang dùng Google Workspace, Gemini tích hợp sâu nhất vào Gmail, Docs, Sheets và Meet.</p>
+
+      <h3>Hệ Sinh Thái Microsoft — Copilot</h3>
+      <p>Copilot Wave 3 (tháng 3/2026) đánh dấu bước ngoặt lớn: Copilot không còn chỉ là chatbot mà trở thành agent tự hành thực hiện workflow nhiều bước trên toàn bộ Microsoft 365. Đối với doanh nghiệp đang sử dụng Microsoft 365 ($30/user/tháng), đây là lựa chọn tích hợp sâu nhất vào môi trường làm việc hiện có.</p>
+
+      <h3>So Sánh Nhanh — Nên Chọn Hệ Sinh Thái Nào?</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tiêu chí</th>
+              <th>OpenAI</th>
+              <th>Anthropic</th>
+              <th>Google</th>
+              <th>Microsoft</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Điểm mạnh nổi bật</td>
+              <td>Đa năng nhất, nhiều sản phẩm nhất</td>
+              <td>Chính xác, an toàn, tài liệu rất dài</td>
+              <td>Tích hợp Google Workspace sâu nhất</td>
+              <td>Tích hợp Office 365 sâu nhất</td>
+            </tr>
+            <tr>
+              <td>Tốt nhất cho người mới</td>
+              <td>✅ ChatGPT rất dễ bắt đầu</td>
+              <td>✅ Claude.ai trực quan</td>
+              <td>✅ Nếu dùng Gmail/Drive</td>
+              <td>⚠️ Cần M365 subscription</td>
+            </tr>
+            <tr>
+              <td>Giá bắt đầu</td>
+              <td>Free / $20/tháng</td>
+              <td>Free / $20/tháng</td>
+              <td>Free / $19.99/tháng</td>
+              <td>Free / $30/user/tháng</td>
+            </tr>
+            <tr>
+              <td>Phân tích tài liệu dài</td>
+              <td>Canvas, Deep Research</td>
+              <td><strong>Mạnh nhất</strong> (200K context)</td>
+              <td>NotebookLM</td>
+              <td>Copilot in Word/Teams</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 6 -->
+      <div id="s6" class="section-header">
+        <div class="section-tag">Phần VI</div>
+        <h2>Ứng Dụng Thực Chiến Tại King Food Mart</h2>
+        <p class="section-lead">Số liệu so sánh trước và sau khi ứng dụng AI cho từng bộ phận cụ thể.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <h3>Sales &amp; Marketing</h3>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Công việc</th>
+              <th class="col-before">Trước khi dùng AI</th>
+              <th class="col-after">Sau khi dùng AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Viết caption 30 sản phẩm khuyến mãi Tết cho Facebook &amp; TikTok</td>
+              <td>3 ngày</td>
+              <td><strong>40 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Lên lịch đăng bài cả tháng — chủ đề, hình thức, hashtag đề xuất sẵn</td>
+              <td>1 ngày</td>
+              <td><strong>2 giờ</strong></td>
+            </tr>
+            <tr>
+              <td>Tổng hợp và phân tích 500 bình luận/review sản phẩm trên Shopee — tìm điểm khách than nhất</td>
+              <td>1 tuần</td>
+              <td><strong>10 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Nghiên cứu đối thủ cạnh tranh — giá, khuyến mãi, sản phẩm mới trong tháng</td>
+              <td>2 ngày</td>
+              <td><strong>30 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Phân tích xu hướng tiêu dùng thực phẩm 2026 tại Việt Nam — tóm tắt 1 trang A4</td>
+              <td>3 ngày</td>
+              <td><strong>15 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Tạo banner khuyến mãi, poster sự kiện — nhập mô tả, AI thiết kế ngay</td>
+              <td>2 giờ + thuê thiết kế</td>
+              <td><strong>10 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Tạo slide thuyết trình từ bản outline có sẵn — bố cục đẹp, chuyên nghiệp</td>
+              <td>3 giờ</td>
+              <td><strong>15 phút</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Vận Hành &amp; Hành Chính</h3>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Công việc</th>
+              <th class="col-before">Trước khi dùng AI</th>
+              <th class="col-after">Sau khi dùng AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ghi âm cuộc họp → AI tự tóm tắt biên bản + danh sách action items → gửi email cho từng người</td>
+              <td>1–2 giờ viết tay</td>
+              <td><strong>Tự động hoàn toàn</strong></td>
+            </tr>
+            <tr>
+              <td>Soạn SOP vận hành chuẩn cho từng vị trí — nhân viên mới, thu ngân, kho hàng</td>
+              <td>1 tuần</td>
+              <td><strong>1 buổi</strong></td>
+            </tr>
+            <tr>
+              <td>Tóm tắt chuỗi 30 email dài → 5 điểm cần xử lý, ưu tiên theo mức độ quan trọng</td>
+              <td>45 phút</td>
+              <td><strong>2 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Upload dữ liệu bán hàng 3 tháng → AI phân tích sản phẩm nào sắp hết, dự báo lượng nhập</td>
+              <td>Nửa ngày với Excel</td>
+              <td><strong>15 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Dịch tài liệu kỹ thuật từ nhà cung cấp nước ngoài (tiếng Anh/Hàn/Nhật sang tiếng Việt)</td>
+              <td>Thuê dịch: 500K–2 triệu</td>
+              <td><strong>Miễn phí</strong></td>
+            </tr>
+            <tr>
+              <td>Xây dựng tài liệu onboarding nhân viên mới — nội quy, quy trình, FAQ thường gặp</td>
+              <td>2 ngày</td>
+              <td><strong>3 giờ</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Quản Lý &amp; Lãnh Đạo</h3>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Công việc</th>
+              <th class="col-before">Trước khi dùng AI</th>
+              <th class="col-after">Sau khi dùng AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Upload báo cáo 50 trang → hỏi "5 điểm quan trọng nhất cho cuộc họp chiều"</td>
+              <td>2 giờ đọc</td>
+              <td><strong>30 giây</strong></td>
+            </tr>
+            <tr>
+              <td>Nhờ AI đóng vai đối thủ để phản biện kế hoạch kinh doanh Q3 trước khi trình board</td>
+              <td>Chờ họp để nghe phản biện</td>
+              <td><strong>Chuẩn bị trước hoàn toàn</strong></td>
+            </tr>
+            <tr>
+              <td>So sánh performance 5 cửa hàng trong tháng — tự tìm nguyên nhân cửa hàng nào đang tụt</td>
+              <td>Nửa ngày phân tích</td>
+              <td><strong>20 phút</strong></td>
+            </tr>
+            <tr>
+              <td>Lên kế hoạch triển khai chiến dịch khuyến mãi từ A–Z — timeline, phân công, checklist</td>
+              <td>2 ngày họp</td>
+              <td><strong>2 giờ</strong></td>
+            </tr>
+            <tr>
+              <td>Báo cáo tin tức ngành thực phẩm, FMCG Việt Nam mỗi tuần — tóm tắt 5 điểm cần biết</td>
+              <td>Đọc báo mỗi ngày</td>
+              <td><strong>Tự động hàng tuần</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 7 -->
+      <div id="s7" class="section-header">
+        <div class="section-tag">Phần VII</div>
+        <h2>Cách &amp; Quy Trình Ứng Dụng AI Hiệu Quả</h2>
+        <p class="section-lead">"Bắt đầu nhỏ, đo kết quả, mở rộng dần" — nguyên tắc được ghi nhận là hiệu quả nhất.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <p>Các tổ chức bắt đầu với một use case cụ thể, có kiểm soát và đo lường rõ ràng sẽ thành công hơn đáng kể so với những tổ chức cố gắng triển khai AI toàn diện ngay từ đầu. Dưới đây là quy trình bốn giai đoạn được khuyến nghị dựa trên kinh nghiệm thực tế của nhiều doanh nghiệp.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Giai đoạn</th>
+              <th>Thời gian</th>
+              <th>Hoạt động chính</th>
+              <th>Kết quả kỳ vọng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Thử nghiệm</strong></td>
+              <td>Tuần 1–2</td>
+              <td>Chọn 1 use case cụ thể, 2–3 người thử nghiệm, không áp lực</td>
+              <td>Hiểu AI làm được gì, xây dựng kỹ năng cơ bản</td>
+            </tr>
+            <tr>
+              <td><strong>2. Chuẩn hóa</strong></td>
+              <td>Tháng 1</td>
+              <td>Viết hướng dẫn sử dụng, chia sẻ kết quả, đào tạo team</td>
+              <td>Có quy trình chuẩn, mọi người biết dùng nhất quán</td>
+            </tr>
+            <tr>
+              <td><strong>3. Mở rộng</strong></td>
+              <td>Tháng 2–3</td>
+              <td>Áp dụng thêm use cases, đo KPI (thời gian tiết kiệm, chất lượng)</td>
+              <td>AI trở thành một phần quy trình làm việc hàng ngày</td>
+            </tr>
+            <tr>
+              <td><strong>4. Tối ưu</strong></td>
+              <td>Tháng 4+</td>
+              <td>Tích hợp sâu hơn, khám phá tự động hóa, đánh giá ROI</td>
+              <td>Tiết kiệm chi phí và thời gian đo được rõ ràng</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Kỹ Năng Viết Prompt Hiệu Quả</h3>
+
+      <p>Chất lượng của prompt — câu lệnh bạn đưa cho AI — quyết định trực tiếp chất lượng kết quả nhận được. Đây là kỹ năng quan trọng nhất cần phát triển khi bắt đầu sử dụng AI.</p>
+
+      <h4>Ví dụ: Prompt yếu vs. Prompt tốt</h4>
+
+      <div class="prompt-example">
+        <span class="prompt-label">❌ Prompt yếu — kết quả chung chung</span>
+        "Viết email cho khách hàng"
+      </div>
+
+      <div class="prompt-example">
+        <span class="prompt-label">✅ Prompt tốt — kết quả cụ thể và dùng được ngay</span>
+        "Viết email xin lỗi khách hàng tên Minh về việc đơn hàng #1234 bị giao trễ 2 ngày. Đề xuất hoàn tiền 20% đơn hàng tiếp theo. Giọng điệu chân thành, chuyên nghiệp. Độ dài 100–150 từ."
+      </div>
+
+      <div class="prompt-example">
+        <span class="prompt-label">✅ Prompt tốt — phân tích dữ liệu</span>
+        "Tóm tắt báo cáo doanh thu tháng 4/2026 sau đây thành 5 điểm chính. Mỗi điểm 1–2 câu. Tập trung vào: tăng trưởng, sản phẩm bán chạy, điểm cần cải thiện."
+      </div>
+
+      <h3>Công Thức Prompt CSCF</h3>
+
+      <p>Để viết prompt nhất quán và hiệu quả, hãy ghi nhớ công thức bốn thành phần CSCF:</p>
+
+      <div class="formula-grid">
+        <div class="formula-card">
+          <div class="f-letter">C</div>
+          <div class="f-name">Context — Bối cảnh</div>
+          <p>Cho AI biết bạn là ai, trong tình huống nào. <em>VD: "Tôi là quản lý chuỗi siêu thị thực phẩm tại Việt Nam"</em></p>
+        </div>
+        <div class="formula-card">
+          <div class="f-letter">S</div>
+          <div class="f-name">Specifics — Chi tiết</div>
+          <p>Mô tả cụ thể: đối tượng, tone, độ dài, format. <em>VD: "Viết cho khách hàng 30–45 tuổi, giọng thân thiện, 150 từ"</em></p>
+        </div>
+        <div class="formula-card">
+          <div class="f-letter">C</div>
+          <div class="f-name">Constraints — Ràng buộc</div>
+          <p>Những điều AI không được làm. <em>VD: "Không đề cập đến giảm giá, không dùng từ kỹ thuật"</em></p>
+        </div>
+        <div class="formula-card">
+          <div class="f-letter">F</div>
+          <div class="f-name">Format — Định dạng</div>
+          <p>Kết quả muốn ở dạng gì. <em>VD: "Trả lời dạng bullet points, 5 điểm, mỗi điểm có tiêu đề in đậm"</em></p>
+        </div>
+      </div>
+
+      <h3>Quy Tắc Quản Trị AI Nội Bộ</h3>
+
+      <p>Một số quy tắc cần thiết lập ngay tại King Food Mart để đảm bảo sử dụng AI an toàn và có kiểm soát:</p>
+
+      <ul>
+        <li>Xây dựng danh sách công cụ AI được phép sử dụng tại công ty và cập nhật định kỳ</li>
+        <li>Phân loại dữ liệu rõ ràng: loại nào được nhập vào AI, loại nào tuyệt đối không</li>
+        <li><strong>Tất cả đầu ra của AI phải được con người review và phê duyệt trước khi sử dụng chính thức</strong></li>
+        <li>Ghi nhận và chia sẻ kinh nghiệm sử dụng AI hiệu quả trong team theo định kỳ hàng tháng</li>
+        <li>Đánh giá định kỳ: AI có thực sự tiết kiệm thời gian và cải thiện chất lượng công việc không?</li>
+        <li>Bật xác thực 2 bước (2FA) cho tất cả tài khoản AI và không chia sẻ tài khoản cá nhân</li>
+      </ul>
+
+      <!-- SECTION 8 -->
+      <div id="s8" class="section-header">
+        <div class="section-tag">Phần VIII</div>
+        <h2>Lộ Trình 90 Ngày Cho King Food Mart</h2>
+        <p class="section-lead">Bắt đầu nhỏ — đo kết quả — mở rộng dần. Ba giai đoạn, mỗi giai đoạn một tháng.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-card">
+          <div class="phase-num">Tháng 1</div>
+          <h3>Khám Phá</h3>
+          <div class="phase-period">Mỗi người thử 1 việc/ngày</div>
+          <p>Không áp lực, không KPI. Mỗi thành viên team chọn 1 công việc thường làm và thử xem AI làm được tốt đến đâu. Chia sẻ kết quả cởi mở trong nhóm — cái nào tốt, cái nào chưa ổn và tại sao.</p>
+          <div class="phase-goal">🎯 Tìm ra 3–5 use case tiết kiệm thời gian nhất cho team</div>
+        </div>
+        <div class="roadmap-card">
+          <div class="phase-num">Tháng 2</div>
+          <h3>Chuẩn Hoá</h3>
+          <div class="phase-period">Team chuẩn hoá 3 quy trình</div>
+          <p>Chọn 3 use case hiệu quả nhất từ tháng 1. Viết hướng dẫn ngắn gọn (prompt mẫu, các bước thực hiện). Đào tạo toàn team cách sử dụng nhất quán để đảm bảo chất lượng đồng đều.</p>
+          <div class="phase-goal">🎯 Có 3 quy trình AI chạy đều, mọi người đều biết dùng</div>
+        </div>
+        <div class="roadmap-card">
+          <div class="phase-num">Tháng 3</div>
+          <h3>Đo Lường</h3>
+          <div class="phase-period">Tính giờ tiết kiệm — quyết định tiếp</div>
+          <p>Đo lường cụ thể: mỗi tuần team tiết kiệm được bao nhiêu giờ? Chất lượng đầu ra có tốt hơn không? Từ đó quyết định đầu tư vào gói trả phí hay mở rộng thêm use case mới.</p>
+          <div class="phase-goal">🎯 Có ROI rõ ràng để quyết định bước tiếp theo</div>
+        </div>
+      </div>
+
+      <h3>Checklist Bắt Đầu Tuần Đầu Tiên</h3>
+
+      <ul class="checklist">
+        <li><span class="check-icon"></span>Tạo tài khoản ChatGPT hoặc Claude (miễn phí) và đăng nhập lần đầu</li>
+        <li><span class="check-icon"></span>Thử viết 1 email bằng AI — so sánh với viết tay về chất lượng và thời gian</li>
+        <li><span class="check-icon"></span>Thử tóm tắt 1 tài liệu dài bằng AI để cảm nhận khả năng xử lý văn bản</li>
+        <li><span class="check-icon"></span>Chia sẻ kết quả với team và thu thập phản hồi thực tế</li>
+        <li><span class="check-icon"></span>Xác định 1 quy trình trong tuần tốn nhiều thời gian nhất và thử ứng dụng AI</li>
+      </ul>
+
+      <h3>Thách Thức 24 Giờ — Bắt Đầu Ngay Hôm Nay</h3>
+
+      <h4>Cho Sales &amp; Marketing — Thử viết caption bằng AI</h4>
+      <div class="prompt-example">
+        <span class="prompt-label">Mở ChatGPT hoặc Claude và thử ngay prompt này</span>
+        "Viết 3 caption Facebook cho chương trình mua 2 tặng 1 cuối tuần này tại King Food Mart. Giọng thân thiện, thêm emoji, không quá 50 từ mỗi caption."
+      </div>
+
+      <h4>Cho Vận Hành &amp; Hành Chính — Tóm tắt tài liệu dài</h4>
+      <div class="prompt-example">
+        <span class="prompt-label">Copy toàn bộ nội dung 1 email dài vào Claude và hỏi</span>
+        "Tóm tắt nội dung này thành 5 điểm chính. Mỗi điểm 1–2 câu. Highlight điểm nào cần hành động ngay."
+      </div>
+
+      <h4>Cho Quản Lý &amp; Lãnh Đạo — Nhờ AI phản biện kế hoạch</h4>
+      <div class="prompt-example">
+        <span class="prompt-label">Paste 1 kế hoạch đang có vào ChatGPT và thử prompt này</span>
+        "Đây là kế hoạch của tôi. Hãy đóng vai chuyên gia khó tính và chỉ ra 5 điểm yếu hoặc rủi ro lớn nhất. Thẳng thắn, đừng nể nang."
+      </div>
+
+      <!-- SECTION 9 -->
+      <div id="s9" class="section-header">
+        <div class="section-tag">Phần IX</div>
+        <h2>AI Trong 5–10 Năm Tới</h2>
+        <p class="section-lead">170 triệu việc làm mới được tạo ra vào 2030 — nhưng 92 triệu việc làm hiện tại sẽ biến đổi hoặc biến mất.</p>
+      </div>
+      <div class="divider-line"></div>
+
+      <div class="stat-row">
+        <div class="stat-card">
+          <span class="stat-num">170M</span>
+          <div class="stat-label">việc làm mới được tạo ra vào 2030 <em>(WEF)</em></div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">92M</span>
+          <div class="stat-label">việc làm hiện tại sẽ biến đổi hoặc biến mất vào 2030</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">39%</span>
+          <div class="stat-label">kỹ năng cốt lõi của người lao động sẽ thay đổi vào 2030</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">55%</span>
+          <div class="stat-label">việc làm toàn cầu chịu tác động đáng kể từ AI</div>
+        </div>
+      </div>
+
+      <h3>Những Lĩnh Vực Sẽ Cần AI Bắt Buộc</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Lĩnh vực</th>
+              <th>Ứng dụng AI bắt buộc</th>
+              <th>Lý do quan trọng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Chuỗi cung ứng &amp; Kho</strong></td>
+              <td>Dự báo nhu cầu tự động, tối ưu tồn kho real-time</td>
+              <td>Cạnh tranh về chi phí và tốc độ giao hàng ngày càng khốc liệt</td>
+            </tr>
+            <tr>
+              <td><strong>Dịch vụ Khách hàng</strong></td>
+              <td>Chatbot 24/7, cá nhân hóa đề xuất sản phẩm</td>
+              <td>Khách hàng kỳ vọng dịch vụ tức thì và cá nhân hóa liên tục</td>
+            </tr>
+            <tr>
+              <td><strong>Giá &amp; Khuyến mãi</strong></td>
+              <td>Dynamic pricing, tối ưu chiến dịch khuyến mãi</td>
+              <td>Tối đa hóa doanh thu trong môi trường cạnh tranh cao</td>
+            </tr>
+            <tr>
+              <td><strong>Quản lý Nhân sự</strong></td>
+              <td>Phân tích hiệu suất, dự báo nghỉ việc, đào tạo cá nhân hóa</td>
+              <td>Giữ chân nhân tài và tối ưu chi phí nhân sự</td>
+            </tr>
+            <tr>
+              <td><strong>Ra quyết định chiến lược</strong></td>
+              <td>Phân tích thị trường tự động, mô phỏng kịch bản kinh doanh</td>
+              <td>Tốc độ ra quyết định chính xác là lợi thế cạnh tranh sống còn</td>
+            </tr>
+            <tr>
+              <td><strong>Tài chính &amp; Kế toán</strong></td>
+              <td>Tự động hóa sổ sách, phát hiện gian lận, dự báo tài chính</td>
+              <td>Giảm sai sót, tăng minh bạch, tiết kiệm chi phí vận hành</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Kỹ Năng Con Người Sẽ Vẫn Cần — Không Thể Thay Thế</h3>
+
+      <p>Trong bối cảnh AI ngày càng mạnh hơn, những năng lực sau đây sẽ trở nên <em>quý giá hơn</em>, không phải ít giá trị hơn:</p>
+
+      <ul>
+        <li>Tư duy phê phán và phân tích trong các tình huống phức tạp, mơ hồ</li>
+        <li>Lãnh đạo, truyền cảm hứng và xây dựng văn hoá tổ chức</li>
+        <li>Xây dựng mối quan hệ tin tưởng với khách hàng, đối tác và nhân viên</li>
+        <li>Sáng tạo mang tính đột phá và giải quyết vấn đề chưa có tiền lệ</li>
+        <li>Phán xét đạo đức trong các tình huống phức tạp</li>
+        <li><strong>Điều hướng AI và kiểm tra chất lượng kết quả AI</strong> — kỹ năng mới quan trọng nhất trong thập kỷ tới</li>
+      </ul>
+
+      <h3>Kỹ Năng Có Nguy Cơ Bị Tự Động Hóa</h3>
+
+      <p>Ngược lại, những công việc mang tính lặp đi lặp lại và có thể mô hình hóa rõ ràng đang đứng trước nguy cơ thay thế từng phần hoặc toàn bộ:</p>
+
+      <ul>
+        <li>Nhập liệu và xử lý dữ liệu thủ công (85–95% nguy cơ tự động hóa vào 2027)</li>
+        <li>Tóm tắt thông tin theo mẫu cố định lặp đi lặp lại</li>
+        <li>Hỗ trợ khách hàng cấp 1 với các câu hỏi FAQ cơ bản</li>
+        <li>Báo cáo định kỳ theo template có sẵn</li>
+        <li>Dịch thuật văn bản thông thường không đòi hỏi chuyên môn sâu</li>
+        <li>Lên lịch và nhắc nhở công việc</li>
+      </ul>
+
+      <div class="pull-quote">
+        <blockquote>"Trong 5 năm tới, lợi thế cạnh tranh sẽ thuộc về những tổ chức biết kết hợp thế mạnh của con người — phán xét, sáng tạo, quan hệ — với tốc độ và quy mô của AI."</blockquote>
+        <span class="attribution">McKinsey Global Institute, 2025</span>
+      </div>
+
+      <h3>Lộ Trình Chuẩn Bị Theo Thời Gian</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Mốc thời gian</th>
+              <th>Hành động cần thiết</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ngay bây giờ (2026)</strong></td>
+              <td>Xây dựng AI literacy cho toàn bộ team — hiểu AI là gì, dùng được việc gì, rủi ro nào cần tránh</td>
+            </tr>
+            <tr>
+              <td><strong>6 tháng – 1 năm</strong></td>
+              <td>Chuẩn hóa ít nhất 3–5 quy trình có AI tham gia và đo ROI cụ thể bằng số liệu</td>
+            </tr>
+            <tr>
+              <td><strong>1–2 năm</strong></td>
+              <td>Tích hợp AI vào hệ thống quản lý (ERP, CRM, POS) — không chỉ dùng chat AI rời rạc</td>
+            </tr>
+            <tr>
+              <td><strong>2–5 năm</strong></td>
+              <td>Đào tạo đội ngũ "AI Champion" tại từng bộ phận — người dẫn đầu về ứng dụng AI trong nhóm</td>
+            </tr>
+            <tr>
+              <td><strong>5–10 năm</strong></td>
+              <td>AI là tiêu chuẩn vận hành — doanh nghiệp không có AI sẽ mất lợi thế cạnh tranh hoàn toàn</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CONCLUSION -->
+      <div id="conclusion" class="conclusion-block">
+        <blockquote>"AI sẽ không thay thế bạn.<br>Nhưng người biết dùng AI sẽ thay thế người không biết dùng.<br>Và khoảng cách đó đang tạo ra ngay hôm nay — không phải 5 năm nữa."</blockquote>
+        <p class="conclusion-sub">Doanh nghiệp đầu tư vào AI literacy hôm nay sẽ có lợi thế cạnh tranh bền vững trong 5–10 năm tới. Không cần phải hoàn hảo ngay từ đầu — chỉ cần bắt đầu, đo lường và học từ kinh nghiệm thực tế của chính mình.</p>
+      </div>
+
+      <!-- FOOTNOTES -->
+      <div class="article-footer">
+        <div class="footer-label">Nguồn tham khảo</div>
+        <p>Tài liệu này được tổng hợp và phát triển dựa trên các nghiên cứu và báo cáo từ: McKinsey Global Institute <em>(The State of AI 2025)</em>, World Economic Forum <em>(Future of Jobs Report 2025)</em>, Cisco <em>(AI Readiness Index 2025)</em>, ISACA <em>(AI Risk Survey 2025)</em>, Anthropic <em>(Product Documentation 2026)</em>, OpenAI <em>(GPT-5.5 Technical Report 2026)</em>, Google DeepMind <em>(Gemini 3.1 Overview 2026)</em>, cùng các nguồn thực tế từ Kyanon Digital, MISA, VietnamPlus và nghiên cứu thị trường năm 2025–2026. Số liệu phản ánh tình trạng thị trường tính đến tháng 5 năm 2026.</p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

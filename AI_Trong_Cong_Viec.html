@@ -2,835 +2,932 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Trong Công Việc — 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI tại King Food Mart — 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html,body{width:100%;height:100%;overflow:hidden;background:#000;display:flex;align-items:center;justify-content:center;font-family:'Be Vietnam Pro',sans-serif}
+html,body{width:100%;height:100%;overflow:hidden;background:#DDE4ED;display:flex;align-items:center;justify-content:center;font-family:'Be Vietnam Pro',sans-serif}
 
 /* ── Deck ── */
-.deck{width:1280px;height:720px;position:relative;transform-origin:center center}
-.slide{position:absolute;inset:0;overflow:hidden;display:none}
-.slide.active{display:flex}
+.deck{width:1280px;height:720px;position:relative;transform-origin:center center;flex-shrink:0;border-radius:6px;overflow:hidden;box-shadow:0 8px 48px rgba(0,0,0,.2)}
+.slide{position:absolute;inset:0;overflow:hidden;display:none;flex-direction:column;background:#fff}
+.slide.on{display:flex}
 
-/* ── Shared helpers ── */
-.row{display:flex;align-items:stretch}
-.col{display:flex;flex-direction:column}
-.abs{position:absolute}
+/* ── Compact Nav ── */
+.nav{position:fixed;bottom:14px;right:18px;z-index:9999;display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.96);border:1px solid #CBD5E1;padding:5px 10px;border-radius:20px;box-shadow:0 2px 12px rgba(0,0,0,.1)}
+.nbtn{background:none;border:none;color:#94A3B8;cursor:pointer;font-size:14px;line-height:1;padding:1px 3px;transition:color .15s}
+.nbtn:hover{color:#3B82F6}
+.ndot{width:5px;height:5px;border-radius:3px;background:#CBD5E1;cursor:pointer;border:none;transition:all .2s;padding:0;flex-shrink:0}
+.ndot.on{width:16px;background:#3B82F6}
+.ncnt{font-size:10px;color:#94A3B8;font-variant-numeric:tabular-nums;min-width:26px;text-align:center}
 
-/* ── Colors ── */
+/* ── Color Variables ── */
 :root{
-  --dark:#0A1628;--navy:#112240;--navyL:#1A3050;
-  --teal:#00C9A7;--tealD:#009E83;
-  --openai:#10A37F;--openaiD:#0B7558;
-  --google:#1A73E8;--googleD:#1057B3;
-  --anthropic:#CF4500;--anthropicD:#9E3300;
-  --white:#fff;--off:#F0F4F8;
-  --text:#1E293B;--muted:#64748B;--lightG:#CBD5E1
+  --blue:#3B82F6;--blueD:#2563EB;--blueL:#EFF6FF;--blueB:#BFDBFE;
+  --surf:#F8FAFC;--bdr:#E2E8F0;--bdr2:#CBD5E1;
+  --tx:#0F172A;--tx2:#334155;--mu:#64748B;--hi:#94A3B8;
+  --red:#DC2626;--redL:#FEF2F2;--redB:#FECACA;
+  --amber:#D97706;--amberL:#FFFBEB;--amberB:#FDE68A;
+  --oa:#10A37F;--od:#059669;
+  --go:#1A73E8;--gd:#1557B0;
+  --an:#CF4500;--ad:#B23800;
+  /* compat aliases */
+  --tl:#3B82F6;--tlD:#2563EB;
+  --dk:#0F172A;--nv:#1E293B;--nvl:#F1F5F9;--lo:#F8FAFC;
+  --lg:#CBD5E1;
 }
 
-/* ─────────────────────────────────────
+/* ── Animations ── */
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes sl{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes sc{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.slide.on .a1{animation:up .45s .05s both}
+.slide.on .a2{animation:up .45s .15s both}
+.slide.on .a3{animation:up .45s .25s both}
+.slide.on .a4{animation:up .45s .35s both}
+.slide.on .a5{animation:up .45s .45s both}
+.slide.on .a6{animation:up .45s .55s both}
+.slide.on .af{animation:fi .5s .1s both}
+.slide.on .asl{animation:sl .45s .1s both}
+.slide.on .asc{animation:sc .4s .1s both}
+
+/* ══════════════════════════════════
+   SHARED COMPONENTS
+══════════════════════════════════ */
+.hbar{flex-shrink:0;display:flex;align-items:center;justify-content:space-between;padding:14px 50px;background:#fff;border-bottom:1.5px solid var(--bdr)}
+.hbar h2{font-size:17px;font-weight:700;color:var(--tx)}
+.hbar .htag{font-size:11px;color:var(--blueD);font-weight:600;letter-spacing:.4px;background:var(--blueL);padding:3px 12px;border-radius:20px;border:1px solid var(--blueB)}
+
+/* ══════════════════════════════════
    SLIDE 1 — TITLE
-───────────────────────────────────── */
-#s1{background:var(--dark);flex-direction:column;justify-content:center}
-#s1 .accent-bar{position:absolute;left:0;top:0;width:8px;height:100%;background:var(--teal)}
-#s1 .bg-circle{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(0,201,167,.08),transparent 70%)}
-#s1 .c1{width:700px;height:700px;right:-200px;top:-150px}
-#s1 .c2{width:400px;height:400px;left:-100px;bottom:-100px}
-#s1 .content{padding:0 80px;z-index:1}
-#s1 .eyebrow{font-size:13px;font-weight:600;letter-spacing:4px;color:var(--teal);text-transform:uppercase;margin-bottom:18px}
-#s1 h1{font-size:90px;font-weight:900;line-height:1;margin-bottom:24px}
-#s1 h1 span.t{color:var(--teal)}
-#s1 h1 span.w{color:var(--white)}
-#s1 .sub{font-size:22px;font-weight:400;color:rgba(255,255,255,.62);margin-bottom:48px;max-width:580px;line-height:1.5}
-#s1 .badges{display:flex;gap:12px}
-#s1 .badge{padding:10px 28px;border-radius:4px;font-size:15px;font-weight:700;color:#fff}
-#s1 .badge.g1{background:var(--openai)}
-#s1 .badge.g2{background:var(--google)}
-#s1 .badge.g3{background:var(--anthropic)}
-#s1 .footer{position:absolute;bottom:0;left:0;right:0;padding:14px 80px;background:var(--navyL);font-size:12px;color:rgba(255,255,255,.35)}
-#s1 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--teal);padding:7px 18px;border-radius:20px;font-size:12px;color:var(--teal);margin-bottom:28px}
-#s1 .pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal)}
+══════════════════════════════════ */
+#s1{background:#fff;justify-content:center;position:relative}
+#s1 .accent{position:absolute;left:0;top:0;width:6px;height:100%;background:var(--blue)}
+#s1 .orb{position:absolute;border-radius:50%;pointer-events:none}
+#s1 .o1{width:700px;height:700px;right:-220px;top:-200px;background:radial-gradient(circle,rgba(59,130,246,.05),transparent 65%)}
+#s1 .o2{width:350px;height:350px;left:-80px;bottom:-100px;background:radial-gradient(circle,rgba(59,130,246,.04),transparent 65%)}
+#s1 .body{padding:0 90px;z-index:1}
+#s1 .kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--blueB);background:var(--blueL);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:600;color:var(--blueD);letter-spacing:.4px;margin-bottom:24px}
+#s1 .kicker::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue)}
+#s1 h1{font-size:80px;font-weight:900;line-height:.95;margin-bottom:22px}
+#s1 h1 .l1{display:block;color:var(--tx)}
+#s1 h1 .l2{display:block;color:var(--blue)}
+#s1 .sub{font-size:19px;color:var(--mu);line-height:1.55;max-width:540px;margin-bottom:44px}
+#s1 .badges{display:flex;gap:10px}
+#s1 .badge{padding:8px 22px;border-radius:4px;font-size:14px;font-weight:700;color:#fff}
+#s1 .foot{position:absolute;bottom:0;left:0;right:0;padding:12px 90px;background:var(--surf);font-size:11px;color:var(--hi);border-top:1px solid var(--bdr)}
 
-/* ─────────────────────────────────────
-   SLIDE 2 — AGENDA
-───────────────────────────────────── */
-#s2{background:var(--off);flex-direction:column}
-#s2 .header{background:var(--dark);padding:20px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-#s2 .header h2{font-size:22px;font-weight:800;color:#fff}
-#s2 .header span{font-size:13px;color:var(--teal);font-weight:600}
-#s2 .body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:24px 60px}
-.agenda-card{background:#fff;border-radius:8px;padding:0;display:flex;align-items:stretch;box-shadow:0 2px 12px rgba(0,0,0,.08);overflow:hidden;transition:transform .2s}
-.agenda-card:hover{transform:translateX(4px)}
-.agenda-card .bar{width:5px;flex-shrink:0}
-.agenda-card .time-box{display:flex;align-items:center;justify-content:center;width:90px;flex-shrink:0;font-size:26px;font-weight:900}
-.agenda-card .info{flex:1;padding:18px 20px}
-.agenda-card .info h3{font-size:17px;font-weight:700;color:var(--text);margin-bottom:5px}
-.agenda-card .info p{font-size:13px;color:var(--muted);line-height:1.5}
-.agenda-card .tag{align-self:center;margin-right:20px;font-size:11px;font-weight:600;padding:4px 12px;border-radius:12px}
+/* ══════════════════════════════════
+   SLIDE 2 — TIME AUDIT
+══════════════════════════════════ */
+#s2{background:var(--surf)}
+#s2 .hbar{}
+#s2 .body{flex:1;display:flex;flex-direction:column;padding:24px 50px 20px}
+#s2 .qlead{font-size:21px;font-weight:700;color:var(--tx);margin-bottom:20px}
+#s2 .qlead em{color:var(--red);font-style:normal}
+#s2 .blocks{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1}
+.tblock{background:#fff;border-radius:10px;padding:22px 24px;display:flex;align-items:center;gap:18px;border:1px solid var(--bdr);border-left-width:5px;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.tblock .icon{font-size:32px;flex-shrink:0;line-height:1}
+.tblock .info .label{font-size:13px;color:var(--mu);margin-bottom:4px}
+.tblock .info .val{font-size:30px;font-weight:900}
+.tblock .info .unit{font-size:13px;font-weight:400;color:var(--mu)}
+#s2 .stat-bar{background:var(--tx);border-radius:10px;padding:16px 26px;display:flex;align-items:center;justify-content:space-between;margin-top:14px}
+#s2 .stat-bar .sl{font-size:14px;color:rgba(255,255,255,.6)}
+#s2 .stat-bar .sr{font-size:15px;font-weight:700;color:#93C5FD}
 
-/* ─────────────────────────────────────
-   SLIDE 3 — MINDSET
-───────────────────────────────────── */
-#s3{background:var(--dark);flex-direction:column}
-#s3 .header{background:var(--navyL);padding:18px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-#s3 .header h2{font-size:22px;font-weight:800;color:var(--teal)}
-#s3 .header span{font-size:13px;color:rgba(255,255,255,.4)}
-#s3 .body{flex:1;display:flex;gap:16px;padding:24px 60px;align-items:stretch}
-.mind-panel{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
-.mind-panel .ph{padding:16px 24px;display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700}
-.mind-panel .pc{flex:1;background:rgba(255,255,255,.04);padding:24px;display:flex;flex-direction:column;gap:14px}
-.mind-panel .pc .item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.78);line-height:1.5}
-.mind-panel .pc .item .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
-.mind-panel.wrong{border:1.5px solid #E74C3C}
-.mind-panel.wrong .ph{background:#E74C3C;color:#fff}
-.mind-panel.wrong .dot{background:#E74C3C}
-.mind-panel.right{border:1.5px solid var(--teal)}
-.mind-panel.right .ph{background:var(--teal);color:var(--dark)}
-.mind-panel.right .dot{background:var(--teal)}
-#s3 .formula{background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.4);margin:0 60px 24px;padding:16px 30px;border-radius:8px;text-align:center;font-size:18px;font-weight:700;color:var(--teal)}
+/* ══════════════════════════════════
+   SLIDE 4 — CHAT vs AGENTIC
+══════════════════════════════════ */
+#s4{background:var(--surf);flex-direction:column}
+#s4 .panels{flex:1;display:flex;gap:1px;background:var(--bdr)}
+.cmp-panel{flex:1;padding:22px 30px;display:flex;flex-direction:column;gap:0}
+.cmp-panel.left{background:#fff}
+.cmp-panel.right{background:var(--blueL)}
+.cmp-panel .ptop{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.cmp-panel .ptop .plabel{font-size:17px;font-weight:800}
+.cmp-panel .ptop .pbadge{font-size:11px;padding:3px 10px;border-radius:12px;font-weight:700}
+.cmp-panel .steps{display:flex;flex-direction:column;gap:8px;flex:1}
+.step{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:8px}
+.step .snum{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;margin-top:1px}
+.step .stxt{font-size:13px;line-height:1.45;flex:1}
+.step .stxt strong{display:block;font-size:11px;font-weight:700;margin-bottom:2px;opacity:.5;text-transform:uppercase;letter-spacing:.5px}
+.step .who{flex-shrink:0;font-size:18px;line-height:1}
+.cmp-panel.left .step{background:var(--surf)}
+.cmp-panel.left .snum{background:var(--bdr);color:var(--mu)}
+.cmp-panel.left .stxt{color:var(--tx2)}
+.cmp-panel.right .step{background:rgba(59,130,246,.07)}
+.cmp-panel.right .snum{background:var(--blueB);color:var(--blueD)}
+.cmp-panel.right .stxt{color:#1E3A6E}
+.cmp-panel.right .step.human-step{background:#fff;border:1px solid var(--blueB)}
+.cmp-footer{flex-shrink:0;display:flex;gap:1px;background:var(--bdr)}
+.cmp-footer .cf{flex:1;padding:12px 30px;font-size:13px;font-weight:600}
+.cmp-footer .cf.left{background:#FEF2F2;color:#B91C1C;text-align:center}
+.cmp-footer .cf.right{background:#DBEAFE;color:var(--blueD);text-align:center}
 
-/* ─────────────────────────────────────
-   SLIDE 4 — SECTION DIVIDER
-───────────────────────────────────── */
-.section-slide{flex-direction:column;align-items:center;justify-content:center;position:relative}
-.section-slide .bg-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
-.section-slide .super{font-size:14px;font-weight:700;letter-spacing:6px;text-transform:uppercase;margin-bottom:16px}
-.section-slide h1{font-size:88px;font-weight:900;line-height:1;text-align:center}
-.section-slide .desc{font-size:18px;margin-top:20px;text-align:center}
-.section-slide .divider{width:80px;height:4px;border-radius:2px;margin:24px auto 0}
+/* ══════════════════════════════════
+   SLIDE 5 — WORKFLOW
+══════════════════════════════════ */
+#s5{background:#fff;flex-direction:column}
+#s5 .flow-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 50px;gap:12px}
+#s5 .scenario{font-size:14px;color:var(--mu);margin-bottom:4px;text-align:center}
+#s5 .scenario em{color:var(--tx);font-style:normal;font-weight:600}
+#s5 .flow{display:flex;align-items:center;gap:0;width:100%}
+.fnode{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;position:relative}
+.fnode .fbox{width:100%;padding:14px 10px;border-radius:8px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.fnode .fbox .ficon{font-size:24px;line-height:1}
+.fnode .fbox .ftitle{font-size:12px;font-weight:700;line-height:1.3}
+.fnode .fbox .fsub{font-size:11px;line-height:1.3;color:var(--mu)}
+.fnode.ai .fbox{background:var(--blueL);border:1px solid var(--blueB)}
+.fnode.human .fbox{background:#fff;border:2px solid var(--blue)}
+.fnode.ai .fbox .ftitle{color:var(--blueD)}
+.fnode.human .fbox .ftitle{color:var(--tx)}
+.farrow{font-size:18px;color:var(--bdr2);flex-shrink:0;padding:0 4px;margin-bottom:30px}
+.fnode .fwho{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--hi)}
+.fnode.ai .fwho{color:var(--blue)}
+.fnode.human .fwho{color:var(--tx)}
+#s5 .result{display:flex;gap:10px;margin-top:4px}
+.rchip{padding:7px 16px;border-radius:20px;font-size:13px;font-weight:600;background:var(--blueL);border:1px solid var(--blueB);color:var(--blueD)}
 
-#s4{background:var(--dark)}
-#s4 .bg-orb.a{width:500px;height:500px;background:rgba(0,201,167,.07);left:-150px;top:-150px}
-#s4 .bg-orb.b{width:400px;height:400px;background:rgba(26,115,232,.06);right:-100px;bottom:-100px}
-#s4 .super{color:var(--teal)}
-#s4 h1 span.line1{display:block;color:var(--white)}
-#s4 h1 span.line2{display:block;color:var(--teal)}
-#s4 .desc{color:rgba(255,255,255,.45)}
-#s4 .divider{background:var(--teal)}
-#s4 .sub-badges{display:flex;gap:24px;margin-top:32px;justify-content:center}
-#s4 .sub-badge{padding:8px 24px;border-radius:4px;font-size:14px;font-weight:700;color:#fff}
+/* ══════════════════════════════════
+   SLIDE 6 — 3 CÔNG CỤ
+══════════════════════════════════ */
+#s6{background:var(--surf);flex-direction:column}
+#s6 .cards{flex:1;display:flex;gap:14px;padding:22px 50px}
+.tool-card{flex:1;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--bdr);box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.tool-card .tch{padding:24px 22px 18px;display:flex;flex-direction:column;gap:6px}
+.tool-card .tch .tname{font-size:32px;font-weight:900;color:#fff}
+.tool-card .tch .tco{font-size:12px;color:rgba(255,255,255,.7);font-weight:500}
+.tool-card .tcb{flex:1;background:#fff;padding:20px 22px}
+.tool-card .tcb .t1line{font-size:16px;font-weight:700;color:var(--tx);line-height:1.4;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--bdr)}
+.tool-card .tcb .texample{font-size:13px;color:var(--mu);line-height:1.65}
+.tool-card .tcb .texample strong{display:block;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.tool-card .tcf{padding:10px 22px;font-size:12px;font-weight:600;text-align:center;border-top:1px solid var(--bdr);background:var(--surf);color:var(--mu)}
 
-/* ─────────────────────────────────────
-   SLIDE 5 — BIG THREE OVERVIEW
-───────────────────────────────────── */
-#s5{background:var(--off);flex-direction:column}
-#s5 .header{background:var(--dark);padding:18px 50px;flex-shrink:0}
-#s5 .header h2{font-size:21px;font-weight:800;color:#fff}
-#s5 .cards{flex:1;display:flex;gap:14px;padding:20px 50px;align-items:stretch}
-.platform-card{flex:1;background:#fff;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.08);overflow:hidden;display:flex;flex-direction:column}
-.platform-card .pch{padding:20px 22px;display:flex;flex-direction:column;gap:4px}
-.platform-card .pch .pname{font-size:28px;font-weight:900;color:#fff}
-.platform-card .pch .pco{font-size:12px;color:rgba(255,255,255,.7);font-weight:500}
-.platform-card .pcb{flex:1;padding:20px 22px;display:flex;flex-direction:column;gap:8px}
-.platform-card .pcb .plabel{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.platform-card .pcb .pitem{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text);line-height:1.4;padding:6px 0;border-bottom:1px solid #f0f0f0}
-.platform-card .pcb .pitem:last-child{border-bottom:none}
-.platform-card .pcb .pitem .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
-.platform-card .pcf{padding:14px 22px;font-size:12px;font-weight:700;text-align:center;border-top:1.5px solid}
+/* ══════════════════════════════════
+   SLIDES 7-9 — USE CASES
+══════════════════════════════════ */
+.uc-slide{background:var(--surf);flex-direction:column}
+.uc-slide .ucbody{flex:1;display:flex;gap:12px;padding:18px 50px;align-items:stretch}
+.uc-card{flex:1;background:#fff;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--bdr)}
+.uc-card .uch{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--bdr)}
+.uc-card .uch .uci{font-size:22px;line-height:1}
+.uc-card .uch h3{font-size:14px;font-weight:700;color:var(--tx);line-height:1.3;flex:1}
+.uc-card .ucb{flex:1;padding:12px 14px 14px;display:flex;flex-direction:column;gap:8px;background:var(--surf)}
+.uc-item{display:flex;flex-direction:column;gap:4px;padding:10px 12px;background:#fff;border-radius:8px;border:1px solid var(--bdr)}
+.uc-item .uitask{font-size:12.5px;color:var(--tx2);line-height:1.4;font-weight:500}
+.uc-item .uisave{display:flex;align-items:center;gap:6px;margin-top:3px}
+.uc-item .uisave .before{font-size:11px;color:var(--hi);text-decoration:line-through}
+.uc-item .uisave .arrow{font-size:11px;color:var(--hi)}
+.uc-item .uisave .after{font-size:13px;font-weight:800;color:var(--blue)}
+.uc-item .uitool{font-size:10px;font-weight:700;letter-spacing:.5px;color:var(--hi);text-transform:uppercase;margin-top:2px}
 
-/* ─────────────────────────────────────
-   SLIDES 6-8 — DEEP DIVE
-───────────────────────────────────── */
-.deepdive{flex-direction:row}
-.deepdive .left{width:320px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 24px 24px}
-.deepdive .left .brand{font-size:52px;font-weight:900;color:#fff;text-align:center;line-height:1.1;margin-bottom:8px}
-.deepdive .left .co{font-size:15px;font-weight:600;margin-bottom:4px;text-align:center}
-.deepdive .left .ver{font-size:12px;text-align:center;margin-bottom:30px}
-.deepdive .left .stat-box{width:100%;border-radius:8px;padding:12px 16px;margin-bottom:10px;font-size:13px;text-align:center;font-weight:600;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;line-height:1.4}
-.deepdive .right{flex:1;background:var(--off);padding:30px 40px;display:flex;flex-direction:column}
-.deepdive .right .rtitle-sm{font-size:13px;color:var(--muted);margin-bottom:4px}
-.deepdive .right h2{font-size:26px;font-weight:800;color:var(--text);margin-bottom:20px}
-.deepdive .right .sep{height:2px;background:var(--lightG);margin-bottom:20px;border-radius:1px}
-.feat-card{background:#fff;border-radius:8px;padding:16px 20px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,.07);display:flex;align-items:flex-start;gap:14px}
-.feat-card .fc-left{width:4px;border-radius:2px;flex-shrink:0;align-self:stretch}
-.feat-card .fc-body h4{font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px}
-.feat-card .fc-body p{font-size:13px;color:var(--muted);line-height:1.55}
+/* ══════════════════════════════════
+   SLIDE 10 — 2 LUẬT BẤT BIẾN
+══════════════════════════════════ */
+#s10{background:var(--surf);flex-direction:column}
+.law-card{flex:1;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--bdr)}
+.law-card .lch{padding:26px 32px 20px;display:flex;flex-direction:column;gap:10px}
+.law-card .lch .lnum{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.law-card .lch .licon{font-size:46px;line-height:1}
+.law-card .lch h2{font-size:21px;font-weight:900;line-height:1.2}
+.law-card .lcb{flex:1;padding:20px 32px 26px;background:#fff;display:flex;flex-direction:column;gap:10px}
+.law-card .lcb p{font-size:14px;line-height:1.7;color:var(--tx2)}
+.law-card .lcb .ldo{display:flex;align-items:flex-start;gap:10px;background:var(--surf);padding:10px 12px;border-radius:8px;border:1px solid var(--bdr)}
+.law-card .lcb .ldo .ldot{font-size:13px;flex-shrink:0;margin-top:1px}
+.law-card .lcb .ldo span{font-size:13px;color:var(--tx2);line-height:1.45}
+.law-card.red .lch{background:var(--redL);border-bottom:1px solid var(--redB)}
+.law-card.red .lch .lnum{color:var(--red)}
+.law-card.red .lch h2{color:#991B1B}
+.law-card.amber .lch{background:var(--amberL);border-bottom:1px solid var(--amberB)}
+.law-card.amber .lch .lnum{color:var(--amber)}
+.law-card.amber .lch h2{color:#92400E}
 
-/* ─────────────────────────────────────
-   SLIDE 9 — SECTION: ỨNG DỤNG THỰC CHIẾN
-───────────────────────────────────── */
-#s9{background:var(--dark)}
-#s9 .bg-orb.a{width:600px;height:600px;background:rgba(0,201,167,.05);right:-100px;bottom:-200px}
-#s9 .super{color:rgba(255,255,255,.45)}
-#s9 h1 span.line1{color:#fff}
-#s9 h1 span.line2{color:var(--teal)}
-#s9 .desc{color:rgba(255,255,255,.45)}
-#s9 .divider{background:var(--teal)}
-#s9 .abc-row{display:flex;gap:32px;margin-top:36px;justify-content:center}
-#s9 .abc-item{display:flex;flex-direction:column;align-items:center;gap:8px}
-#s9 .abc-circle{width:64px;height:64px;border-radius:50%;border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--teal)}
-#s9 .abc-label{font-size:12px;color:rgba(255,255,255,.5);text-align:center;max-width:100px}
+/* ══════════════════════════════════
+   SLIDE 11 — LỘ TRÌNH 90 NGÀY
+══════════════════════════════════ */
+#s11{background:var(--surf);flex-direction:column}
+#s11 .rbody{flex:1;display:flex;gap:0;padding:28px 50px;align-items:stretch;position:relative}
+#s11 .rbody::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 160px);height:1px;background:var(--bdr);z-index:0}
+.rcard{flex:1;background:#fff;border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;border:1px solid var(--bdr);box-shadow:0 2px 12px rgba(0,0,0,.06);position:relative;z-index:1;margin:0 12px}
+.rcard .rnum{display:inline-flex;width:36px;height:36px;border-radius:50%;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0;margin-bottom:2px}
+.rcard .rmonth{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu)}
+.rcard h3{font-size:18px;font-weight:800;color:var(--tx)}
+.rcard .rdesc{font-size:13px;color:var(--mu);line-height:1.6}
+.rcard .rtarget{margin-top:auto;padding-top:12px;border-top:1px solid var(--bdr);font-size:13px;font-weight:600;line-height:1.5}
 
-/* ─────────────────────────────────────
-   SLIDE 10 — 3 NHÓM ỨNG DỤNG
-───────────────────────────────────── */
-#s10{background:var(--off);flex-direction:column}
-#s10 .header{background:var(--dark);padding:18px 50px;flex-shrink:0}
-#s10 .header h2{font-size:21px;font-weight:800;color:#fff}
-#s10 .cards{flex:1;display:flex;gap:14px;padding:20px 50px;align-items:stretch}
-.grp-card{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 20px rgba(0,0,0,.1)}
-.grp-card .gch{padding:16px 20px;display:flex;align-items:center;gap:14px}
-.grp-card .gch .gletter{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#fff;flex-shrink:0}
-.grp-card .gch .ginfo{flex:1}
-.grp-card .gch .ginfo h3{font-size:14px;font-weight:700;color:#fff;line-height:1.3}
-.grp-card .gch .ginfo .gtag{font-size:11px;color:rgba(255,255,255,.65);font-style:italic}
-.grp-card .gcb{flex:1;background:#fff;padding:16px 18px;display:flex;flex-direction:column;gap:0}
-.grp-card .gcb .gitem{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--text);line-height:1.45;padding:9px 0;border-bottom:1px solid #f0f0f0}
-.grp-card .gcb .gitem:last-child{border-bottom:none}
-.grp-card .gcb .gitem .gdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+/* ══════════════════════════════════
+   SLIDE 12 — THÁCH THỨC 24H
+══════════════════════════════════ */
+#s12{background:var(--surf);flex-direction:column}
+#s12 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 50px}
+.ch-card{border-radius:10px;overflow:hidden;display:flex;flex-direction:column;background:#fff;border:1px solid var(--bdr)}
+.ch-card .chh{padding:14px 20px;display:flex;align-items:center;gap:14px}
+.ch-card .chh .chi{font-size:26px;line-height:1}
+.ch-card .chh .chteam{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mu);margin-bottom:2px}
+.ch-card .chh h3{font-size:15px;font-weight:700;color:var(--tx)}
+.ch-card .chb{flex:1;background:var(--surf);padding:14px 20px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--bdr)}
+.ch-card .task{font-size:13px;color:var(--tx2);line-height:1.5;font-weight:500}
+.ch-card .prompt-box{background:#fff;border-radius:6px;padding:10px 12px;font-size:12px;color:var(--mu);line-height:1.5;font-style:italic;border-left:3px solid;border-top:1px solid var(--bdr);border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
 
-/* ─────────────────────────────────────
-   SLIDE 11 — CREO
-───────────────────────────────────── */
-#s11{background:var(--dark);flex-direction:column}
-#s11 .header{background:var(--navyL);padding:16px 60px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-#s11 .header h2{font-size:18px;font-weight:700;color:var(--teal)}
-#s11 .intro{padding:22px 60px 10px}
-#s11 .intro h1{font-size:36px;font-weight:900;color:#fff;margin-bottom:6px}
-#s11 .intro p{font-size:14px;color:rgba(255,255,255,.5)}
-#s11 .cols{display:flex;gap:12px;padding:10px 60px 24px;flex:1;align-items:stretch}
-.creo-col{flex:1;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;border:1px solid}
-.creo-col .creo-h{padding:14px 16px;display:flex;align-items:center;gap:12px}
-.creo-col .creo-h .cl{font-size:40px;font-weight:900;color:var(--dark);width:48px;flex-shrink:0;line-height:1}
-.creo-col .creo-h .cinfo{flex:1}
-.creo-col .creo-h .cinfo .cword{font-size:15px;font-weight:800;color:var(--dark)}
-.creo-col .creo-h .cinfo .cviet{font-size:12px;color:rgba(0,0,0,.55);font-weight:600}
-.creo-col .creo-b{flex:1;background:rgba(255,255,255,.04);padding:16px;display:flex;flex-direction:column;gap:12px}
-.creo-col .creo-b .cdesc{font-size:13px;color:rgba(255,255,255,.75);line-height:1.55}
-.creo-col .creo-b .cex{background:rgba(0,0,0,.25);border-radius:6px;padding:12px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;font-style:italic;border-left:3px solid}
-.creo-col .creo-b .cex-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;opacity:.7}
-
-/* ─────────────────────────────────────
-   SLIDE 12 — LƯU Ý QUAN TRỌNG
-───────────────────────────────────── */
-#s12{background:var(--off);flex-direction:column}
-#s12 .header{background:var(--dark);padding:18px 60px;flex-shrink:0}
-#s12 .header h2{font-size:21px;font-weight:800;color:#fff}
-#s12 .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:16px;padding:24px 60px}
-.warn-card{background:#fff;border-radius:10px;padding:24px 26px;box-shadow:0 4px 20px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:10px;border-left:5px solid}
-.warn-card .wicon{font-size:28px;line-height:1}
-.warn-card h3{font-size:16px;font-weight:800;line-height:1.2}
-.warn-card p{font-size:13px;color:var(--muted);line-height:1.55}
-
-/* ─────────────────────────────────────
-   SLIDE 13 — KẾT LUẬN / CTA
-───────────────────────────────────── */
-#s13{background:var(--dark);flex-direction:column;justify-content:space-between;position:relative}
-#s13 .bg-orb.a{width:500px;height:500px;background:rgba(0,201,167,.06);right:-100px;top:-100px;filter:blur(60px)}
-#s13 .tl{padding:24px 70px 0;font-size:13px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--teal)}
-#s13 .quote-box{margin:20px 70px;background:rgba(255,255,255,.05);border:1px solid rgba(0,201,167,.35);border-radius:12px;padding:32px 40px;position:relative}
-#s13 .quote-box::before{content:'"';position:absolute;top:-20px;left:30px;font-size:100px;color:rgba(0,201,167,.15);font-family:Georgia,serif;line-height:1}
-#s13 .quote-box p{font-size:21px;font-weight:600;color:#fff;line-height:1.6;position:relative;z-index:1}
-#s13 .quote-box p em{color:var(--teal);font-style:normal}
-#s13 .actions{padding:0 70px}
-#s13 .actions h3{font-size:15px;font-weight:700;color:var(--teal);margin-bottom:14px}
-#s13 .actions ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-#s13 .actions ul li{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:rgba(255,255,255,.8);line-height:1.5}
-#s13 .actions ul li::before{content:'›';color:var(--teal);font-size:20px;font-weight:700;line-height:1;flex-shrink:0}
-#s13 .footer{padding:16px 70px;background:var(--navyL);font-size:13px;color:rgba(255,255,255,.35);text-align:center}
-
-/* ─────────────────────────────────────
-   NAV
-───────────────────────────────────── */
-.nav{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;z-index:100;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);padding:10px 20px;border-radius:40px;border:1px solid rgba(255,255,255,.1)}
-.nav-btn{background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:18px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .2s}
-.nav-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
-.nav-dots{display:flex;gap:6px}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;border:none}
-.nav-dot.active{width:20px;border-radius:3px;background:var(--teal)}
-.nav-counter{font-size:12px;color:rgba(255,255,255,.4);min-width:40px;text-align:center}
-
-/* ─────────────────────────────────────
-   ANIMATIONS
-───────────────────────────────────── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-
-.slide.active .anim-1{animation:fadeUp .5s .05s both}
-.slide.active .anim-2{animation:fadeUp .5s .15s both}
-.slide.active .anim-3{animation:fadeUp .5s .25s both}
-.slide.active .anim-4{animation:fadeUp .5s .35s both}
-.slide.active .anim-5{animation:fadeUp .5s .45s both}
-.slide.active .anim-6{animation:fadeUp .5s .55s both}
-.slide.active .anim-fade{animation:fadeIn .6s .1s both}
-.slide.active .anim-left{animation:slideLeft .5s .1s both}
-.slide.active .anim-scale{animation:scaleIn .5s .1s both}
+/* ══════════════════════════════════
+   SLIDE 13 — KẾT LUẬN
+══════════════════════════════════ */
+#s13{background:#F0F7FF;justify-content:space-between;position:relative}
+#s13 .orb{position:absolute;border-radius:50%;pointer-events:none}
+#s13 .o1{width:500px;height:500px;right:-120px;top:-120px;background:radial-gradient(circle,rgba(59,130,246,.07),transparent 65%)}
+#s13 .tl-label{padding:28px 70px 0;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--blue)}
+#s13 .qbox{margin:18px 70px 0;background:#fff;border:1px solid var(--blueB);border-radius:14px;padding:30px 40px;position:relative;box-shadow:0 4px 24px rgba(59,130,246,.08)}
+#s13 .qbox .qmark{position:absolute;top:-22px;left:36px;font-size:90px;color:rgba(59,130,246,.1);font-family:Georgia,serif;line-height:1}
+#s13 .qbox p{font-size:21px;font-weight:600;color:var(--tx);line-height:1.65;position:relative;z-index:1}
+#s13 .qbox p em{color:var(--blue);font-style:normal}
+#s13 .actions{padding:18px 70px 0}
+#s13 .actions h3{font-size:12px;font-weight:700;color:var(--blue);margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase}
+#s13 .actions ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+#s13 .actions ul li{display:flex;gap:10px;font-size:14px;color:var(--tx2);line-height:1.5}
+#s13 .actions ul li::before{content:'›';color:var(--blue);font-size:18px;font-weight:700;line-height:1.1;flex-shrink:0}
+#s13 .foot{padding:14px 70px;background:var(--tx);font-size:11px;color:rgba(255,255,255,.4);text-align:center}
 </style>
 </head>
 <body>
-
 <div class="deck" id="deck">
 
-<!-- ═══════════════ SLIDE 1 ═══════════════ -->
+<!-- ════════════════════════════════════
+     S1 — TITLE
+════════════════════════════════════ -->
 <div class="slide" id="s1">
-  <div class="accent-bar"></div>
-  <div class="bg-circle c1"></div>
-  <div class="bg-circle c2"></div>
-  <div class="content">
-    <div class="pill anim-1">Kỷ nguyên Agentic AI • 2026</div>
-    <h1 class="anim-2">
-      <span class="t">AI TRONG</span><br>
-      <span class="w">CÔNG VIỆC</span>
-    </h1>
-    <p class="sub anim-3">Hướng dẫn thực chiến cho Team Quản lý —<br>từ tư duy đến công cụ, từ lý thuyết đến kết quả ngay hôm nay</p>
-    <div class="badges anim-4">
-      <span class="badge g1">OpenAI</span>
-      <span class="badge g2">Google</span>
-      <span class="badge g3">Anthropic</span>
+  <div class="accent"></div>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="body">
+    <div class="kicker a1">Sharing nội bộ &nbsp;•&nbsp; King Food Mart &nbsp;•&nbsp; Tháng 5/2026</div>
+    <h1 class="a2"><span class="l1">Từ Công Cụ</span><span class="l2">Đến Đồng Nghiệp</span></h1>
+    <p class="sub a3">AI không còn chỉ trả lời câu hỏi —<br>nó đang bắt đầu tự làm việc thay bạn.</p>
+    <div class="badges a4">
+      <span class="badge" style="background:#059669">OpenAI</span>
+      <span class="badge" style="background:var(--go)">Google</span>
+      <span class="badge" style="background:var(--an)">Anthropic</span>
     </div>
   </div>
-  <div class="footer anim-fade">Internal Sharing Session &nbsp;•&nbsp; 2026</div>
+  <div class="foot af">30 phút &nbsp;•&nbsp; Dành cho team quản lý &nbsp;•&nbsp; Không cần kiến thức kỹ thuật</div>
 </div>
 
-<!-- ═══════════════ SLIDE 2 ═══════════════ -->
+<!-- ════════════════════════════════════
+     S2 — TIME AUDIT
+════════════════════════════════════ -->
 <div class="slide" id="s2">
-  <div class="header">
-    <h2>Chương Trình 30 Phút</h2>
-    <span>Timeline chi tiết</span>
-  </div>
-  <div class="body">
-    <div class="agenda-card anim-1">
-      <div class="bar" style="background:var(--teal)"></div>
-      <div class="time-box" style="color:var(--teal)">5'</div>
-      <div class="info">
-        <h3>Tư Duy Đúng Về AI (Mindset)</h3>
-        <p>Xoá bỏ nỗi sợ bị thay thế — thiết lập vai trò <strong>"Cộng sự AI"</strong> thay vì chỉ dùng như công cụ tìm kiếm</p>
+  <div class="hbar"><h2>Bức tranh tuần làm việc của bạn</h2><span class="htag">Phần 1 — Mở đầu</span></div>
+  <div class="body" style="flex:1;display:flex;flex-direction:column;padding:24px 50px 20px">
+    <p class="qlead a1">Mỗi tuần, bạn đang tốn bao nhiêu giờ cho <em>những việc lặp đi lặp lại</em> này?</p>
+    <div class="blocks">
+      <div class="tblock a2" style="border-color:#1A73E8">
+        <div class="icon">📧</div>
+        <div class="info">
+          <div class="label">Soạn email, báo cáo, tài liệu</div>
+          <div class="val" style="color:#1A73E8">5–7 <span class="unit">giờ</span></div>
+        </div>
       </div>
-      <div class="tag" style="background:rgba(0,201,167,.1);color:var(--teal)">Mindset</div>
+      <div class="tblock a3" style="border-color:#059669">
+        <div class="icon">📋</div>
+        <div class="info">
+          <div class="label">Tóm tắt thông tin, biên bản họp</div>
+          <div class="val" style="color:#059669">3–5 <span class="unit">giờ</span></div>
+        </div>
+      </div>
+      <div class="tblock a4" style="border-color:#CF4500">
+        <div class="icon">🔍</div>
+        <div class="info">
+          <div class="label">Tìm kiếm, nghiên cứu thị trường</div>
+          <div class="val" style="color:#CF4500">4–6 <span class="unit">giờ</span></div>
+        </div>
+      </div>
+      <div class="tblock a5" style="border-color:#7C3AED">
+        <div class="icon">📊</div>
+        <div class="info">
+          <div class="label">Lập kế hoạch, tổng hợp dữ liệu</div>
+          <div class="val" style="color:#7C3AED">3–4 <span class="unit">giờ</span></div>
+        </div>
+      </div>
     </div>
-    <div class="agenda-card anim-2">
-      <div class="bar" style="background:var(--google)"></div>
-      <div class="time-box" style="color:var(--google)">15'</div>
-      <div class="info">
-        <h3>3 Nền Tảng AI Hàng Đầu + Ứng Dụng Thực Chiến</h3>
-        <p>Demo trực tiếp ChatGPT, Gemini, Claude — <strong>tính năng nổi bật 2026</strong> và case study áp dụng ngay trong công việc văn phòng</p>
-      </div>
-      <div class="tag" style="background:rgba(26,115,232,.1);color:var(--google)">Demo</div>
-    </div>
-    <div class="agenda-card anim-3">
-      <div class="bar" style="background:var(--openai)"></div>
-      <div class="time-box" style="color:var(--openai)">7'</div>
-      <div class="info">
-        <h3>Nghệ Thuật Đặt Câu Hỏi — Công Thức C.R.E.O</h3>
-        <p>Bí quyết để AI hiểu đúng ý <strong>ngay lần đầu</strong> — bộ công thức áp dụng được cho mọi vị trí trong team</p>
-      </div>
-      <div class="tag" style="background:rgba(16,163,127,.1);color:var(--openai)">Kỹ năng</div>
-    </div>
-    <div class="agenda-card anim-4">
-      <div class="bar" style="background:var(--anthropic)"></div>
-      <div class="time-box" style="color:var(--anthropic)">3'</div>
-      <div class="info">
-        <h3>Kết Luận & Thách Thức + Q&A</h3>
-        <p>Gói gọn thông điệp cốt lõi, cam kết hành động cụ thể và giải đáp thắc mắc của team</p>
-      </div>
-      <div class="tag" style="background:rgba(207,69,0,.1);color:var(--anthropic)">Q&A</div>
+    <div class="stat-bar a6">
+      <span class="sl">Tổng trung bình: <strong style="color:#fff">15–22 giờ/tuần</strong> — gần <strong style="color:#fff">nửa</strong> thời gian làm việc</span>
+      <span class="sr">AI có thể làm phần lớn trong số này →</span>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 3 ═══════════════ -->
-<div class="slide" id="s3">
-  <div class="header">
-    <h2>Tư Duy Đúng Về AI</h2>
-    <span>5 phút đầu tiên</span>
+<!-- ════════════════════════════════════
+     S3 — 3 GIAI ĐOẠN AI
+════════════════════════════════════ -->
+<div class="slide" id="s3" style="background:#fff;justify-content:center;padding:50px 80px">
+  <h2 class="a1" style="font-size:14px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#94A3B8;text-align:center;margin-bottom:50px">AI đã thay đổi như thế nào?</h2>
+  <div class="a2" style="display:flex;align-items:flex-start;position:relative">
+    <div style="position:absolute;top:44px;left:12%;right:12%;height:2px;background:#E2E8F0"></div>
+    <div style="position:absolute;top:44px;left:12%;width:88%;height:2px;background:linear-gradient(to right,#E2E8F0 0%,#BFDBFE 45%,#3B82F6 100%)"></div>
+
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;z-index:1">
+      <div style="width:16px;height:16px;border-radius:50%;border:3px solid #E2E8F0;background:#fff;margin-bottom:18px"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#CBD5E1;margin-bottom:14px">TRƯỚC 2022</div>
+      <div style="font-size:36px;margin-bottom:10px;opacity:.3">🔍</div>
+      <div style="font-size:18px;font-weight:800;color:#CBD5E1;margin-bottom:8px">Tìm kiếm</div>
+      <div style="font-size:13px;color:#E2E8F0;line-height:1.5;max-width:180px">Google thông minh hơn — gõ từ khoá, nhận kết quả</div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;z-index:1">
+      <div style="width:16px;height:16px;border-radius:50%;border:3px solid #94A3B8;background:#fff;margin-bottom:18px"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#94A3B8;margin-bottom:14px">2022 – 2024</div>
+      <div style="font-size:36px;margin-bottom:10px;opacity:.55">💬</div>
+      <div style="font-size:18px;font-weight:800;color:#64748B;margin-bottom:8px">Chat AI</div>
+      <div style="font-size:13px;color:#94A3B8;line-height:1.5;max-width:180px">ChatGPT ra đời — hỏi một câu, nhận một câu trả lời</div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;z-index:1">
+      <div style="width:18px;height:18px;border-radius:50%;border:3px solid #3B82F6;background:#3B82F6;box-shadow:0 0 0 7px rgba(59,130,246,.15);margin-bottom:18px"></div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1px;color:#3B82F6;margin-bottom:10px">2025 – 2026</div>
+      <div style="display:inline-block;background:#3B82F6;color:#fff;font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 12px;border-radius:20px;margin-bottom:10px">CHÚNG TA ĐANG Ở ĐÂY</div>
+      <div style="font-size:36px;margin-bottom:10px">🤖</div>
+      <div style="font-size:18px;font-weight:800;color:#0F172A;margin-bottom:8px">Agentic AI</div>
+      <div style="font-size:13px;color:#475569;line-height:1.5;max-width:200px">AI tự lên kế hoạch, sử dụng công cụ, hoàn thành chuỗi công việc — không cần hỏi từng bước</div>
+    </div>
   </div>
-  <div class="body">
-    <div class="mind-panel wrong anim-1">
-      <div class="ph">
-        <span style="font-size:20px">❌</span>
-        SAI LẦM — Dùng AI như Google Search
+  <p class="a3" style="text-align:center;margin-top:44px;font-size:15px;color:#94A3B8;font-style:italic">Chúng ta không còn ở giai đoạn "hỏi AI" nữa — AI đang bắt đầu <em style="color:#3B82F6;font-style:normal;font-weight:600">chủ động làm việc</em></p>
+</div>
+
+<!-- ════════════════════════════════════
+     S4 — CHAT AI vs AGENTIC AI
+════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="hbar">
+    <h2>Chat AI vs. Agentic AI — Khác nhau ở đâu?</h2>
+    <span class="htag">Tình huống: Khách hàng khiếu nại sản phẩm trên Facebook</span>
+  </div>
+  <div class="panels">
+    <div class="cmp-panel left">
+      <div class="ptop a1">
+        <span style="font-size:22px">😓</span>
+        <span class="plabel" style="color:#475569">Chat AI (cũ)</span>
+        <span class="pbadge" style="background:#F1F5F9;color:#64748B">Bạn làm hầu hết</span>
       </div>
-      <div class="pc">
-        <div class="item"><div class="dot"></div><span>Hỏi một câu ngắn gọn, nhận một câu trả lời rồi thôi</span></div>
-        <div class="item"><div class="dot"></div><span>Không cung cấp ngữ cảnh, vai trò hay mục đích cụ thể</span></div>
-        <div class="item"><div class="dot"></div><span>Tin 100% kết quả mà không kiểm tra lại</span></div>
-        <div class="item"><div class="dot"></div><span>Dùng xong bỏ đi, không tiếp tục hội thoại để cải thiện</span></div>
-        <div class="item"><div class="dot"></div><span>Thất vọng vì "AI không hiểu ý mình" và bỏ cuộc</span></div>
+      <div class="steps a2">
+        <div class="step"><span class="snum">1</span><span class="who">👤</span><div class="stxt"><strong>Bạn làm</strong>Phát hiện bình luận khiếu nại khi lướt Facebook</div></div>
+        <div class="step"><span class="snum">2</span><span class="who">👤</span><div class="stxt"><strong>Bạn làm</strong>Copy nội dung, mở ChatGPT, nhập prompt, chờ</div></div>
+        <div class="step"><span class="snum">3</span><span class="who">🤖</span><div class="stxt"><strong>AI làm</strong>Viết bản nháp phản hồi</div></div>
+        <div class="step"><span class="snum">4</span><span class="who">👤</span><div class="stxt"><strong>Bạn làm</strong>Đọc, chỉnh sửa, copy sang Facebook, gửi</div></div>
+        <div class="step"><span class="snum">5</span><span class="who">👤</span><div class="stxt"><strong>Bạn làm</strong>Ghi chép vào file theo dõi, báo cáo tuần</div></div>
       </div>
     </div>
-    <div class="mind-panel right anim-2">
-      <div class="ph">
-        <span style="font-size:20px">✅</span>
-        ĐÚNG ĐẮN — AI là Cộng sự thông minh
+    <div class="cmp-panel right">
+      <div class="ptop a1">
+        <span style="font-size:22px">⚡</span>
+        <span class="plabel" style="color:#1D4ED8">Agentic AI (nay)</span>
+        <span class="pbadge" style="background:#DBEAFE;color:#1D4ED8">Bạn chỉ cần duyệt</span>
       </div>
-      <div class="pc">
-        <div class="item"><div class="dot"></div><span><strong>Bạn là người ra quyết định (QC)</strong> — AI là người thực thi nhanh, 24/7</span></div>
-        <div class="item"><div class="dot"></div><span>Cung cấp ngữ cảnh đủ chi tiết → kết quả sát ý ngay lần đầu</span></div>
-        <div class="item"><div class="dot"></div><span>Chat qua lại để tinh chỉnh: "Ngắn hơn", "Trang trọng hơn"...</span></div>
-        <div class="item"><div class="dot"></div><span>Fact-check thông tin quan trọng trước khi sử dụng</span></div>
-        <div class="item"><div class="dot"></div><span>Giao cho AI những việc tốn thời gian để tập trung vào chiến lược</span></div>
+      <div class="steps a3">
+        <div class="step"><span class="snum">1</span><span class="who">🤖</span><div class="stxt"><strong style="color:#1D4ED8">AI tự làm</strong>Liên tục theo dõi Facebook — phát hiện khiếu nại</div></div>
+        <div class="step"><span class="snum">2</span><span class="who">🤖</span><div class="stxt"><strong style="color:#1D4ED8">AI tự làm</strong>Phân loại mức độ ưu tiên, soạn phản hồi phù hợp</div></div>
+        <div class="step human-step"><span class="snum" style="background:#BFDBFE;color:#1D4ED8">3</span><span class="who">👤</span><div class="stxt"><strong style="color:#0F172A">Bạn làm (10 giây)</strong>Nhận thông báo: "Có khiếu nại mới — duyệt không?" → Nhấn Duyệt</div></div>
+        <div class="step"><span class="snum">4</span><span class="who">🤖</span><div class="stxt"><strong style="color:#1D4ED8">AI tự làm</strong>Tự gửi phản hồi lên Facebook</div></div>
+        <div class="step"><span class="snum">5</span><span class="who">🤖</span><div class="stxt"><strong style="color:#1D4ED8">AI tự làm</strong>Log vào hệ thống, tổng hợp vào báo cáo cuối tuần</div></div>
       </div>
     </div>
   </div>
-  <div class="formula anim-3">
-    💡 &nbsp; Năng lực con người &nbsp;+&nbsp; Sức mạnh AI &nbsp;=&nbsp; Hiệu suất × 10
+  <div class="cmp-footer">
+    <div class="cf left a4">Thời gian bạn tốn: ~15 phút mỗi khiếu nại</div>
+    <div class="cf right a4">Thời gian bạn tốn: ~10 giây để duyệt</div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 4 ═══════════════ -->
-<div class="slide section-slide" id="s4">
-  <div class="bg-orb a"></div>
-  <div class="bg-orb b"></div>
-  <p class="super anim-1">Phần 2 — Demo trực tiếp</p>
-  <h1 class="anim-2">
-    <span class="line1">THE</span>
-    <span class="line2">BIG THREE</span>
-  </h1>
-  <p class="desc anim-3">Ba nền tảng AI dẫn đầu thị trường toàn cầu năm 2026</p>
-  <div class="divider anim-4"></div>
-  <div class="sub-badges anim-5">
-    <span class="sub-badge" style="background:var(--openai)">OpenAI • GPT-5.4</span>
-    <span class="sub-badge" style="background:var(--google)">Google • Gemini v3.1</span>
-    <span class="sub-badge" style="background:var(--anthropic)">Anthropic • Claude v4.6</span>
+<!-- ════════════════════════════════════
+     S5 — WORKFLOW DEMO
+════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="hbar">
+    <h2>Một ngày làm việc của Agentic AI tại King Food Mart</h2>
+    <span class="htag">Không cần bạn khởi động từng bước</span>
+  </div>
+  <div class="flow-wrap">
+    <p class="scenario a1">Ví dụ quy trình: <em>Xử lý phản hồi khách hàng đa kênh</em></p>
+    <div class="flow a2">
+      <div class="fnode ai">
+        <div class="fbox"><div class="ficon">👀</div><div class="ftitle">Giám sát<br>liên tục</div><div class="fsub">Facebook, Shopee, Zalo, Email</div></div>
+        <div class="fwho">AI</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fnode ai">
+        <div class="fbox"><div class="ficon">🔍</div><div class="ftitle">Phát hiện &amp;<br>Phân loại</div><div class="fsub">Khiếu nại / Hỏi giá / Khen</div></div>
+        <div class="fwho">AI</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fnode ai">
+        <div class="fbox"><div class="ficon">✍️</div><div class="ftitle">Soạn<br>phản hồi</div><div class="fsub">Theo tone &amp; policy KFM</div></div>
+        <div class="fwho">AI</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fnode human">
+        <div class="fbox"><div class="ficon">👤</div><div class="ftitle">Bạn duyệt</div><div class="fsub">Thông báo push — 10 giây</div></div>
+        <div class="fwho">CON NGƯỜI</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fnode ai">
+        <div class="fbox"><div class="ficon">📤</div><div class="ftitle">Tự gửi<br>&amp; Log</div><div class="fsub">Đúng kênh, đúng thời điểm</div></div>
+        <div class="fwho">AI</div>
+      </div>
+      <div class="farrow">→</div>
+      <div class="fnode ai">
+        <div class="fbox"><div class="ficon">📊</div><div class="ftitle">Báo cáo<br>tự động</div><div class="fsub">Thống kê cuối tuần</div></div>
+        <div class="fwho">AI</div>
+      </div>
+    </div>
+    <div class="result a3">
+      <div class="rchip">⏱ Từ 15 phút/khiếu nại → 10 giây duyệt</div>
+      <div class="rchip">📈 Xử lý 24/7 — không bỏ sót</div>
+      <div class="rchip">🎯 Đồng nhất giọng điệu thương hiệu</div>
+    </div>
+    <p class="a4" style="font-size:13px;color:#94A3B8;margin-top:8px;text-align:center">Các công cụ làm được việc này ngay hôm nay: Claude Cowork, ChatGPT Tasks, Zapier AI, Make.com</p>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 5 ═══════════════ -->
-<div class="slide" id="s5" style="flex-direction:column;background:var(--off)">
-  <div class="header" style="background:var(--dark);padding:18px 50px;flex-shrink:0">
-    <h2 style="font-size:21px;font-weight:800;color:#fff">So Sánh 3 Nền Tảng AI Hàng Đầu</h2>
-  </div>
+<!-- ════════════════════════════════════
+     S6 — 3 CÔNG CỤ CẦN BIẾT
+════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="hbar"><h2>3 Công Cụ Cần Biết — Mỗi Cái Nhớ 1 Câu</h2><span class="htag">Tất cả đều có bản miễn phí</span></div>
   <div class="cards">
-    <!-- ChatGPT -->
-    <div class="platform-card anim-1">
-      <div class="pch" style="background:var(--openai)">
-        <div class="pname">ChatGPT</div>
-        <div class="pco">OpenAI &nbsp;•&nbsp; GPT-5.4</div>
+    <div class="tool-card a1">
+      <div class="tch" style="background:#059669">
+        <div class="tname">ChatGPT</div>
+        <div class="tco">OpenAI &nbsp;•&nbsp; GPT-5.5</div>
       </div>
-      <div class="pcb">
-        <div class="plabel" style="color:var(--openai)">Điểm mạnh</div>
-        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Suy luận logic, lập kế hoạch phức tạp</div>
-        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Tạo video từ chat (Sora AI Integration)</div>
-        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Voice Mode cảm xúc tự nhiên, không độ trễ</div>
-        <div class="pitem"><div class="dot" style="background:var(--openai)"></div>Hệ sinh thái plugin rộng lớn nhất</div>
+      <div class="tcb">
+        <div class="t1line">"Lên kế hoạch, viết lách và phân tích mọi thứ"</div>
+        <div class="texample">
+          <strong>Ví dụ tại KFM</strong>
+          Soạn kịch bản khuyến mãi tháng 6 → lên lịch đăng từng ngày → viết caption cho 20 sản phẩm → tất cả trong 1 buổi sáng thay vì cả tuần
+        </div>
       </div>
-      <div class="pcf" style="color:var(--openai);border-color:rgba(16,163,127,.2);background:rgba(16,163,127,.05)">Tốt nhất cho: Phân tích &amp; Lập kế hoạch</div>
+      <div class="tcf">chatgpt.com &nbsp;•&nbsp; Free / $20/tháng</div>
     </div>
-    <!-- Gemini -->
-    <div class="platform-card anim-2">
-      <div class="pch" style="background:var(--google)">
-        <div class="pname">Gemini</div>
-        <div class="pco">Google &nbsp;•&nbsp; v3.1</div>
+    <div class="tool-card a2">
+      <div class="tch" style="background:var(--ad)">
+        <div class="tname">Claude</div>
+        <div class="tco">Anthropic &nbsp;•&nbsp; v4.6</div>
       </div>
-      <div class="pcb">
-        <div class="plabel" style="color:var(--google)">Điểm mạnh</div>
-        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Deep Research — tổng hợp hàng trăm nguồn web</div>
-        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Context siêu lớn: xử lý hàng giờ video, triệu dòng code</div>
-        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Tích hợp sâu Google Workspace (Gmail, Docs, Sheets)</div>
-        <div class="pitem"><div class="dot" style="background:var(--google)"></div>Real-time search — thông tin mới nhất tức thì</div>
+      <div class="tcb">
+        <div class="t1line">"Đọc tài liệu dài, điều khiển máy tính, viết chuẩn chỉnh nhất"</div>
+        <div class="texample">
+          <strong>Ví dụ tại KFM</strong>
+          Upload toàn bộ báo cáo tháng → hỏi "Cửa hàng nào đang có vấn đề và tại sao?" → nhận phân tích chi tiết trong 30 giây
+        </div>
       </div>
-      <div class="pcf" style="color:var(--google);border-color:rgba(26,115,232,.2);background:rgba(26,115,232,.05)">Tốt nhất cho: Nghiên cứu &amp; Dữ liệu</div>
+      <div class="tcf">claude.ai &nbsp;•&nbsp; Free / $20/tháng</div>
     </div>
-    <!-- Claude -->
-    <div class="platform-card anim-3">
-      <div class="pch" style="background:var(--anthropic)">
-        <div class="pname">Claude</div>
-        <div class="pco">Anthropic &nbsp;•&nbsp; v4.6</div>
+    <div class="tool-card a3">
+      <div class="tch" style="background:var(--gd)">
+        <div class="tname">Gemini</div>
+        <div class="tco">Google &nbsp;•&nbsp; v3.1</div>
       </div>
-      <div class="pcb">
-        <div class="plabel" style="color:var(--anthropic)">Điểm mạnh</div>
-        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Computer Use — điều khiển màn hình máy tính</div>
-        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Viết lách văn phòng tự nhiên, có cảm xúc nhất</div>
-        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>An toàn dữ liệu cao — tiêu chuẩn doanh nghiệp</div>
-        <div class="pitem"><div class="dot" style="background:var(--anthropic)"></div>Artifacts — tạo ứng dụng nhỏ ngay trong chat</div>
+      <div class="tcb">
+        <div class="t1line">"Nghiên cứu thị trường và làm việc ngay trong Google Workspace"</div>
+        <div class="texample">
+          <strong>Ví dụ tại KFM</strong>
+          Trực tiếp trong Gmail: tóm tắt 50 email chưa đọc → trong Google Sheets: hỏi "Tháng nào doanh thu giảm bất thường?" không cần công thức
+        </div>
       </div>
-      <div class="pcf" style="color:var(--anthropic);border-color:rgba(207,69,0,.2);background:rgba(207,69,0,.05)">Tốt nhất cho: Viết lách &amp; Tự động hoá</div>
+      <div class="tcf">gemini.google.com &nbsp;•&nbsp; Free / $19.99/tháng</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 6 — ChatGPT ═══════════════ -->
-<div class="slide deepdive" id="s6">
-  <div class="left anim-left" style="background:var(--openaiD)">
-    <div class="brand" style="margin-top:20px">Chat<br>GPT</div>
-    <div class="co" style="color:rgba(0,201,167,1)">OpenAI</div>
-    <div class="ver" style="color:rgba(255,255,255,.5)">GPT-5.4</div>
-    <div class="stat-box">200M+ người dùng toàn cầu</div>
-    <div class="stat-box">Tích hợp Sora Video AI</div>
-    <div class="stat-box">Hệ sinh thái plugin lớn nhất</div>
-  </div>
-  <div class="right">
-    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
-    <h2 class="anim-1">ChatGPT — Điểm mạnh vượt trội</h2>
-    <div class="sep anim-1"></div>
-    <div class="feat-card anim-2">
-      <div class="fc-left" style="background:var(--openai)"></div>
-      <div class="fc-body">
-        <h4>Sora Integration — Tạo video từ văn bản</h4>
-        <p>Mô tả nội dung quảng cáo bằng tiếng Việt, AI tự tạo video chuyên nghiệp trong vài phút. Không cần kỹ năng đồ hoạ. Ứng dụng ngay: clip giới thiệu sản phẩm, video đào tạo nội bộ, content mạng xã hội.</p>
+<!-- ════════════════════════════════════
+     S7 — SALES & MARKETING
+════════════════════════════════════ -->
+<div class="slide uc-slide" id="s7">
+  <div class="hbar"><h2>Ứng Dụng Thực Chiến — Sales &amp; Marketing</h2><span class="htag">Phần 3 — Demo</span></div>
+  <div class="ucbody">
+    <div class="uc-card a1">
+      <div class="uch" style="background:#FFF7ED">
+        <div class="uci">🛒</div>
+        <h3>Nội Dung &amp; Khuyến Mãi</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Viết caption 30 sản phẩm khuyến mãi Tết cho Facebook + TikTok</div>
+          <div class="uisave"><span class="before">3 ngày</span><span class="arrow">→</span><span class="after">40 phút</span></div>
+          <div class="uitool">ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Lên lịch đăng bài cả tháng — chủ đề, hình thức, hashtag đề xuất sẵn</div>
+          <div class="uisave"><span class="before">1 ngày</span><span class="arrow">→</span><span class="after">2 giờ</span></div>
+          <div class="uitool">ChatGPT + Canva AI</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Tổng hợp và phân tích 500 bình luận/review sản phẩm trên Shopee — tìm điểm khách than nhất</div>
+          <div class="uisave"><span class="before">1 tuần</span><span class="arrow">→</span><span class="after">10 phút</span></div>
+          <div class="uitool">Claude</div>
+        </div>
       </div>
     </div>
-    <div class="feat-card anim-3">
-      <div class="fc-left" style="background:var(--openai)"></div>
-      <div class="fc-body">
-        <h4>Advanced Voice Mode — Trợ lý giọng nói thật</h4>
-        <p>Giao tiếp bằng giọng nói không độ trễ, nhận diện cảm xúc qua âm điệu — như đang nói chuyện với người thật. Hoạt động trên điện thoại: thảo luận chiến lược trong lúc di chuyển.</p>
+    <div class="uc-card a2">
+      <div class="uch" style="background:#EFF6FF">
+        <div class="uci">📈</div>
+        <h3>Nghiên Cứu &amp; Chiến Lược</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Nghiên cứu đối thủ cạnh tranh — giá, khuyến mãi, sản phẩm mới trong tháng</div>
+          <div class="uisave"><span class="before">2 ngày</span><span class="arrow">→</span><span class="after">30 phút</span></div>
+          <div class="uitool">Gemini Deep Research</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Phân tích xu hướng tiêu dùng thực phẩm 2026 tại Việt Nam — tóm tắt 1 trang A4</div>
+          <div class="uisave"><span class="before">3 ngày</span><span class="arrow">→</span><span class="after">15 phút</span></div>
+          <div class="uitool">Gemini + Perplexity</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Kịch bản video giới thiệu sản phẩm mới — lời thoại, cảnh quay, call-to-action</div>
+          <div class="uisave"><span class="before">1 ngày</span><span class="arrow">→</span><span class="after">20 phút</span></div>
+          <div class="uitool">ChatGPT</div>
+        </div>
       </div>
     </div>
-    <div class="feat-card anim-4">
-      <div class="fc-left" style="background:var(--openai)"></div>
-      <div class="fc-body">
-        <h4>Suy luận logic xuất sắc — Lập kế hoạch phức tạp</h4>
-        <p>Tốt nhất cho: phân tích tình huống kinh doanh, breakdown OKR thành task cụ thể, đánh giá rủi ro dự án. Ví dụ: "Lên kế hoạch triển khai hệ thống mới cho 200 nhân viên trong 3 tháng."</p>
+    <div class="uc-card a3">
+      <div class="uch" style="background:#F5F3FF">
+        <div class="uci">🎨</div>
+        <h3>Sáng Tạo Visual</h3>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ SLIDE 7 — Gemini ═══════════════ -->
-<div class="slide deepdive" id="s7">
-  <div class="left anim-left" style="background:var(--googleD)">
-    <div class="brand" style="margin-top:20px">Gemini</div>
-    <div class="co" style="color:rgba(168,196,255,1)">Google</div>
-    <div class="ver" style="color:rgba(255,255,255,.5)">v3.1</div>
-    <div class="stat-box">Deep Research AI</div>
-    <div class="stat-box">Tích hợp Google Workspace</div>
-    <div class="stat-box">Real-time Web Search</div>
-  </div>
-  <div class="right">
-    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
-    <h2 class="anim-1">Gemini — Sức mạnh nghiên cứu</h2>
-    <div class="sep anim-1"></div>
-    <div class="feat-card anim-2">
-      <div class="fc-left" style="background:var(--google)"></div>
-      <div class="fc-body">
-        <h4>Deep Research — Báo cáo chuyên sâu tự động</h4>
-        <p>Tự động tra cứu hàng trăm nguồn web, tổng hợp thành báo cáo đầy đủ với trích dẫn cụ thể. Ví dụ: "Phân tích thị trường thực phẩm chức năng Việt Nam 2025-2026" — xong trong 5 phút thay vì 2 ngày.</p>
-      </div>
-    </div>
-    <div class="feat-card anim-3">
-      <div class="fc-left" style="background:var(--google)"></div>
-      <div class="fc-body">
-        <h4>Multimodal Context siêu lớn — Đọc hiểu không giới hạn</h4>
-        <p>Xử lý cùng lúc: toàn bộ hợp đồng dài, hàng giờ video họp, cả cuốn sách sản phẩm. Không AI nào làm được điều này ở quy mô như Gemini. Upload file và hỏi thẳng.</p>
-      </div>
-    </div>
-    <div class="feat-card anim-4">
-      <div class="fc-left" style="background:var(--google)"></div>
-      <div class="fc-body">
-        <h4>Google Workspace — Làm việc ngay trong công cụ quen thuộc</h4>
-        <p>Tóm tắt cuộc họp Meet, soạn email trong Gmail, phân tích dữ liệu Sheets — không cần rời ứng dụng. Giảm 70% thời gian chuyển đổi giữa các công cụ mỗi ngày.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ SLIDE 8 — Claude ═══════════════ -->
-<div class="slide deepdive" id="s8">
-  <div class="left anim-left" style="background:var(--anthropicD)">
-    <div class="brand" style="margin-top:20px">Claude</div>
-    <div class="co" style="color:rgba(255,204,168,1)">Anthropic</div>
-    <div class="ver" style="color:rgba(255,255,255,.5)">v4.6</div>
-    <div class="stat-box">Văn phong tự nhiên nhất</div>
-    <div class="stat-box">An toàn dữ liệu cao nhất</div>
-    <div class="stat-box">Computer Use & Artifacts</div>
-  </div>
-  <div class="right">
-    <p class="rtitle-sm anim-1">Tính năng nổi bật 2026</p>
-    <h2 class="anim-1">Claude — Sáng tạo &amp; Tự động hoá</h2>
-    <div class="sep anim-1"></div>
-    <div class="feat-card anim-2">
-      <div class="fc-left" style="background:var(--anthropic)"></div>
-      <div class="fc-body">
-        <h4>Computer Use — AI điều khiển máy tính thay bạn</h4>
-        <p>Claude có thể nhìn màn hình và thao tác chuột/bàn phím. Tự động hoá toàn bộ quy trình lặp lại: điền form, nhập liệu, trích xuất dữ liệu từ nhiều hệ thống — không cần lập trình.</p>
-      </div>
-    </div>
-    <div class="feat-card anim-3">
-      <div class="fc-left" style="background:var(--anthropic)"></div>
-      <div class="fc-body">
-        <h4>Artifacts — Tạo ứng dụng, dashboard ngay trong chat</h4>
-        <p>Mở cửa sổ riêng để chạy code, vẽ biểu đồ tương tác, thiết kế trang web tức thì. Ví dụ: "Tạo dashboard doanh thu tháng từ file Excel này" — hiển thị ngay, không cần phần mềm.</p>
-      </div>
-    </div>
-    <div class="feat-card anim-4">
-      <div class="fc-left" style="background:var(--anthropic)"></div>
-      <div class="fc-body">
-        <h4>Viết lách &amp; Sáng tạo nội dung hàng đầu</h4>
-        <p>Văn phong tự nhiên, có cảm xúc nhất trong 3 AI lớn. Xuất sắc với: email đối tác, báo cáo ban lãnh đạo, nội dung truyền thông, kịch bản đào tạo. Đầu ra gần như không cần chỉnh sửa nhiều.</p>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Tạo banner khuyến mãi, poster sự kiện — nhập mô tả, AI thiết kế ngay</div>
+          <div class="uisave"><span class="before">2 giờ + thiết kế</span><span class="arrow">→</span><span class="after">10 phút</span></div>
+          <div class="uitool">Canva AI / Adobe Firefly</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Tạo ảnh sản phẩm đẹp không lo bản quyền — phông nền, phong cách, ánh sáng tuỳ chỉnh</div>
+          <div class="uisave"><span class="before">Thuê chụp: 2–5 triệu</span><span class="arrow">→</span><span class="after">Miễn phí</span></div>
+          <div class="uitool">DALL-E / Gemini Imagen</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Tạo slide thuyết trình từ bản outline có sẵn — bố cục đẹp, chuyên nghiệp</div>
+          <div class="uisave"><span class="before">3 giờ</span><span class="arrow">→</span><span class="after">15 phút</span></div>
+          <div class="uitool">Gamma AI</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 9 ═══════════════ -->
-<div class="slide section-slide" id="s9">
-  <div class="bg-orb a"></div>
-  <p class="super anim-1">Phần 3 — Ứng dụng thực tế</p>
-  <h1 class="anim-2">
-    <span class="line1">ỨNG DỤNG</span>
-    <span class="line2">THỰC CHIẾN</span>
-  </h1>
-  <p class="desc anim-3">3 nhóm công việc mang lại hiệu quả cao nhất ngay lập tức</p>
-  <div class="divider anim-4"></div>
-  <div class="abc-row anim-5">
-    <div class="abc-item">
-      <div class="abc-circle">A</div>
-      <div class="abc-label">Thông tin &amp; Tài liệu</div>
+<!-- ════════════════════════════════════
+     S8 — VẬN HÀNH & HÀNH CHÍNH
+════════════════════════════════════ -->
+<div class="slide uc-slide" id="s8">
+  <div class="hbar"><h2>Ứng Dụng Thực Chiến — Vận Hành &amp; Hành Chính</h2><span class="htag">Phần 3 — Demo</span></div>
+  <div class="ucbody">
+    <div class="uc-card a1">
+      <div class="uch" style="background:#F0FDF9">
+        <div class="uci">📝</div>
+        <h3>Tài Liệu &amp; Họp Hành</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Ghi âm cuộc họp → AI tự tóm tắt biên bản + danh sách action items → gửi email cho từng người</div>
+          <div class="uisave"><span class="before">1–2 giờ viết tay</span><span class="arrow">→</span><span class="after">Tự động</span></div>
+          <div class="uitool">Otter.ai / Gemini Meet</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Soạn SOP vận hành chuẩn cho từng vị trí — nhân viên mới, thu ngân, kho hàng</div>
+          <div class="uisave"><span class="before">1 tuần</span><span class="arrow">→</span><span class="after">1 buổi</span></div>
+          <div class="uitool">Claude / ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Tóm tắt chuỗi 30 email dài → 5 điểm cần xử lý, ưu tiên theo mức độ quan trọng</div>
+          <div class="uisave"><span class="before">45 phút</span><span class="arrow">→</span><span class="after">2 phút</span></div>
+          <div class="uitool">Claude / Gemini in Gmail</div>
+        </div>
+      </div>
     </div>
-    <div class="abc-item">
-      <div class="abc-circle">B</div>
-      <div class="abc-label">Sáng tạo &amp; Visual</div>
+    <div class="uc-card a2">
+      <div class="uch" style="background:#F0FDF4">
+        <div class="uci">📦</div>
+        <h3>Hàng Hoá &amp; Kho</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Upload dữ liệu bán hàng 3 tháng → AI phân tích sản phẩm nào sắp hết, dự báo lượng nhập</div>
+          <div class="uisave"><span class="before">Nửa ngày Excel</span><span class="arrow">→</span><span class="after">15 phút</span></div>
+          <div class="uitool">Claude + Excel</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Viết mô tả sản phẩm chuẩn SEO cho 100 SKU mới — nhập tên + thông số, AI viết loạt</div>
+          <div class="uisave"><span class="before">1 tuần</span><span class="arrow">→</span><span class="after">2 giờ</span></div>
+          <div class="uitool">ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Dịch tài liệu kỹ thuật từ nhà cung cấp nước ngoài — tiếng Anh/Hàn/Nhật sang tiếng Việt</div>
+          <div class="uisave"><span class="before">Thuê dịch: 500k–2tr</span><span class="arrow">→</span><span class="after">Miễn phí</span></div>
+          <div class="uitool">Claude / DeepL</div>
+        </div>
+      </div>
     </div>
-    <div class="abc-item">
-      <div class="abc-circle">C</div>
-      <div class="abc-label">Brainstorm &amp; Tự động</div>
+    <div class="uc-card a3">
+      <div class="uch" style="background:#EFF6FF">
+        <div class="uci">👥</div>
+        <h3>Nhân Sự &amp; Đào Tạo</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Tạo bộ câu hỏi phỏng vấn cho từng vị trí — theo yêu cầu công việc cụ thể của KFM</div>
+          <div class="uisave"><span class="before">2–3 giờ</span><span class="arrow">→</span><span class="after">15 phút</span></div>
+          <div class="uitool">ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Xây dựng tài liệu onboarding nhân viên mới — nội quy, quy trình, FAQ thường gặp</div>
+          <div class="uisave"><span class="before">2 ngày</span><span class="arrow">→</span><span class="after">3 giờ</span></div>
+          <div class="uitool">Claude / ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Soạn email phản hồi khiếu nại khách hàng — chuyên nghiệp, nhất quán tone thương hiệu</div>
+          <div class="uisave"><span class="before">15–20 phút/email</span><span class="arrow">→</span><span class="after">2 phút</span></div>
+          <div class="uitool">Claude</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 10 ═══════════════ -->
+<!-- ════════════════════════════════════
+     S9 — LÃNH ĐẠO & QUẢN LÝ
+════════════════════════════════════ -->
+<div class="slide uc-slide" id="s9">
+  <div class="hbar"><h2>Ứng Dụng Thực Chiến — Lãnh Đạo &amp; Quản Lý</h2><span class="htag">Phần 3 — Demo</span></div>
+  <div class="ucbody">
+    <div class="uc-card a1">
+      <div class="uch" style="background:#FFF7ED">
+        <div class="uci">🧠</div>
+        <h3>Phân Tích &amp; Ra Quyết Định</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Upload báo cáo 50 trang → hỏi "5 điểm quan trọng nhất cho cuộc họp chiều" → nhận ngay</div>
+          <div class="uisave"><span class="before">2 giờ đọc</span><span class="arrow">→</span><span class="after">30 giây</span></div>
+          <div class="uitool">Claude</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Nhờ AI đóng vai đối thủ cạnh tranh để phản biện kế hoạch kinh doanh Q3 trước khi trình board</div>
+          <div class="uisave"><span class="before">Chờ họp để nghe phản biện</span><span class="arrow">→</span><span class="after">Chuẩn bị trước</span></div>
+          <div class="uitool">ChatGPT / Claude</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">So sánh performance 5 cửa hàng trong tháng — tự tìm nguyên nhân cửa hàng nào đang tụt</div>
+          <div class="uisave"><span class="before">Nửa ngày phân tích</span><span class="arrow">→</span><span class="after">20 phút</span></div>
+          <div class="uitool">Claude + Excel</div>
+        </div>
+      </div>
+    </div>
+    <div class="uc-card a2">
+      <div class="uch" style="background:#F0FDF9">
+        <div class="uci">🎯</div>
+        <h3>Chiến Lược &amp; Kế Hoạch</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Lên kế hoạch triển khai chiến dịch khuyến mãi từ A-Z — timeline, phân công, checklist</div>
+          <div class="uisave"><span class="before">2 ngày họp</span><span class="arrow">→</span><span class="after">2 giờ</span></div>
+          <div class="uitool">ChatGPT</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Dự báo nhu cầu hàng hoá theo mùa vụ (Tết, hè, back-to-school) từ dữ liệu 2 năm qua</div>
+          <div class="uisave"><span class="before">Kinh nghiệm + cảm tính</span><span class="arrow">→</span><span class="after">Dữ liệu + AI</span></div>
+          <div class="uitool">Claude + Excel</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Soạn OKR quý mới — từ mục tiêu chung xuống KR cụ thể cho từng phòng ban</div>
+          <div class="uisave"><span class="before">3–4 giờ workshop</span><span class="arrow">→</span><span class="after">1 giờ</span></div>
+          <div class="uitool">ChatGPT / Claude</div>
+        </div>
+      </div>
+    </div>
+    <div class="uc-card a3">
+      <div class="uch" style="background:#EFF6FF">
+        <div class="uci">📡</div>
+        <h3>Theo Dõi Thị Trường</h3>
+      </div>
+      <div class="ucb">
+        <div class="uc-item">
+          <div class="uitask">Báo cáo tin tức ngành thực phẩm, FMCG Việt Nam mỗi tuần — tóm tắt 5 điểm cần biết</div>
+          <div class="uisave"><span class="before">Đọc báo mỗi ngày</span><span class="arrow">→</span><span class="after">Tự động hàng tuần</span></div>
+          <div class="uitool">Gemini / Perplexity</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Theo dõi đối thủ — phát hiện khi họ chạy chương trình mới, thay đổi giá, ra sản phẩm</div>
+          <div class="uisave"><span class="before">Thỉnh thoảng mới biết</span><span class="arrow">→</span><span class="after">Cập nhật liên tục</span></div>
+          <div class="uitool">Gemini Deep Research</div>
+        </div>
+        <div class="uc-item">
+          <div class="uitask">Phân tích xu hướng tìm kiếm sản phẩm thực phẩm của người tiêu dùng Việt — theo tháng</div>
+          <div class="uisave"><span class="before">Cần thuê agency</span><span class="arrow">→</span><span class="after">Tự làm được</span></div>
+          <div class="uitool">Gemini + Google Trends</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     S10 — 2 LUẬT BẤT BIẾN
+════════════════════════════════════ -->
 <div class="slide" id="s10">
-  <div class="header">
-    <h2>3 Nhóm Ứng Dụng Thực Chiến Cho Team</h2>
-  </div>
-  <div class="cards">
-    <div class="grp-card anim-1">
-      <div class="gch" style="background:var(--tealD)">
-        <div class="gletter">A</div>
-        <div class="ginfo">
-          <h3>Xử Lý Thông Tin &amp; Tài Liệu</h3>
-          <div class="gtag">Tiết kiệm 2h đọc mỗi ngày</div>
-        </div>
+  <div class="hbar"><h2>Trước Khi Bắt Đầu — 2 Luật Không Được Phá Vỡ</h2><span class="htag">Phần 4 — An toàn</span></div>
+  <div style="flex:1;display:flex;gap:16px;padding:20px 50px">
+    <div class="law-card red a1" style="flex:1">
+      <div class="lch">
+        <div class="lnum">Luật số 1</div>
+        <div class="licon">🔒</div>
+        <h2>Không Nhập Dữ Liệu Nội Bộ Vào AI Công Cộng</h2>
       </div>
-      <div class="gcb">
-        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Tóm tắt PDF 50 trang → 5 ý chính cho buổi họp chiều (10 giây)</div>
-        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Upload Excel, hỏi: "Doanh thu tháng nào cao bất thường và tại sao?"</div>
-        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Chuyển ghi chú thô → Email lịch thiệp, trang trọng cho đối tác</div>
-        <div class="gitem"><div class="gdot" style="background:var(--teal)"></div>Dịch tài liệu đa ngôn ngữ tức thì với ngữ cảnh chuyên ngành chính xác</div>
+      <div class="lcb">
+        <p>Báo cáo tài chính, thông tin khách hàng, chiến lược kinh doanh, bí quyết nhà cung cấp — <strong>tuyệt đối không</strong> dán vào ChatGPT, Claude hay Gemini bản miễn phí.</p>
+        <div class="ldo"><span class="ldot">⚠️</span><span>64% nhân viên vô tình chia sẻ thông tin nhạy cảm khi dùng AI <em style="color:#94A3B8">(Cisco, 2025)</em></span></div>
+        <div class="ldo"><span class="ldot">✅</span><span><strong>Được phép nhập:</strong> thông tin đã công khai, tài liệu không có số liệu nội bộ, văn bản tham khảo chung</span></div>
+        <div class="ldo"><span class="ldot">📋</span><span>KFM sẽ sớm ban hành danh sách công cụ được phép dùng và phân loại dữ liệu rõ ràng</span></div>
       </div>
     </div>
-    <div class="grp-card anim-2">
-      <div class="gch" style="background:var(--googleD)">
-        <div class="gletter">B</div>
-        <div class="ginfo">
-          <h3>Sáng Tạo &amp; Visual</h3>
-          <div class="gtag">Dành cho người không chuyên thiết kế</div>
-        </div>
+    <div class="law-card amber a2" style="flex:1">
+      <div class="lch">
+        <div class="lnum">Luật số 2</div>
+        <div class="licon">🔍</div>
+        <h2>Luôn Kiểm Tra Lại Thông Tin Quan Trọng</h2>
       </div>
-      <div class="gcb">
-        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo slide thuyết trình đẹp từ 1 đoạn mô tả (Gamma AI / Canva AI)</div>
-        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo hình ảnh minh hoạ không lo bản quyền (DALL-E / Gemini Imagen)</div>
-        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Thiết kế poster, banner, social media content trong 5 phút</div>
-        <div class="gitem"><div class="gdot" style="background:var(--google)"></div>Tạo video ngắn cho quảng cáo sản phẩm (Sora / Google Veo)</div>
-      </div>
-    </div>
-    <div class="grp-card anim-3">
-      <div class="gch" style="background:var(--anthropicD)">
-        <div class="gletter">C</div>
-        <div class="ginfo">
-          <h3>Brainstorm &amp; Giải Quyết Vấn Đề</h3>
-          <div class="gtag">Tăng tốc quyết định</div>
-        </div>
-      </div>
-      <div class="gcb">
-        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Nhờ AI đóng vai khách hàng khó tính để phản biện kế hoạch của team</div>
-        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>10 ý tưởng chiến dịch marketing mới trong vòng 30 giây</div>
-        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Tự động hoá quy trình lặp lại qua Zapier Central (6.000+ ứng dụng)</div>
-        <div class="gitem"><div class="gdot" style="background:var(--anthropic)"></div>Phân tích SWOT, lên kịch bản họp, draft OKR cho quý mới</div>
+      <div class="lcb">
+        <p>AI có thể tạo ra thông tin hoàn toàn sai nhưng trình bày cực kỳ tự tin và thuyết phục — hiện tượng này gọi là <strong>Hallucination</strong>.</p>
+        <div class="ldo"><span class="ldot">⚠️</span><span>Một luật sư Mỹ đã bị phạt vì dùng ChatGPT viết hồ sơ với các trích dẫn luật <strong>không tồn tại</strong></span></div>
+        <div class="ldo"><span class="ldot">✅</span><span><strong>Quy tắc vàng:</strong> AI soạn bản nháp → Bạn kiểm tra → Bạn quyết định → Bạn chịu trách nhiệm</span></div>
+        <div class="ldo"><span class="ldot">🎯</span><span>Đặc biệt cẩn thận với: số liệu, ngày tháng, tên người, quy định pháp lý, thông tin y tế</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 11 — CREO ═══════════════ -->
+<!-- ════════════════════════════════════
+     S11 — LỘ TRÌNH 90 NGÀY
+════════════════════════════════════ -->
 <div class="slide" id="s11">
-  <div class="header">
-    <h2>Nghệ Thuật Đặt Câu Hỏi — Prompt Engineering</h2>
-    <span style="color:rgba(255,255,255,.4);font-size:13px">7 phút</span>
-  </div>
-  <div class="intro">
-    <h1>Công thức <span style="color:var(--teal)">C.R.E.O</span></h1>
-    <p>Để AI hiểu đúng ý ngay lần đầu — chất lượng đầu vào quyết định chất lượng đầu ra</p>
-  </div>
-  <div class="cols">
-    <!-- C -->
-    <div class="creo-col anim-1" style="border-color:var(--teal)">
-      <div class="creo-h" style="background:var(--teal)">
-        <div class="cl">C</div>
-        <div class="cinfo">
-          <div class="cword">Context</div>
-          <div class="cviet">Bối Cảnh</div>
-        </div>
-      </div>
-      <div class="creo-b">
-        <div class="cdesc">Bạn là ai? Đang làm gì? Cung cấp đủ thông tin về tình huống để AI không cần đoán.</div>
-        <div class="cex" style="border-color:var(--teal)">
-          <div class="cex-label" style="color:var(--teal)">Ví dụ</div>
-          "Tôi là Trưởng phòng KD tại công ty thực phẩm 500 nhân viên, đang chuẩn bị báo cáo doanh thu Q2..."
-        </div>
-      </div>
+  <div class="hbar"><h2>Lộ Trình 90 Ngày Cho King Food Mart</h2><span class="htag">Bắt đầu nhỏ — đo kết quả — mở rộng dần</span></div>
+  <div class="rbody">
+    <div class="rcard a1">
+      <div class="rnum" style="background:var(--blue)">1</div>
+      <div class="rmonth">Tháng 1 — Khám Phá</div>
+      <h3>Mỗi người thử 1 việc/ngày</h3>
+      <div class="rdesc">Không áp lực, không KPI. Mỗi thành viên team chọn 1 việc thường làm và thử xem AI làm được tốt đến đâu. Chia sẻ kết quả — cái nào tốt, cái nào chưa ổn.</div>
+      <div class="rtarget" style="color:var(--blueD)">🎯 Kết quả: Tìm ra 3–5 use case tiết kiệm thời gian nhất cho team</div>
     </div>
-    <!-- R -->
-    <div class="creo-col anim-2" style="border-color:var(--google)">
-      <div class="creo-h" style="background:var(--google)">
-        <div class="cl" style="color:#fff">R</div>
-        <div class="cinfo">
-          <div class="cword" style="color:#fff">Role</div>
-          <div class="cviet" style="color:rgba(255,255,255,.7)">Vai Trò</div>
-        </div>
-      </div>
-      <div class="creo-b">
-        <div class="cdesc">Yêu cầu AI đóng vai chuyên gia cụ thể để nhận phản hồi chuyên nghiệp, sát thực tế hơn.</div>
-        <div class="cex" style="border-color:var(--google)">
-          <div class="cex-label" style="color:var(--google)">Ví dụ</div>
-          "Bạn là chuyên gia Marketing F&B dày dặn kinh nghiệm tại thị trường Đông Nam Á..."
-        </div>
-      </div>
+    <div class="rcard a2">
+      <div class="rnum" style="background:var(--go)">2</div>
+      <div class="rmonth">Tháng 2 — Chuẩn Hoá</div>
+      <h3>Team chuẩn hoá 3 quy trình</h3>
+      <div class="rdesc">Chọn 3 use case hiệu quả nhất từ tháng 1. Viết hướng dẫn ngắn gọn (prompt mẫu, bước làm). Đào tạo toàn team cách sử dụng nhất quán — đảm bảo chất lượng đồng đều.</div>
+      <div class="rtarget" style="color:var(--go)">🎯 Kết quả: Có 3 quy trình AI chạy đều, mọi người đều biết dùng</div>
     </div>
-    <!-- E -->
-    <div class="creo-col anim-3" style="border-color:var(--openai)">
-      <div class="creo-h" style="background:var(--openai)">
-        <div class="cl">E</div>
-        <div class="cinfo">
-          <div class="cword">Execute</div>
-          <div class="cviet">Nhiệm Vụ</div>
-        </div>
-      </div>
-      <div class="creo-b">
-        <div class="cdesc">Mô tả rõ ràng bạn muốn AI làm gì: viết, tóm tắt, phân tích, lập bảng, phản biện...</div>
-        <div class="cex" style="border-color:var(--openai)">
-          <div class="cex-label" style="color:var(--openai)">Ví dụ</div>
-          "Hãy viết 5 ý tưởng chiến dịch ra mắt sản phẩm mới, mỗi ý một câu chủ đề và 2 điểm nổi bật..."
-        </div>
-      </div>
-    </div>
-    <!-- O -->
-    <div class="creo-col anim-4" style="border-color:var(--anthropic)">
-      <div class="creo-h" style="background:var(--anthropic)">
-        <div class="cl">O</div>
-        <div class="cinfo">
-          <div class="cword">Output</div>
-          <div class="cviet">Đầu Ra</div>
-        </div>
-      </div>
-      <div class="creo-b">
-        <div class="cdesc">Chỉ định: độ dài, giọng văn (trang trọng/thân thiện), định dạng (bảng, gạch đầu dòng, đoạn văn).</div>
-        <div class="cex" style="border-color:var(--anthropic)">
-          <div class="cex-label" style="color:var(--anthropic)">Ví dụ</div>
-          "Trả lời tiếng Việt, tối đa 200 từ, trình bày dạng bảng so sánh, giọng trang trọng."
-        </div>
-      </div>
+    <div class="rcard a3">
+      <div class="rnum" style="background:var(--an)">3</div>
+      <div class="rmonth">Tháng 3 — Đo Lường</div>
+      <h3>Tính giờ tiết kiệm — quyết định tiếp</h3>
+      <div class="rdesc">Đo lường cụ thể: mỗi tuần team tiết kiệm được bao nhiêu giờ? Chất lượng đầu ra có tốt hơn không? Từ đó quyết định đầu tư vào gói trả phí hay mở rộng thêm use case mới.</div>
+      <div class="rtarget" style="color:var(--an)">🎯 Kết quả: Có ROI rõ ràng để quyết định bước tiếp theo</div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 12 ═══════════════ -->
+<!-- ════════════════════════════════════
+     S12 — THÁCH THỨC 24H
+════════════════════════════════════ -->
 <div class="slide" id="s12">
-  <div class="header" style="background:var(--dark);padding:18px 60px;flex-shrink:0">
-    <h2 style="font-size:21px;font-weight:800;color:#fff">4 Lưu Ý Quan Trọng Khi Dùng AI</h2>
-  </div>
+  <div class="hbar"><h2>Thách Thức 24 Giờ — Bắt Đầu Ngay Hôm Nay</h2><span class="htag">Phần 5 — Hành động</span></div>
   <div class="grid">
-    <div class="warn-card anim-1" style="border-color:#DC2626">
-      <div class="wicon">🔒</div>
-      <h3 style="color:#DC2626">Bảo Mật Dữ Liệu (Privacy First)</h3>
-      <p>Tuyệt đối <strong>không dán thông tin nhạy cảm</strong> của công ty vào AI công cộng: báo cáo tài chính nội bộ, dữ liệu khách hàng, bí mật kinh doanh. Dữ liệu có thể được dùng để huấn luyện mô hình. Dùng phiên bản doanh nghiệp có ký NDA nếu cần.</p>
+    <div class="ch-card a1">
+      <div class="chh" style="background:#FFF7ED">
+        <div class="chi">🛒</div>
+        <div><div class="chteam">Sales &amp; Marketing</div><h3>Thử viết caption bằng AI</h3></div>
+      </div>
+      <div class="chb">
+        <div class="task">Mở ChatGPT hoặc Claude, thử prompt này và xem kết quả trong 30 giây:</div>
+        <div class="prompt-box" style="border-color:#CF4500">"Viết 3 caption Facebook cho chương trình mua 2 tặng 1 cuối tuần này tại King Food Mart. Giọng thân thiện, thêm emoji, không quá 50 từ mỗi caption."</div>
+      </div>
     </div>
-    <div class="warn-card anim-2" style="border-color:#D97706">
-      <div class="wicon">🔍</div>
-      <h3 style="color:#D97706">Kiểm Chứng Thông Tin (Fact-Check)</h3>
-      <p>AI có thể <strong>"ảo giác" (Hallucination)</strong> — bịa số liệu, tên người, sự kiện một cách cực kỳ thuyết phục đến mức bạn tin ngay. Luôn xác minh lại các thông tin quan trọng (số liệu, tên người, ngày tháng) trước khi sử dụng trong báo cáo hay quyết định.</p>
+    <div class="ch-card a2">
+      <div class="chh" style="background:#EFF6FF">
+        <div class="chi">📋</div>
+        <div><div class="chteam">Vận Hành &amp; Hành Chính</div><h3>Tóm tắt tài liệu dài</h3></div>
+      </div>
+      <div class="chb">
+        <div class="task">Lấy 1 báo cáo hoặc email dài đang có, copy toàn bộ nội dung vào Claude rồi hỏi:</div>
+        <div class="prompt-box" style="border-color:#1A73E8">"Tóm tắt nội dung này thành 5 điểm chính. Mỗi điểm 1–2 câu. Highlight điểm nào cần hành động ngay."</div>
+      </div>
     </div>
-    <div class="warn-card anim-3" style="border-color:#0891B2">
-      <div class="wicon">👤</div>
-      <h3 style="color:#0891B2">Con Người Kiểm Soát (Human-in-the-Loop)</h3>
-      <p>AI chỉ là người <strong>soạn bản nháp</strong>. Bạn là biên tập viên cuối cùng và chịu hoàn toàn trách nhiệm cho nội dung xuất bản hoặc gửi đi. Đừng bao giờ tin AI 100% — đặc biệt với các quyết định có hệ quả lớn.</p>
+    <div class="ch-card a3">
+      <div class="chh" style="background:#F0FDF4">
+        <div class="chi">📊</div>
+        <div><div class="chteam">Quản Lý &amp; Lãnh Đạo</div><h3>Nhờ AI phản biện kế hoạch</h3></div>
+      </div>
+      <div class="chb">
+        <div class="task">Lấy 1 kế hoạch đang có, paste vào ChatGPT và thử prompt này — kết quả sẽ gây bất ngờ:</div>
+        <div class="prompt-box" style="border-color:#059669">"Đây là kế hoạch của tôi. Hãy đóng vai chuyên gia khó tính và chỉ ra 5 điểm yếu hoặc rủi ro lớn nhất. Thẳng thắn, đừng nể nang."</div>
+      </div>
     </div>
-    <div class="warn-card anim-4" style="border-color:#7C3AED">
-      <div class="wicon">✨</div>
-      <h3 style="color:#7C3AED">Giữ Cá Tính Riêng (Human Touch)</h3>
-      <p>AI viết rất giỏi nhưng thường <strong>thiếu cảm xúc và cá tính</strong>. Khi dùng AI viết email hay nội dung truyền thông, hãy chỉnh sửa để giữ "cái tôi" và sự chân thành — tránh cảm giác máy móc, vô hồn. Đây chính là lợi thế con người.</p>
+    <div class="ch-card a4">
+      <div class="chh" style="background:#F5F3FF">
+        <div class="chi">🌟</div>
+        <div><div class="chteam">Tất Cả Mọi Người</div><h3>Chia sẻ kết quả với team</h3></div>
+      </div>
+      <div class="chb">
+        <div class="task">Sau khi thử, chụp màn hình kết quả — dù tốt hay chưa tốt — và chia sẻ vào group team với nhận xét của bạn:</div>
+        <div class="prompt-box" style="border-color:#7C3AED">"Tôi vừa thử AI với việc [X]. Kết quả: [nhanh hơn / chưa ổn vì Y]. Ai đã thử gì chưa?" → Học từ nhau nhanh hơn nhiều.</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ SLIDE 13 ═══════════════ -->
+<!-- ════════════════════════════════════
+     S13 — KẾT LUẬN
+════════════════════════════════════ -->
 <div class="slide" id="s13">
-  <div class="bg-orb a"></div>
-  <div class="tl anim-1">Kết Luận</div>
-  <div class="quote-box anim-2">
+  <div class="orb o1"></div>
+  <div class="tl-label a1">Kết Luận</div>
+  <div class="qbox a2">
+    <div class="qmark">"</div>
     <p>"AI sẽ không thay thế bạn.<br>
-    Nhưng <em>người biết dùng AI</em> sẽ thay thế người không biết dùng."</p>
+    Nhưng <em>người biết dùng AI</em> sẽ thay thế người không biết dùng.<br>
+    <span style="font-size:17px;color:#64748B;font-weight:400">Và khoảng cách đó đang tạo ra ngay hôm nay — không phải 5 năm nữa."</span></p>
   </div>
-  <div class="actions anim-3">
-    <h3>Bắt đầu ngay hôm nay — 3 cam kết cụ thể:</h3>
+  <div class="actions a3">
+    <h3>Cam Kết Sau Buổi Hôm Nay</h3>
     <ul>
-      <li>Mỗi ngày giao cho AI <strong>ít nhất 1 nhiệm vụ</strong> thường mất hơn 15 phút — xem kết quả ra sao</li>
-      <li>Áp dụng công thức <strong>C.R.E.O</strong> trong mọi lần chat với AI — càng chi tiết, càng sát ý</li>
-      <li>Ưu tiên theo nhu cầu: <strong>ChatGPT</strong> (logic, kế hoạch) — <strong>Gemini</strong> (nghiên cứu, data) — <strong>Claude</strong> (viết lách, tự động hoá)</li>
+      <li>Trong <strong>24 giờ tới:</strong> thử ít nhất 1 prompt từ thách thức vừa rồi</li>
+      <li>Trong <strong>1 tuần tới:</strong> dùng AI cho 1 công việc bạn thường tốn hơn 30 phút</li>
+      <li>Trong <strong>1 tháng tới:</strong> chia sẻ 1 use case thực tế với cả team — cái gì hiệu quả, cái gì chưa</li>
     </ul>
   </div>
-  <div class="footer anim-4">Cảm ơn đã lắng nghe! &nbsp;—&nbsp; Mọi câu hỏi xin để lại ở phần Q&amp;A</div>
+  <div class="foot a4">Cảm ơn đã lắng nghe! &nbsp;—&nbsp; Mọi câu hỏi xin để lại ở phần Q&amp;A &nbsp;•&nbsp; King Food Mart &nbsp;•&nbsp; Tháng 5/2026</div>
 </div>
 
 </div><!-- /.deck -->
 
-<!-- Navigation -->
-<div class="nav" id="nav">
-  <button class="nav-btn" id="prevBtn" onclick="go(-1)">&#8592;</button>
-  <div class="nav-dots" id="dots"></div>
-  <button class="nav-btn" id="nextBtn" onclick="go(1)">&#8594;</button>
-  <span class="nav-counter" id="counter">1 / 13</span>
-</div>
+<!-- ════ COMPACT NAV ════ -->
+<nav class="nav" id="nav">
+  <button class="nbtn" onclick="go(-1)" title="Trước (←)">&#8592;</button>
+  <div id="dots" style="display:flex;gap:4px;align-items:center"></div>
+  <button class="nbtn" onclick="go(1)" title="Sau (→)">&#8594;</button>
+  <span class="ncnt" id="cnt">1/13</span>
+</nav>
 
 <script>
 const slides = document.querySelectorAll('.slide');
-const total = slides.length;
+const N = slides.length;
 let cur = 0;
 
 const dotsEl = document.getElementById('dots');
-const counter = document.getElementById('counter');
-
-// Build dots
-slides.forEach((_, i) => {
+for(let i=0;i<N;i++){
   const d = document.createElement('button');
-  d.className = 'nav-dot' + (i === 0 ? ' active' : '');
-  d.onclick = () => goTo(i);
+  d.style.cssText='background:none;border:none;cursor:pointer;padding:4px 2px;display:flex;align-items:center';
+  const inner = document.createElement('span');
+  inner.className='ndot'+(i===0?' on':'');
+  d.appendChild(inner);
+  d.onclick=()=>goTo(i);
   dotsEl.appendChild(d);
-});
-
-function goTo(n) {
-  slides[cur].classList.remove('active');
-  dotsEl.children[cur].classList.remove('active');
-  cur = (n + total) % total;
-  slides[cur].classList.add('active');
-  dotsEl.children[cur].classList.add('active');
-  counter.textContent = (cur + 1) + ' / ' + total;
 }
 
-function go(dir) { goTo(cur + dir); }
-
-// Keyboard
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(1); }
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); go(-1); }
-  if (e.key === 'Home') goTo(0);
-  if (e.key === 'End') goTo(total - 1);
-});
-
-// Swipe
-let tx = 0;
-document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
-document.addEventListener('touchend', e => {
-  const dx = tx - e.changedTouches[0].clientX;
-  if (Math.abs(dx) > 50) go(dx > 0 ? 1 : -1);
-});
-
-// Scale to viewport
-function scale() {
-  const deck = document.getElementById('deck');
-  const s = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
-  deck.style.transform = `scale(${s})`;
+function goTo(n){
+  slides[cur].classList.remove('on');
+  dotsEl.children[cur].firstChild.classList.remove('on');
+  cur=(n+N)%N;
+  slides[cur].classList.add('on');
+  dotsEl.children[cur].firstChild.classList.add('on');
+  document.getElementById('cnt').textContent=(cur+1)+'/'+N;
 }
-window.addEventListener('resize', scale);
+function go(d){goTo(cur+d);}
+
+document.addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1);}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1);}
+  if(e.key==='Home')goTo(0);
+  if(e.key==='End')goTo(N-1);
+  if(e.key>='1'&&e.key<='9')goTo(parseInt(e.key)-1);
+});
+
+let tx=0;
+document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',e=>{
+  const d=tx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>50)go(d>0?1:-1);
+},{passive:true});
+
+function scale(){
+  const s=Math.min(window.innerWidth/1280,window.innerHeight/720);
+  document.getElementById('deck').style.transform='scale('+s+')';
+}
+window.addEventListener('resize',scale);
 scale();
 
-// Init first slide
-slides[0].classList.add('active');
+slides[0].classList.add('on');
 </script>
 </body>
 </html>
